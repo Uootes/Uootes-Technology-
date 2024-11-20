@@ -94,7 +94,7 @@ const Faq = () => {
                {/* Second Section */}
 
                <li className='bg-[#240D61] rounded-lg py-[22px]  mt-[20px] w-[85%] m-auto flex flex-row align-middle justify-between'>
-                  <h3 className='text-white font-semibold text-[15PX] ml-[20px] '>What is Uootes Technology?</h3>
+                  <h3 className='text-white font-semibold text-[15PX] ml-[20px] '>What is Uootes?</h3>
 
                   {showSecondBtn ? <button onClick={() => {
                      setSecondFaqShow(true);

@@ -11,7 +11,7 @@ const Banner = () => {
                 <div className="md:max-w-lg">
                     {/* heading */}
                     <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-semibold text-xl font-manrope lg:text-4xl w-[70%] ml-6">
-                        Revolutionize Your Financial Future With  Uootes Technology's
+                        Revolutionize Your Financial Future With  Uootes.
                     </h1>
 
                     {/* paragraph */}
@@ -32,7 +32,7 @@ const Banner = () => {
                     <div className='m-3 w-full p-4 '>
                         <img src="./Asset/Top.png" alt="" className='md:w-1/2 m-auto' />
                     </div>
-                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2'>REGISTER Now</a>
+                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2'>Claim Your Gorsercoin</a>
                 </div>
             </div>
 
