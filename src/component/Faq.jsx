@@ -115,7 +115,7 @@ const Faq = () => {
                </li>
                {
                   secondFaqShow && <div className='w-[85%] bg-[#240D61] py-10 m-auto mt-[-10px] rounded-lg text-white font-normal text-left text-[16px] pl-[20px] pr-[20px]'>
-                     Uootes Technology is a web3 company empowering iindividuals and business to thrive in a global economy.
+                     Uootes Technology is a web3 company empowering individuals and business to thrive in a global economy.
                   </div>
                }
 
@@ -142,7 +142,7 @@ const Faq = () => {
                </li>
                {
                   thirdFaqShow && <div className='w-[85%] bg-[#240D61] py-10 m-auto mt-[-10px] rounded-lg text-white font-normal text-left text-[16px] pl-[20px] pr-[20px]'>
-                     CPT (Crude point Token) is a token used for gas and publications on our ecosystem.
+                     CPT (Crude point Token) is a token used for gas fee and publications on our ecosystem.
                   </div>
                }
 
