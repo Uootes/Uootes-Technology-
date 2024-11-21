@@ -10,14 +10,14 @@ const Banner = () => {
 
                 <div className="md:max-w-lg">
                     {/* heading */}
-                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-semibold text-xl font-manrope lg:text-4xl w-[70%] ml-6">
-                        Revolutionize Your Financial Future With  Uootes.
+                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-semibold text-2xl font-manrope lg:text-4xl w-[70%] ml-6">
+                        Earn Easy. Go Borderless with Uootes.
                     </h1>
 
                     {/* paragraph */}
 
-                    <p className="w-full text-blue-500 font-semibold md:my-9 font-manrope  md:pr-8 pr-6 m-6 ">
-                        At Uootes Technologies, we are commited to transforming  the financial landscape by providing cutting-edge tools and sevices that faster economic inclusion, transparency, and  security. The Future of Finance Starts Here, where possibilities are limitles and financial freedom is within  everyone's reach. Join us in shaping a global economy that  thrives on decentralized principles and technological advancements.
+                    <p className="w-full text-white font-semibold md:my-9 font-manrope  md:pr-8 pr-6 m-6 ">
+                        Imagine a World of Financial Freedom: We Make it a Reality.
                     </p>
 
                     {/* mail */}
