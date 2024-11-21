@@ -54,7 +54,9 @@ const Navbar = () => {
                         <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
                         <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
                         <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
+                        <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</a></li>
                         <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
+                        <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
                         <li><a href="/login" className="block text-gray- 300 pb-2 hover:text-purple-400">Login</a></li>
                         <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]">Sign Up</a></li>
                     </ul>
