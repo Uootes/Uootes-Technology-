@@ -48,7 +48,9 @@ const Navbar = () => {
                     <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400">Home</Link>
                     <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400">About</Link>
                     <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400">Services</Link>
+                    <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</Link>
                     <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400 ">Contact</Link>
+                    <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400 ">FAQ</Link>
                     <Link to="" className="block text-gray-300 pb-2 hover:text-purple-400 pt-4 pb-2">Login</Link>
                     <Link to="" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]">Sign Up</Link>
                 </div>
