@@ -28,7 +28,7 @@ const Banner = () => {
                     </div>
                 </div>
                 {/* banner img */}
-                <div className='flex flex-col'>
+                <div className='flex flex-col mt-8'>
                     <div className='m-3 w-full p-4 '>
                         <img src="./Asset/Top.png" alt="" className='md:w-1/2 m-auto' />
                     </div>
