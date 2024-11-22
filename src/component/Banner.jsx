@@ -6,9 +6,9 @@ const Banner = () => {
     return (
         <header className='w-full bg-gradient-to-r from-blue-900 to-black' id="home">
             <Navbar />
-            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12">
+            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center mt-10 md:mx-12">
 
-                <div className="md:max-w-lg ">
+                <div className="md:max-w-lg mt-8">
                     {/* heading */}
                     <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-bold text-3xl font-manrope lg:text-4xl w-[70%] ml-6">
                         Earn Easy. <br /> Go Borderless with Uootes.
