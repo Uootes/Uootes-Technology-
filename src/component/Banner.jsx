@@ -6,7 +6,7 @@ const Banner = () => {
     return (
         <header className='w-full bg-gradient-to-r from-blue-900 to-black' id="home">
             <Navbar />
-            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center mt-10 md:mx-12">
+            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mt-10 md:mx-12">
 
                 <div className="md:max-w-lg mt-8">
                     {/* heading */}
@@ -28,7 +28,7 @@ const Banner = () => {
                     </div>
                 </div>
                 {/* banner img */}
-                <div className='flex flex-col mt-8'>
+                <div className='flex flex-col md:mt-12'>
                     <div className='m-3 w-full p-4 '>
                         <img src="./Asset/Top.png" alt="" className='md:w-1/2 m-auto' />
                     </div>
