@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Uootes-Technology-/static/css/main.e1ee61cf.css",
-    "main.js": "/Uootes-Technology-/static/js/main.e5cd26fe.js",
+    "main.css": "/Uootes-Technology-/static/css/main.2bd9afef.css",
+    "main.js": "/Uootes-Technology-/static/js/main.96ead691.js",
     "static/media/Frame.png": "/Uootes-Technology-/static/media/Frame.1884b04510f356bb977d.png",
     "index.html": "/Uootes-Technology-/index.html",
-    "main.e1ee61cf.css.map": "/Uootes-Technology-/static/css/main.e1ee61cf.css.map",
-    "main.e5cd26fe.js.map": "/Uootes-Technology-/static/js/main.e5cd26fe.js.map"
+    "main.2bd9afef.css.map": "/Uootes-Technology-/static/css/main.2bd9afef.css.map",
+    "main.96ead691.js.map": "/Uootes-Technology-/static/js/main.96ead691.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1ee61cf.css",
-    "static/js/main.e5cd26fe.js"
+    "static/css/main.2bd9afef.css",
+    "static/js/main.96ead691.js"
   ]
 }
