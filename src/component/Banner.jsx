@@ -8,15 +8,15 @@ const Banner = () => {
             <Navbar />
             <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12">
 
-                <div className="md:max-w-lg">
+                <div className="md:max-w-lg ">
                     {/* heading */}
-                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-semibold text-2xl font-manrope lg:text-4xl w-[70%] ml-6">
-                        Earn Easy. Go Borderless with Uootes.
+                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-bold text-3xl font-manrope lg:text-4xl w-[70%] ml-6">
+                        Earn Easy. <br /> Go Borderless with Uootes.
                     </h1>
 
                     {/* paragraph */}
 
-                    <p className="w-full text-white font-semibold md:my-9 font-manrope  md:pr-8 pr-6 m-6 ">
+                    <p className="w-full text-slate-300 text-[16px] font-semibold md:my-9 font-manrope  md:pr-8 pr-6 m-6 ">
                         Imagine a World of Financial Freedom: We Make it a Reality.
                     </p>
 
