@@ -6,7 +6,7 @@ const Banner = () => {
     return (
         <header className='w-full bg-gradient-to-r from-blue-900 to-black' id="home">
             <Navbar />
-            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mt-10 md:mx-12">
+            <div className="w-full flex flex-col md:flex-row pt-16 md:pt-24 md:justify-between justify-center items-center md:mt-10 md:mx-12">
 
                 <div className="md:max-w-lg mt-8">
                     {/* heading */}
