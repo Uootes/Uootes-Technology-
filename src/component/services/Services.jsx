@@ -7,7 +7,7 @@ const ServiceSection = ({ title, description }) => (
             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-orange-500 rounded"></div>
         </div>
         <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="mt-2 ml-5 text-slate-300">{description}</p>
+        <p className="mt-2 ml-5 text-gray-200">{description}</p>
     </div>
 );
 
@@ -31,7 +31,7 @@ const Services = () => {
         },
         {
             title: 'Blockchain Services',
-            description: 'At Uootes Technology, our Blockchain Development Services are at the forefront of innovation, designed to empower businesses with cutting-edge solutions in the decentralized economy.'
+            description: 'At Utooes Technology, our Blockchain Development Services are at the forefront of innovation, designed to empower businesses with cutting-edge solutions in the decentralized economy.'
         },
         {
             title: 'Borderless Payments',
@@ -50,7 +50,7 @@ const Services = () => {
                             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-orange-500 rounded"></div>
                             <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">Our Services</h1>
                         </div>
-                        <p className="md:w-7/10 text-slate-300">
+                        <p className="md:w-7/10 text-gray-200">
                             At Uootes Technologies, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
                         </p>
                     </div>
@@ -64,7 +64,7 @@ const Services = () => {
                 </div>
 
                 {/* Services Details */}
-                <div className="md:grid md:grid-cols-3 gap-8 mt-12 text-white">
+                <div className="md:grid md:grid-cols-3 gap-8 mt-12">
                     {services.map((service, index) => (
                         <ServiceSection key={index} title={service.title} description={service.description} />
                     ))}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-// import Navbar from './component/Navbar';
+import Navbar from './component/Navbar';
 import About from './component/About';
 import Banner from './component/Banner';
 import Howitworks from './component/Howitworks';
@@ -15,6 +15,7 @@ function App() {
   return (
 
     <div className='bg-black overflow-hidden'>
+      <Navbar />
       <Banner />
       <div className='md:px-12 p-2'>
         <About />

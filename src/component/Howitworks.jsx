@@ -55,7 +55,7 @@ function Howitworks() {
           {/* seventh */}
           <div className="flex items-center md:flex-row flex-col my-5 md:ml-[100px]">
             <span className=" text-5xl font-bold mr-[15px] text-[#8999B2]">07</span>
-            <h2 className="text-xl text-white" >Grow your community by refering friends to earn coupons </h2>
+            <h2 className="text-xl text-white" >Grow your community by refering friends </h2>
           </div>
           {/* eighth */}
           <div className="flex items-center md:flex-row flex-col my-5 md:ml-[150px]">

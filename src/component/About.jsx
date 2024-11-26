@@ -13,7 +13,7 @@ function About() {
                         <h2 className="text-2xl md:text-4xl font-semibold text-transparent inline-block  bg-gradient-to-r from-[#a246b9ee] via-[#f56025] to-[#ea5317] bg-clip-text">Empowering the future of Finance</h2>
 
                         {/* paragraph */}
-                        <p className="text-sm md:text-4xl text-slate-300 font-normal mt-2">
+                        <p className="text-sm md:text-xl text-gray-200 font-normal mt-2">
                             At Uootes Technologies, we're  driven by a vision of a world where financial freedom is a reality for all. As a web3 company, we're  dedicated to empowering individuals and businesses to thrive in a global economy.</p>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ function About() {
                         <div className="flex mt-[60px] md:pl-8">
                             <div className="bg-gradient-to-t from-[#d58836cd] to-[#a454b8] w-[10px] md:h-[90px] rounded-lg"></div>
 
-                            <h3 className="text-[16px]] md:text-lg text-slate-300 font-normal md:pl-8 pl-2 my-auto md:w-[80%]">Our mission is to ensure cash flow by making earning easy and money borderless.</h3>
+                            <h3 className="text-sm md:text-lg text-gray-200 font-normal md:pl-8 pl-2 my-auto md:w-[80%]">Our mission is to ensure cash flow by making earning easy and money borderless.</h3>
                         </div>
 
                         <div className="flex flex-col md:pl-20 pt-16 text-lg">
@@ -34,7 +34,7 @@ function About() {
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className=" text-[24px] text-[#b88e32b1]">Innovation</h4>
-                                    <p className="text-[16px] text-slate-300 font-normal">We believe in pushing the boundaries of what's <br /> possible, leveraging blockchain and other advanced  technologies to develop groundbreaking financial  products and services.</p>
+                                    <p className="text-[16px] text-gray-200 font-normal">We believe in pushing the boundaries of what's <br /> possible, leveraging blockchain and other advanced  technologies to develop groundbreaking financial  products and services.</p>
                                 </div>
                             </div>
 
@@ -44,7 +44,7 @@ function About() {
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className="text-[24px] text-[#b88e32b1]">Inclusion</h4>
-                                    <p className="text-[16px] text-slate-300 font-normal">Our solutions are designed to be accessible to all. enterprises can benefit from the new financial lanscape</p>
+                                    <p className="text-[16px] text-gray-200 font-normal">Our solutions are designed to be accessible to all. enterprises can benefit from the new financial lanscape</p>
                                 </div>
                             </div>
 
@@ -54,14 +54,14 @@ function About() {
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className="text-[24px] text-[#b88e32b1]">Security</h4>
-                                    <p className="text-[16px] text-slate-300 font-normal">Ensuring the highest levels of security for our users' data and transactions is paramount, as we build  systems that are resilent agains threats and vulnerabilities  products and services.</p>
+                                    <p className="text-[16px] text-gray-200 font-normal">Ensuring the highest levels of security for our users' data and transactions is paramount, as we build  systems that are resilent agains threats and vulnerabilities  products and services.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
-                    <img src='./Asset/intro7.png' alt="" className="" />
+                    <img src='../Asset/intro7.png' alt="" className="" />
 
                 </div>
 
