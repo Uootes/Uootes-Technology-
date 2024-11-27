@@ -31,7 +31,7 @@ const Services = () => {
         },
         {
             title: 'Blockchain Services',
-            description: 'At Utooes Technology, our Blockchain Development Services are at the forefront of innovation, designed to empower businesses with cutting-edge solutions in the decentralized economy.'
+            description: 'At uootes our Blockchain Development Services are at the forefront of innovation, designed to empower businesses with cutting-edge solutions in the decentralized economy.'
         },
         {
             title: 'Borderless Payments',
@@ -51,7 +51,7 @@ const Services = () => {
                             <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">Our Services</h1>
                         </div>
                         <p className="md:w-7/10 text-gray-200">
-                            At Uootes Technologies, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
+                            At uootes, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
                         </p>
                     </div>
 

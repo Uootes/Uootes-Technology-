@@ -2,7 +2,7 @@ import React from 'react'
 
 const Roadmap = () => {
     return (
-        <div className='w-full mt-[100px]' id='roadmap'>
+        <div className='w-full pt-20' id='roadmap'>
 
             <div>
                 <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>

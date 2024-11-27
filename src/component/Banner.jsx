@@ -5,18 +5,18 @@ import Navbar from '../component/Navbar';
 const Banner = () => {
     return (
         <header className='w-full bg-gradient-to-r from-blue-900 to-black pt-[180px] ' id="home">
-            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 px-4">
+            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 mx-2">
 
-                <div className="md:w-[70%]">
+                <div className="md:w-[70%] w-full">
                     {/* heading */}
-                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-bold text-xl font-manrope lg:text-4xl text-center md:text-left">
-                        Earn Easy.
+                    <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-bold text-2xl font-manrope lg:text-4xl text-center md:text-left">
+                        <span className='text-4xl'>Earn Easy.</span>
                         <br />Go Borderless with Uootes.
                     </h1>
 
                     {/* paragraph */}
 
-                    <p className="text-white font-semibold md:my-9 my-3 font-manrope">
+                    <p className="text-white font-semibold md:my-4 my-2 text-sm md:text-lg font-manrope">
                         Imagine a World of Financial Freedom: We Make it a Reality.
                     </p>
 
@@ -32,7 +32,7 @@ const Banner = () => {
                     <div className='m-3 w-full p-4 '>
                         <img src="./Asset/Top.png" alt="" className='md:w-1/2 m-auto' />
                     </div>
-                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2'>Claim Your GOSERCOIN!</a>
+                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2'>Claim Your GOSSERCOIN!</a>
                 </div>
             </div>
 

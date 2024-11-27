@@ -2,7 +2,7 @@ import React from 'react'
 
 function Howitworks() {
   return (
-    <div className='w-full mt-6 container'>
+    <div className='w-full py-20 container'>
       {/* Roadmap Header Section*/}
       <div className='ml-[20px]'>
         <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>

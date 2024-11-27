@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Login from './Login&signup/Login';
-import Signup from './Login&signup/Signup';
-
+import React, { useState, useEffect, useRef } from 'react';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
     const [isSignupDropdownOpen, setIsSignupDropdownOpen] = useState(false);
+
+    const loginDropdownRef = useRef(null);  // Create a ref for the login dropdown
+    const signupDropdownRef = useRef(null); // Create a ref for the signup dropdown
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -38,6 +38,26 @@ const Navbar = () => {
         };
     }, [isMenuOpen]);
 
+    // Close the login dropdown when clicking outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (loginDropdownRef.current && !loginDropdownRef.current.contains(event.target)) {
+                setIsLoginDropdownOpen(false); // Close the dropdown if the click is outside
+            }
+            if (signupDropdownRef.current && !signupDropdownRef.current.contains(event.target)) {
+                setIsSignupDropdownOpen(false); // Close the dropdown if the click is outside
+            }
+        };
+
+        // Add the event listener to detect clicks outside the dropdowns
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-55">
             <div className="container flex justify-between items-center md:px-4">
@@ -49,24 +69,31 @@ const Navbar = () => {
 
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
+
                     <a href="#home" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
+
                     <a href="#about" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</a>
+
                     <a href="#services" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Services">Services</a>
+
                     <a href="#roadmap" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Roadmap">RoadMap</a>
+
                     <a href="#contact" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Contact">Contact</a>
+
                     <a href="#faq" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="FAQ">FAQ</a>
                 </div>
 
                 {/* Login & Signup with Dropdowns */}
                 <div className="hidden md:flex space-x-2 relative">
+
                     <div>
                         <button onClick={toggleLoginDropdown} className="text-gray-300 hover:text-purple-400 p-2 border rounded">
                             Login
                         </button>
                         {isLoginDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/login/email" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login with Email</a>
-                                <a href="/login/social" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login with Social Media</a>
+                            <div ref={loginDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                                <a href="/login" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login As User</a>
+                                <a href="/login" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login As Exchanger</a>
                             </div>
                         )}
                     </div>
@@ -75,16 +102,16 @@ const Navbar = () => {
                             Sign Up
                         </button>
                         {isSignupDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/signup/email" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up with Email</a>
-                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up with Social Media</a>
+                            <div ref={signupDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign As User</a>
+                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign As Exchanger</a>
                             </div>
                         )}
                     </div>
                 </div>
 
                 {/* Mobile Menu Button */}
-                <div className="md :hidden pr-8">
+                <div className="md:hidden pr-8">
                     <button
                         onClick={toggleMenu}
                         className="text-gray-300 hover:text-purple-400"
@@ -108,30 +135,46 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden text-2xl pl-4 pb-4">
+                <div className="md:hidden text-2xl pl-4 pb-4 mx-2">
                     <ul>
                         <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
                         <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
                         <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
                         <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
+                        {/* login drop down */}
                         <li>
-                            <button onClick={toggleLoginDropdown} className="block text-gray-300 pb-2 hover:text-purple-400">Login</button>
+                            <button onClick={toggleLoginDropdown} className="w-full block border border-white border-2 p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">
+                                Login</button>
+
                             {isLoginDropdownOpen && (
                                 <div className="pl-4">
                                     <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login as User</a>
-                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login As Exchanger </a>
+                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login As Exchanger</a>
                                 </div>
                             )}
+
                         </li>
+                        {/* signup drop down */}
                         <li>
-                            <button onClick={toggleSignupDropdown} className="block bg-blue-500 text-white px-4 py-2 rounded">Sign Up</button>
+
+                            <button
+                                onClick={toggleSignupDropdown}
+                                className="block bg-blue-400 p-1 text-white rounded w-full"
+                            >
+                                <span>Sign Up</span>
+                                {/* Dropdown Icon */}
+                                <i className={`fas ${isSignupDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'} text-white`} />
+                            </button>
+
                             {isSignupDropdownOpen && (
                                 <div className="pl-4">
                                     <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign Up As User</a>
                                     <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign As Exchanger</a>
                                 </div>
                             )}
+
                         </li>
+
                     </ul>
                 </div>
             )}
