@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Login from './Login&signup/Login';
+import Signup from './Login&signup/Signup';
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,7 +77,7 @@ const Navbar = () => {
                         {isSignupDropdownOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
                                 <a href="/signup/email" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up with Email</a>
-                                <a href="/signup/social" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up with Social Media</a>
+                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Up with Social Media</a>
                             </div>
                         )}
                     </div>
@@ -115,8 +118,8 @@ const Navbar = () => {
                             <button onClick={toggleLoginDropdown} className="block text-gray-300 pb-2 hover:text-purple-400">Login</button>
                             {isLoginDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="/login/email" className="block text-gray-300 pb-2 hover:text-purple-400">Login with Email</a>
-                                    <a href="/login/social" className="block text-gray-300 pb-2 hover:text-purple-400">Login with Social Media</a>
+                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login as User</a>
+                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login As Exchanger </a>
                                 </div>
                             )}
                         </li>
@@ -124,8 +127,8 @@ const Navbar = () => {
                             <button onClick={toggleSignupDropdown} className="block bg-blue-500 text-white px-4 py-2 rounded">Sign Up</button>
                             {isSignupDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="/signup/email" className="block text-gray-300 pb-2 hover:text-purple-400">Sign Up with Email</a>
-                                    <a href="/signup/social" className="block text-gray-300 pb-2 hover:text-purple-400">Sign Up with Social Media</a>
+                                    <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign Up As User</a>
+                                    <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign As Exchanger</a>
                                 </div>
                             )}
                         </li>

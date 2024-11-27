@@ -94,7 +94,7 @@ const Faq = () => {
                {/* Second Section */}
 
                <li className='bg-[#240D61] rounded-lg py-[22px]  mt-[20px] w-[85%] m-auto flex flex-row align-middle justify-between'>
-                  <h3 className='text-white font-semibold text-[15PX] ml-[20px] '>What is Uootes Technology?</h3>
+                  <h3 className='text-white font-semibold text-[15PX] ml-[20px] '>What is Uootes ?</h3>
 
                   {showSecondBtn ? <button onClick={() => {
                      setSecondFaqShow(true);
@@ -115,7 +115,7 @@ const Faq = () => {
                </li>
                {
                   secondFaqShow && <div className='w-[85%] bg-[#240D61] py-10 m-auto mt-[-10px] rounded-lg text-white font-normal text-left text-[16px] pl-[20px] pr-[20px]'>
-                     Uootes Technology is a web3 company empowering iindividuals and business to thrive in a global economy.
+                     Uootes  is a web3 company empowering iindividuals and business to thrive in a global economy.
                   </div>
                }
 

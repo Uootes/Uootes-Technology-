@@ -14,7 +14,7 @@ function About() {
 
                         {/* paragraph */}
                         <p className="text-sm md:text-xl text-gray-200 font-normal mt-2">
-                            At Uootes Technologies, we're  driven by a vision of a world where financial freedom is a reality for all. As a web3 company, we're  dedicated to empowering individuals and businesses to thrive in a global economy.</p>
+                            At Uootes , we're  driven by a vision of a world where financial freedom is a reality for all. As a web3 company, we're  dedicated to empowering individuals and businesses to thrive in a global economy.</p>
                     </div>
                 </div>
 
