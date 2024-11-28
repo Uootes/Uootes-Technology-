@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PageIcon from "./PageIcon";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +64,11 @@ const Navbar = () => {
             <div className="container flex justify-between items-center md:px-4">
 
                 {/* Logo */}
-                <a href="/">
+                <div className='flex border border-red-300 bg-blue-900'>
+                    <a href="/"><PageIcon color={'white'} /></a>
+                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span>
+                </div>
+                {/* <a href="/">
                     <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
                 </a>
 
