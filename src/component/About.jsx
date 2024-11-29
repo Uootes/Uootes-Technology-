@@ -61,7 +61,7 @@ function About() {
                     </div>
 
 
-                    <img src='../Asset/intro7.png' alt="" className="" />
+                    <img src='./Asset/intro7.png' alt="" className="" />
 
                 </div>
 
