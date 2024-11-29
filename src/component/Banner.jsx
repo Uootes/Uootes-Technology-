@@ -22,7 +22,7 @@ const Banner = () => {
 
                     {/* mail */}
                     <div className="flex">
-                        <input type="email" placeholder="Your Email Address" className=" w-full  rounded-l-[10px] bg-[#2a156b9b] text-[14px] text-blue-400 font-semibold md:p-4 p-2 focus:outline-none" />
+                        <input type="email" placeholder="Your Email Address" className=" w-full  rounded-l-[10px] bg-[#2a156b9b] text-[14px] text-white font-semibold md:p-4 p-2 focus:outline-none" />
                         {/* button */}
                         <button className="banner-btn md:w-[30%] w-[50%] bg-red-700 rounded-r-[10px] md:p-4 text-white font-normal">Get Started</button>
                     </div>
