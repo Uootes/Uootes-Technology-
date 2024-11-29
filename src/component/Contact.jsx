@@ -25,7 +25,7 @@ function Contact() {
 
     return (
         <div className='flex justify-center py-20'>
-            <div className='py-5 w-[86%] py-10' id="background">
+            <div className='py-5 w-[86%] py-10 background'>
                 <div className='flex flex-col  md:ml-20'>
                     <span className='ml-5' id='contact-span'></span>
                     <a href="tel:+2348117740077">

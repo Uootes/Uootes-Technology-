@@ -28,10 +28,9 @@
   color: #61dafb;
 }
 
-#background {
-  opacity: 0px;
+.background {
   background: rgba(4, 44, 84, 1);
-  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 8px 3px rgb(248 250 251 / 48%);
   background-image: url('../public/Asset/Frame.png');
   background-blend-mode: Saturation;
 }
