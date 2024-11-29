@@ -60,13 +60,15 @@ const Navbar = () => {
     }, []);
 
     return (
-        <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-55">
+        <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-55 p-4">
             <div className="container flex justify-between items-center md:px-4">
 
                 {/* Logo */}
-                <div className='flex border border-red-300 bg-blue-900'>
-                    <a href="/"><PageIcon color={'white'} /></a>
-                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span>
+                <div className='flex'>
+                    <a href="/">
+                        <img src='./Asset/utlogo.png' className='w-[7em]' alt='Uootes Logo' />
+                    </a>
+
                 </div>
                 {/* <a href="/">
                     <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
@@ -116,7 +118,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <div className="md:hidden pr-8">
+                <div className="md:hidden">
                     <button
                         onClick={toggleMenu}
                         className="text-gray-300 hover:text-purple-400"
