@@ -14,11 +14,21 @@ function Footer() {
             <div className="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left">
                 <h2 className='text-white text-lg font-bold mb-2'>Quick Links</h2>
                 <ul className="text-gray-300 text-base">
-                    <li className="pb-2 hover:text-purple-400"><a href="/">Home</a></li>
-                    <li className="pb-2 hover:text-purple-400"><a href="/about">About</a></li>
-                    <li className="pb-2 hover:text-purple-400"><a href="/services">Services</a></li>
-                    <li className="pb-2 hover:text-purple-400"><a href="/contact">Contact</a></li>
-                    <li className="pb-2 hover:text-purple-400"><a href="/faq">FAQ</a></li>
+                    <li className="pb-2 hover:text-purple-400">
+                        <a href="#home">Home</a>
+                    </li>
+                    <li className="pb-2 hover:text-purple-400">
+                        <a href="#about">About</a>
+                    </li>
+                    <li className="pb-2 hover:text-purple-400">
+                        <a href="#services">Services</a>
+                    </li>
+                    <li className="pb-2 hover:text-purple-400">
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li className="pb-2 hover:text-purple-400">
+                        <a href="#faq">FAQ</a>
+                    </li>
                 </ul>
             </div>
                 <div className="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left">

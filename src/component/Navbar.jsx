@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PageIcon from "./PageIcon";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,8 +64,12 @@ const Navbar = () => {
             <div className="container flex justify-between items-center md:px-4">
 
                 {/* Logo */}
-                <a href="/">
-                    <img src='./Asset/uooteslg.png' className='w-[10em]' alt='Uootes Logo' />
+                <div className='flex border border-red-300 bg-blue-900'>
+                    <a href="/"><PageIcon color={'white'} /></a>
+                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span>
+                </div>
+                {/* <a href="/">
+                    <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
                 </a>
 
                 {/* Navigation Links */}
@@ -140,7 +145,9 @@ const Navbar = () => {
                         <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
                         <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
                         <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
+                        <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</a></li>
                         <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
+                        <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
                         {/* login drop down */}
                         <li>
                             <button onClick={toggleLoginDropdown} className="w-full block border border-white border-2 p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">

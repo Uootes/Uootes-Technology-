@@ -13,6 +13,11 @@
   }
 }
 
+.page-icon {
+  width: 70px; 
+  background-color: #1e3a8a;
+}
+
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -4,7 +4,7 @@ import './App.css';
 
 const Banner = () => {
     return (
-        <header className='w-full bg-gradient-to-r from-blue-900 to-black pt-[180px] ' id="home">
+        <header className='w-full bg-gradient-to-r from-blue-900 to-black pt-[100px] ' id="home">
             <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 mx-2">
 
                 <div className="md:w-[70%] w-full">
