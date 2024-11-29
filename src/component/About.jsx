@@ -3,7 +3,7 @@ import React from 'react'
 function About() {
     return (
         <div id='about'>
-            <div className='rounded-lg  py-20 '>
+            <div className='rounded-lg  py-20'>
                 <div className='md:pl-8'>
                     <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg '></div>
                     <h2 className=' text-orange-400 font-semibold text-[26px] mt-[3px]'>About Us </h2>

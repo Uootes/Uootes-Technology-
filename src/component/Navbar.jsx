@@ -14,14 +14,24 @@ const Navbar = () => {
     };
 
     const toggleLoginDropdown = () => {
-        setIsLoginDropdownOpen(!isLoginDropdownOpen);
-        if (isSignupDropdownOpen) setIsSignupDropdownOpen(false); // Close Sign Up dropdown if it's open
+        setIsLoginDropdownOpen(prevState => !prevState); // Toggle Login dropdown
+        setIsSignupDropdownOpen(false); // Ensure Sign Up dropdown is closed
     };
 
     const toggleSignupDropdown = () => {
-        setIsSignupDropdownOpen(!isSignupDropdownOpen);
-        if (isLoginDropdownOpen) setIsLoginDropdownOpen(false); // Close Login dropdown if it's open
+        setIsSignupDropdownOpen(prevState => !prevState); // Toggle Sign Up dropdown
+        setIsLoginDropdownOpen(false); // Ensure Login dropdown is closed
     };
+
+    // const toggleLoginDropdown = () => {
+    //     setIsLoginDropdownOpen(!isLoginDropdownOpen);
+    //     if (isSignupDropdownOpen) setIsSignupDropdownOpen(false); // Close Sign Up dropdown if it's open
+    // };
+
+    // const toggleSignupDropdown = () => {
+    //     setIsSignupDropdownOpen(!isSignupDropdownOpen);
+    //     if (isLoginDropdownOpen) setIsLoginDropdownOpen(false); // Close Login dropdown if it's open
+    // };
 
     // Close menu on scroll
     useEffect(() => {
@@ -40,37 +50,60 @@ const Navbar = () => {
     }, [isMenuOpen]);
 
     // Close the login dropdown when clicking outside of it
+
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (loginDropdownRef.current && !loginDropdownRef.current.contains(event.target)) {
-                setIsLoginDropdownOpen(false); // Close the dropdown if the click is outside
+            if (
+                loginDropdownRef.current &&
+                !loginDropdownRef.current.contains(event.target)
+            ) {
+                setIsLoginDropdownOpen(false);
             }
-            if (signupDropdownRef.current && !signupDropdownRef.current.contains(event.target)) {
-                setIsSignupDropdownOpen(false); // Close the dropdown if the click is outside
+            if (
+                signupDropdownRef.current &&
+                !signupDropdownRef.current.contains(event.target)
+            ) {
+                setIsSignupDropdownOpen(false);
             }
         };
 
-        // Add the event listener to detect clicks outside the dropdowns
         document.addEventListener('mousedown', handleClickOutside);
-
-        // Cleanup the event listener on component unmount
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //         if (loginDropdownRef.current && !loginDropdownRef.current.contains(event.target)) {
+    //             setIsLoginDropdownOpen(false); // Close the dropdown if the click is outside
+    //         }
+    //         if (signupDropdownRef.current && !signupDropdownRef.current.contains(event.target)) {
+    //             setIsSignupDropdownOpen(false); // Close the dropdown if the click is outside
+    //         }
+    //     };
+
+    //     // Add the event listener to detect clicks outside the dropdowns
+    //     document.addEventListener('mousedown', handleClickOutside);
+
+    //     // Cleanup the event listener on component unmount
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, []);
 
     return (
         <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-55">
             <div className="container flex justify-between items-center md:px-4">
 
                 {/* Logo */}
-                <div className='flex border border-red-300 bg-blue-900'>
-                    <a href="/"><PageIcon color={'white'} /></a>
-                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span>
-                </div>
-                {/* <a href="/">
-                    <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
-                </a>
+                <div className='flex bg-blue-'>
+                    {/* <a href="/"><PageIcon color={'white'} /></a>
+                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span> */}
+                    <a href="/">
+                        <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
+                    </a>
+                </div> 
 
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
@@ -97,19 +130,20 @@ const Navbar = () => {
                         </button>
                         {isLoginDropdownOpen && (
                             <div ref={loginDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/login" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login As User</a>
-                                <a href="/login" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login As Exchanger</a>
+                                <a href="/login_user" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">User</a>
+                                <a href="/login_exchanger" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Exchanger</a>
                             </div>
                         )}
                     </div>
+                    
                     <div>
                         <button onClick={toggleSignupDropdown} className="bg-blue-500 text-white p-2 rounded">
                             Sign Up
                         </button>
                         {isSignupDropdownOpen && (
                             <div ref={signupDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign As User</a>
-                                <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign As Exchanger</a>
+                                <a href="/signup_user" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">User</a>
+                                <a href="/signup_exchanger" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Exchanger</a>
                             </div>
                         )}
                     </div>
@@ -150,13 +184,13 @@ const Navbar = () => {
                         <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
                         {/* login drop down */}
                         <li>
-                            <button onClick={toggleLoginDropdown} className="w-full block border border-white border-2 p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">
+                            <button onClick={toggleLoginDropdown} className="w-full block border border-white p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">
                                 Login</button>
 
                             {isLoginDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login as User</a>
-                                    <a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400">Login As Exchanger</a>
+                                    <a href="/login_user" className="block text-gray-300 pb-2 hover:text-purple-400">User</a>
+                                    <a href="/login_exchanger" className="block text-gray-300 pb-2 hover:text-purple-400">Exchanger</a>
                                 </div>
                             )}
 
@@ -175,8 +209,8 @@ const Navbar = () => {
 
                             {isSignupDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign Up As User</a>
-                                    <a href="/signup" className="block text-gray-300 pb-2 hover:text-purple-400">Sign As Exchanger</a>
+                                    <a href="/signup_user" className="block text-gray-300 pb-2 hover:text-purple-400">User</a>
+                                    <a href="/signup_exchanger" className="block text-gray-300 pb-2 hover:text-purple-400">Exchanger</a>
                                 </div>
                             )}
 

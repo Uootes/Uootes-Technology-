@@ -24,14 +24,13 @@ function Contact() {
     };
 
     return (
-        <div className='flex justify-center py-20'>
-            <div className='py-5 w-[86%] py-10' id="background">
-                <div className='flex flex-col  md:ml-20'>
-                    <span className='ml-5' id='contact-span'></span>
-                    <a href="tel:+2348117740077">
-                        <h3 className='text-white ml-5 text-2xl' id='contact' >Contact Us</h3>
-                    </a>
+        <div className='flex justify-center md:pt-20 pb-20'>
+            <div className='w-[86%] py-10' id="background">
+                <div className="md:w-3/10 xs:pt-20">
+                    <div className="bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg ml-5"></div>
+                    <a href="tel:+2348117740077"><h1 className="text-orange-400 font-semibold text-[26px] mt-[3px] ml-5" id='contact'>Contact Us</h1></a>
                 </div>
+                
                 <div className='flex justify-center mt-6'>
                     <form onSubmit={handleSubmit} className='flex flex-col text-center justify-center md:w-[60%] md:gap-10 gap-5'>
                         <div className='flex justify-center text-2xl'>

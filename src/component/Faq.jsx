@@ -55,7 +55,7 @@ const Faq = () => {
 
 
    return (
-      <section className='w-full py-5' id='faq'>
+      <section className='w-full pb-5 pt-20' id='faq'>
 
          <div className='ml-[20px]'>
             <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>

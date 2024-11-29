@@ -42,13 +42,13 @@ const Services = () => {
     return (
         <div id='services'>
 
-            <div className="p-4 md:p-12 rounded-lg  bg-[#0a2540] text-white" >
+            <div className="p-4 md:p-12 rounded-lg  bg-[#0a2540] text-white pt-20" >
                 <div >
                     {/* Heading */}
                     <div className="md:flex justify-between items-center">
-                        <div className="md:w-3/10">
-                            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-orange-500 rounded"></div>
-                            <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">Our Services</h1>
+                        <div className="md:w-3/10 pb-5">
+                            <div className="bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg"></div>
+                            <h1 className="text-orange-400 font-semibold text-[26px] mt-[3px]">Our Services</h1>
                         </div>
                         <p className="md:w-7/10 text-gray-200">
                             At uootes, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
