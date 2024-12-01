@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-// import Navbar from '../component/Navbar';
 
 const Banner = () => {
     return (
         <header className='w-full bg-gradient-to-r from-blue-900 to-black pt-[100px] ' id="home">
             <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 mx-2">
 
-                <div className="md:w-[70%] w-full">
+                <div className="md:w-[70%] w-full text-center md:text-left">
                     {/* heading */}
                     <h1 className="bg-gradient-to-r from-[#AD66F9] via-[#EF9570] to-[#EF9570] bg-clip-text text-transparent font-bold text-2xl font-manrope lg:text-4xl text-center md:text-left">
                         <span className='text-4xl'>Earn Easy.</span>
@@ -16,23 +15,23 @@ const Banner = () => {
 
                     {/* paragraph */}
 
-                    <p className="text-white font-semibold md:my-4 my-2 text-sm md:text-lg font-manrope">
+                    <p className="text-white font-semibold md:my-4 my-2 text-sm md:text-lg font-manrope px-2 md:p-0">
                         Imagine a World of Financial Freedom: We Make it a Reality.
                     </p>
-
+                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2 bg-[#7f1d66] hover:bg-[#7c1d7fa8]'>Claim Your GOSSERCOIN!</a>
                     {/* mail */}
-                    <div className="flex">
+                    {/* <div className="flex">
                         <input type="email" placeholder="Your Email Address" className=" w-full  rounded-l-[10px] bg-[#2a156b9b] text-[14px] text-white font-semibold md:p-4 p-2 focus:outline-none" />
-                        {/* button */}
+                        
                         <button className="banner-btn md:w-[30%] w-[50%] bg-red-700 rounded-r-[10px] md:p-4 text-white font-normal">Get Started</button>
-                    </div>
+                    </div> */}
                 </div>
                 {/* banner img */}
                 <div className='flex flex-col'>
                     <div className='m-3 w-full p-4 '>
                         <img src="./Asset/Top.png" alt="" className='md:w-1/2 m-auto' />
                     </div>
-                    <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2'>Claim Your GOSSERCOIN!</a>
+
                 </div>
             </div>
 
