@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
 import Dropdown from './Dropdown'; // Import Dropdown component
 
 const Navbar = () => {
@@ -8,6 +9,8 @@ const Navbar = () => {
 
     const loginDropdownRef = useRef(null);
     const signupDropdownRef = useRef(null);
+
+    const navigate = useNavigate();  // Initialize navigate function
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -53,6 +56,15 @@ const Navbar = () => {
         };
     }, []);
 
+    // Function to handle login navigation
+    const handleLogin = (role) => {
+        if (role === 'user') {
+            navigate('/login-user');  // Navigate to the user login page
+        } else if (role === 'exchanger') {
+            navigate('/login-exchanger');  // Navigate to the exchanger login page
+        }
+    };
+
     return (
         <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-50 p-4">
             {/* Logo */}
@@ -76,20 +88,19 @@ const Navbar = () => {
                     <Dropdown
                         isOpen={isLoginDropdownOpen}
                         onToggle={() => toggleDropdown('login')}
-                        //    Pass name here
                         name="Login"
                         options={[
-                            { label: 'User', path: '/' },
-                            { label: 'Exchanger', path: '' },
+                            { label: 'User', path: '/login-user' },  // Updated path for user login
+                            { label: 'Exchanger', path: '/' },  // Updated path for exchanger login
                         ]}
                     />
                     <Dropdown
                         isOpen={isSignupDropdownOpen}
                         onToggle={() => toggleDropdown('signup')}
-                        name="Sign Up" //    Pass name here
+                        name="Sign Up"
                         options={[
                             { label: 'User', path: '/' },
-                            { label: 'Exchanger', path: '' },
+                            { label: 'Exchanger', path: '/' },
                         ]}
                     />
                 </div>
@@ -131,8 +142,18 @@ const Navbar = () => {
                             </button>
                             {isLoginDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="" className="block text-gray-300 pb-2 hover:text-purple-400">User</a>
-                                    <a href="" className="block text-gray-300 pb-2 hover:text-purple-400">Exchanger</a>
+                                    <a
+                                        onClick={() => handleLogin('user')}
+                                        className="block text-gray-300 pb-2 hover:text-purple-400"
+                                    >
+                                        User
+                                    </a>
+                                    <a
+                                        onClick={() => handleLogin('exchanger')}
+                                        className="block text-gray-300 pb-2 hover:text-purple-400"
+                                    >
+                                        Exchanger
+                                    </a>
                                 </div>
                             )}
                         </li>

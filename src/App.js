@@ -16,18 +16,16 @@ function App() {
   return (
 
     <div className='bg-black overflow-hidden'>
+
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/userpage" element={<P404 />} /> {/* Add route for UserPage */}
-          {/* Other routes */}
+          <Route path="/login-user" element={<P404 />} /> {/* Add route for UserPage */}
+
         </Routes>
       </Router>
 
-      <Navbar />
-
-      {/* banner section */}
-      <div> <Banner /></div>
+      <Banner />
 
       {/* other section */}
       <div className='md:px-12 p-2'>
@@ -41,6 +39,7 @@ function App() {
 
       {/* footer section */}
       <Footer />
+
     </div>
 
   );
