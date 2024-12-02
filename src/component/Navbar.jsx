@@ -59,10 +59,17 @@ const Navbar = () => {
     // Function to handle login navigation
     const handleLogin = (role) => {
         if (role === 'user') {
-            navigate('/login-user');  // Navigate to the user login page
+            navigate('/p404');  // Navigate to the user login page
         } else if (role === 'exchanger') {
-            navigate('/login-exchanger');  // Navigate to the exchanger login page
+            navigate('/p404');  // Navigate to the exchanger login page
         }
+    };
+
+    // Handle link click and close the menu
+    const handleLinkClick = (e, path) => {
+        e.preventDefault();
+        setIsMenuOpen(false);  // Close the mobile menu
+        navigate(path);  // Navigate to the clicked route
     };
 
     return (
@@ -90,8 +97,8 @@ const Navbar = () => {
                         onToggle={() => toggleDropdown('login')}
                         name="Login"
                         options={[
-                            { label: 'User', path: '/login-user' },  // Updated path for user login
-                            { label: 'Exchanger', path: '/' },  // Updated path for exchanger login
+                            { label: 'User', path: '/p404' },  // Updated path for user login
+                            { label: 'Exchanger', path: '/p404' },  // Updated path for exchanger login
                         ]}
                     />
                     <Dropdown
@@ -99,8 +106,8 @@ const Navbar = () => {
                         onToggle={() => toggleDropdown('signup')}
                         name="Sign Up"
                         options={[
-                            { label: 'User', path: '/' },
-                            { label: 'Exchanger', path: '/' },
+                            { label: 'User', path: '/p404' },
+                            { label: 'Exchanger', path: '/p404' },
                         ]}
                     />
                 </div>
@@ -130,12 +137,12 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden text-2xl pl-4 pb-4 mx-2">
                     <ul>
-                        <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
-                        <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
-                        <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
-                        <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</a></li>
-                        <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
-                        <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
+                        <li><a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
+                        <li><a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
+                        <li><a href="#services" onClick={(e) => handleLinkClick(e, '#services')} className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
+                        <li><a href="#roadmap" onClick={(e) => handleLinkClick(e, '#roadmap')} className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</a></li>
+                        <li><a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
+                        <li><a href="#faq" onClick={(e) => handleLinkClick(e, '#faq')} className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
                         <li>
                             <button onClick={() => toggleDropdown('login')} className="w-full block border border-white border-2 p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">
                                 Login
@@ -143,13 +150,13 @@ const Navbar = () => {
                             {isLoginDropdownOpen && (
                                 <div className="pl-4">
                                     <a
-                                        onClick={() => handleLogin('user')}
+                                        onClick={(e) => handleLinkClick(e, '/p404')}
                                         className="block text-gray-300 pb-2 hover:text-purple-400"
                                     >
                                         User
                                     </a>
                                     <a
-                                        onClick={() => handleLogin('exchanger')}
+                                        onClick={(e) => handleLinkClick(e, '/p404')}
                                         className="block text-gray-300 pb-2 hover:text-purple-400"
                                     >
                                         Exchanger
@@ -167,8 +174,8 @@ const Navbar = () => {
                             </button>
                             {isSignupDropdownOpen && (
                                 <div className="pl-4">
-                                    <a href="/" className="block text-gray-300 pb-2 hover:text-purple-400"> User</a>
-                                    <a href="/" className="block text-gray-300 pb-2 hover:text-purple-400"> Exchanger</a>
+                                    <a onClick={(e) => handleLinkClick(e, '/p404')} className="block text-gray-300 pb-2 hover:text-purple-400"> User</a>
+                                    <a onClick={(e) => handleLinkClick(e, '/p404')} className="block text-gray-300 pb-2 hover:text-purple-400"> Exchanger</a>
                                 </div>
                             )}
                         </li>
