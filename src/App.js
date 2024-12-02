@@ -17,7 +17,7 @@ function App() {
     <div className='bg-black overflow-hidden'>
       <Router>
         {/* Navbar is always visible on all pages */}
-        <Navbar />
+
 
         <Routes>
           {/* Route for the P404 page */}
@@ -28,13 +28,15 @@ function App() {
               <P404 />
 
               {/* Footer should also be visible */}
-              <Footer />
+              {/* <Footer /> */}
             </div>
           } />
 
           {/* Default route - show all sections */}
           <Route path="/" element={
+
             <div>
+              <Navbar />
               <Banner />
               <div className='md:px-12 p-2'>
                 <About />
