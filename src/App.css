@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+html{
+  scroll-behavior: smooth;
+  background-color: #002853;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -33,10 +38,9 @@
   color: #61dafb;
 }
 
-#background {
-  opacity: 0px;
-  background: rgba(4, 44, 84, 1);
-  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
+.background {
+  /* background: rgb(9, 53, 80); */
+  /* box-shadow: 1px 1px 8px 3px rgb(248 250 251 / 48%); */
   background-image: url('../public/Asset/Frame.png');
   background-blend-mode: Saturation;
 }
@@ -49,6 +53,20 @@
   opacity: 0px;
   border: none;
   background: linear-gradient(90deg, #AD66F9 30%, #EF9570 100%);
+}
+
+#contact-class {
+  color: #EF9570;
+}
+
+.border-all {
+  border: 1px solid #EF9570;
+  border-radius: 0 30px 30px 30px;
+}
+
+.borderall {
+  border: 1px solid rgb(243, 116, 243);
+  border-radius: 30px 0 30px 30px;
 }
 
 #gradient {

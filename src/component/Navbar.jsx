@@ -1,152 +1,127 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PageIcon from "./PageIcon";
+//  just close
+// import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+
+// const Navbar = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
+
+//   return (
+//     <div className="fixed top-0 w-full bg-gradient-to-r from-blue-900 to-black text-white">
+//       <div className="flex items-center justify-between ">
+//       {/* <div className="flex items-center justify-between px-5 lg:px-7.5 xl:px-10 py-4 mx-auto"> */}
+//         <div>
+//           <Link to="/" className="flex items-center w-[12rem] text-lg font-bold hover:text-blue-700">
+//             <img src="logo.png" alt="Logo" className="w-8 h-8 mr-2" />
+//             Company Name
+//           </Link>
+//         </div>
+
+//         <div className="lg:hidden">
+//           <button onClick={toggleMenu} className="text-white focus:outline-none">
+//             {isMenuOpen ? (
+//               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+//               </svg>
+//             ) : (
+//               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+// l                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+//               </svg>
+//             )}
+//           </button>
+//         </div>
+
+//         <ul className={`lg:flex items-center space-x-4 ${isMenuOpen ? 'block' : 'hidden'} lg:block`}>
+//           <li>
+//             <Link to="#home" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Home</Link>
+//           </li>
+//           <li>
+//             <Link to="#about" className="block text-lg hover:text-blue-700 py-2 lg:py-0">About</Link>
+//           </li>
+//           <li>
+//             <a href="#services" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Services</a>
+//           </li>
+//           <li>
+//             <Link to="#roadmap" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Roadmap</Link>
+//           </li>
+//           <li>
+//             <Link to="#howitwork" className="block text-lg hover:text-blue-700 py-2 lg:py-0">How It Works</Link>
+//           </li>
+//           <li>
+//             <Link to="#contact" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Contact</Link>
+//           </li>
+//           <li>
+//             <Link to="/login" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Login</Link>
+//           </li>
+//           <li>
+//             <Link to="/signup" className="block text-lg hover:text-blue-700 py-2 lg:py-0">Signup</Link>
+//           </li>
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Navbar;
+
+
+{/* <div className='fixed top-[5rem] left-0 right-0 bottom-0 lg:static lg:flex lg:mx-auto lg:bg-transparent'>
+            <div className='relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row'></div>
+        </div> */}
+
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
-    const [isSignupDropdownOpen, setIsSignupDropdownOpen] = useState(false);
-
-    const loginDropdownRef = useRef(null);  // Create a ref for the login dropdown
-    const signupDropdownRef = useRef(null); // Create a ref for the signup dropdown
 
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        // setIsMenuOpen(!isMenuOpen);
+        // setIsMenuOpen(prevState => !prevState);
+        if(isMenuOpen) {
+            setIsMenuOpen(false);
+        } else {
+            setIsMenuOpen(true);
+        }
+    };
+    
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        section.scrollIntoView({ behavior: 'smooth' });
     };
 
-    const toggleLoginDropdown = () => {
-        setIsLoginDropdownOpen(prevState => !prevState); // Toggle Login dropdown
-        setIsSignupDropdownOpen(false); // Ensure Sign Up dropdown is closed
+
+    const handleLinkClick = () => {
+        setIsMenuOpen(false);
     };
-
-    const toggleSignupDropdown = () => {
-        setIsSignupDropdownOpen(prevState => !prevState); // Toggle Sign Up dropdown
-        setIsLoginDropdownOpen(false); // Ensure Login dropdown is closed
-    };
-
-    // const toggleLoginDropdown = () => {
-    //     setIsLoginDropdownOpen(!isLoginDropdownOpen);
-    //     if (isSignupDropdownOpen) setIsSignupDropdownOpen(false); // Close Sign Up dropdown if it's open
-    // };
-
-    // const toggleSignupDropdown = () => {
-    //     setIsSignupDropdownOpen(!isSignupDropdownOpen);
-    //     if (isLoginDropdownOpen) setIsLoginDropdownOpen(false); // Close Login dropdown if it's open
-    // };
-
-    // Close menu on scroll
-    useEffect(() => {
-        const handleScroll = () => {
-            if (isMenuOpen) {
-                setIsMenuOpen(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        // Cleanup the event listener on component unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [isMenuOpen]);
-
-    // Close the login dropdown when clicking outside of it
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (
-                loginDropdownRef.current &&
-                !loginDropdownRef.current.contains(event.target)
-            ) {
-                setIsLoginDropdownOpen(false);
-            }
-            if (
-                signupDropdownRef.current &&
-                !signupDropdownRef.current.contains(event.target)
-            ) {
-                setIsSignupDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    // useEffect(() => {
-    //     const handleClickOutside = (event) => {
-    //         if (loginDropdownRef.current && !loginDropdownRef.current.contains(event.target)) {
-    //             setIsLoginDropdownOpen(false); // Close the dropdown if the click is outside
-    //         }
-    //         if (signupDropdownRef.current && !signupDropdownRef.current.contains(event.target)) {
-    //             setIsSignupDropdownOpen(false); // Close the dropdown if the click is outside
-    //         }
-    //     };
-
-    //     // Add the event listener to detect clicks outside the dropdowns
-    //     document.addEventListener('mousedown', handleClickOutside);
-
-    //     // Cleanup the event listener on component unmount
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside);
-    //     };
-    // }, []);
 
     return (
-        <nav className="bg-gradient-to-r from-blue-900 to-black shadow-md shadow-gray-400 w-full fixed z-55">
-            <div className="container flex justify-between items-center md:px-4">
-
-                {/* Logo */}
-                <div className='flex bg-blue-'>
-                    {/* <a href="/"><PageIcon color={'white'} /></a>
-                    <span className='text-white text-bold mt-[23px] ml-[-35px]'>Uootes</span> */}
-                    <a href="/">
-                        <img src='./Asset/uooteslg.png' className='w-[5em]' alt='Uootes Logo' />
-                    </a>
-                </div> 
-
+        <nav className="w-full bg-gradient-to-r from-blue-900 to-black  shadow-blue-900">
+            <div className="fixed top-0 z-10 bg-gradient-to-r from-blue-900 to-black  shadow-blue-900 w-full right-0 flex justify-between items-center py-3 md:px-10">
+                <a href="#home">
+                    <img src="./src/assets/utlogo.png" alt="" className="w-[10em] h-10 mr-2" /> {/* h-8 mr-2 */}
+                </a>
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
-
-                    <a href="#home" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
-
-                    <a href="#about" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</a>
+                    <a href='#home' className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
+                    {/* <a href="#about" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</a> */}
+                    <Link to="#about" onClick={() => scrollToSection('about')} className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</Link>
 
                     <a href="#services" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Services">Services</a>
-
                     <a href="#roadmap" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Roadmap">RoadMap</a>
-
                     <a href="#contact" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Contact">Contact</a>
-
                     <a href="#faq" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="FAQ">FAQ</a>
                 </div>
 
-                {/* Login & Signup with Dropdowns */}
-                <div className="hidden md:flex space-x-2 relative">
-
-                    <div>
-                        <button onClick={toggleLoginDropdown} className="text-gray-300 hover:text-purple-400 p-2 border rounded">
-                            Login
-                        </button>
-                        {isLoginDropdownOpen && (
-                            <div ref={loginDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/login_user" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">User</a>
-                                <a href="/login_exchanger" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Exchanger</a>
-                            </div>
-                        )}
-                    </div>
-                    
-                    <div>
-                        <button onClick={toggleSignupDropdown} className="bg-blue-500 text-white p-2 rounded">
-                            Sign Up
-                        </button>
-                        {isSignupDropdownOpen && (
-                            <div ref={signupDropdownRef} className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                                <a href="/signup_user" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">User</a>
-                                <a href="/signup_exchanger" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Exchanger</a>
-                            </div>
-                        )}
-                    </div>
+                {/* Login & Signup */}
+                <div className="hidden md:flex space-x-2 lg:text-2xl">
+                    <Link to="/login" className="text-gray-300 hover:text-purple-400 p-2 ">Login</Link>
+                    <Link to="/signup" className="text-gray-300 hover:text-purple-400 hover:bg-black p-2 border border-blue-900 rounded bg-blue-900">Signup</Link>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -158,14 +133,12 @@ const Navbar = () => {
                         aria-expanded={isMenuOpen}
                     >
                         {isMenuOpen ? (
-                            // Close icon (times)
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
-                        ) : (
-                            // Hamburger icon
+                            ) : (
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                l                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         )}
                     </button>
@@ -174,48 +147,16 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden text-2xl pl-4 pb-4 mx-2">
+                <div className="md:hidden text-2xl pl-2 pt-20 pb-10 leading-loose">
                     <ul>
-                        <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400">Home</a></li>
-                        <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400">About</a></li>
-                        <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400">Services</a></li>
-                        <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400">RoadMap</a></li>
-                        <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400">Contact</a></li>
-                        <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400">FAQ</a></li>
-                        {/* login drop down */}
-                        <li>
-                            <button onClick={toggleLoginDropdown} className="w-full block border border-white p-1 my-2 text-gray-300 pb-2 hover:text-purple-400 rounded">
-                                Login</button>
-
-                            {isLoginDropdownOpen && (
-                                <div className="pl-4">
-                                    <a href="/login_user" className="block text-gray-300 pb-2 hover:text-purple-400">User</a>
-                                    <a href="/login_exchanger" className="block text-gray-300 pb-2 hover:text-purple-400">Exchanger</a>
-                                </div>
-                            )}
-
-                        </li>
-                        {/* signup drop down */}
-                        <li>
-
-                            <button
-                                onClick={toggleSignupDropdown}
-                                className="block bg-blue-400 p-1 text-white rounded w-full"
-                            >
-                                <span>Sign Up</span>
-                                {/* Dropdown Icon */}
-                                <i className={`fas ${isSignupDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'} text-white`} />
-                            </button>
-
-                            {isSignupDropdownOpen && (
-                                <div className="pl-4">
-                                    <a href="/signup_user" className="block text-gray-300 pb-2 hover:text-purple-400">User</a>
-                                    <a href="/signup_exchanger" className="block text-gray-300 pb-2 hover:text-purple-400">Exchanger</a>
-                                </div>
-                            )}
-
-                        </li>
-
+                        <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Home</a></li>
+                        <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>About</a></li>
+                        <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Services</a></li>
+                        <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>RoadMap</a></li>
+                        <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Contact</a></li>
+                        <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>FAQ</a></li>
+                        <li><a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Login</a></li>
+                        <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]" onClick={handleLinkClick}>Sign Up</a></li>
                     </ul>
                 </div>
             )}

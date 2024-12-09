@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import '../App.css';
 
-function Contact() {
-    const [fName, setFName] = useState('');
+const Contact = () => {
+   const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -24,13 +23,16 @@ function Contact() {
     };
 
     return (
-        <div className='flex justify-center md:pt-20 pb-20'>
-            <div className='w-[86%] py-10' id="background">
-                <div className="md:w-3/10 xs:pt-20">
-                    <div className="bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg ml-5"></div>
-                    <a href="tel:+2348117740077"><h1 className="text-orange-400 font-semibold text-[26px] mt-[3px] ml-5" id='contact'>Contact Us</h1></a>
+        <div className='flex justify-center py-20' id='contact'>
+            <div className='w-[92%] py-10 background bg-[#002540]'>
+                <div className='flex flex-col  md:ml-20'>
+                    <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg '></div>
+                    <a href="tel:+2348117740077">
+                        {/* <h3 className='text-white text-2xl' id='contact' >Contact Us</h3> */}
+                        <h3 className='text-white text-2xl' id='contact-class' >Contact Us</h3>
+                        {/* text-2xl bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent */}
+                    </a>
                 </div>
-                
                 <div className='flex justify-center mt-6'>
                     <form onSubmit={handleSubmit} className='flex flex-col text-center justify-center md:w-[60%] md:gap-10 gap-5'>
                         <div className='flex justify-center text-2xl'>
@@ -89,7 +91,7 @@ function Contact() {
                         )}
 
                         <div className='flex justify-center'>
-                            <button type='submit' className='bg-blue-500  px-8 py-4 rounded-full text-white' id='submit'>Submit</button>
+                            <button type='submit' className='bg-blue-500  px-8 py-4 rounded text-white' id='submit'>Submit</button>
                         </div>
                     </form>
                 </div>
@@ -98,4 +100,4 @@ function Contact() {
     )
 }
 
-export default Contact;
+export default Contact

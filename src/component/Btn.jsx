@@ -7,7 +7,7 @@ const Btn = () => {
                 <p>Request Early access To Get Started</p>
                 <b class="text-black mb-4">Register today & start exploring the endless possibilities.</b>
             </div>
-            <button class="bg-black text-white py-2 px-9 rounded-full"><a href="/signup_user">Get Started</a></button>
+            <button class="bg-black text-white py-2 px-9 rounded-full">Get Started</button>
         </section>
     )
 }

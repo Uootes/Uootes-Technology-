@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import '../App.css';
 
 const Roadmap = () => {
     return (
-        <div className='w-full pt-20' id='roadmap'>
+        <div className='pt-20 mx-10 p-8 md:p-12' id='roadmap'>
 
             <div>
                 <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>
@@ -18,11 +19,11 @@ const Roadmap = () => {
                     {/* numbering */}
                     <div className='w-[20%] h-[20%] md:w-[60px] md:h-[60px] border-[3px] border-blue-800 rounded-full p-1 md:mx-8 mx-2'>
 
-                        <div className='w-full h-full rounded-full flex justify-center items-center bg-blue-800 text-white'>01</div>
+                        <div className='w-full h-full rounded-full md:rounded-full flex justify-center items-center bg-blue-800 text-white'>01</div>
 
                     </div>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6  p-2 rounded-xl border-all md:w-[45%] sm:w-full w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 1</h2>
@@ -30,16 +31,16 @@ const Roadmap = () => {
                             <div className='bg-blue-800 w-[25%] md:w-[10%] h-[5px] rounded-lg'></div>
                         </div>
 
-                        <p className='text-white text-md font-normal md:m-8 m-2'>Initial Idea generation and developement of the project's foundation. </p>
+                        <p className='flex flex-col text-white text-md font-normal md:m-8 m-2'>Initial Idea generation and developement of the project's foundation. </p>
 
                     </div>
 
                 </div>
 
                 {/* second roadmap */}
-                <div className='flex w-full mt-8'>
+                <div className='flex w-[full] mt-8'>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl borderall md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 2</h2>
@@ -67,7 +68,7 @@ const Roadmap = () => {
 
                     </div>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl border-all md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 3</h2>
@@ -84,7 +85,7 @@ const Roadmap = () => {
                 {/* fourth roadmap */}
                 <div className='flex w-full mt-8'>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl borderall md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 4</h2>
@@ -112,7 +113,7 @@ const Roadmap = () => {
 
                     </div>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl border-all md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 5</h2>
@@ -129,7 +130,7 @@ const Roadmap = () => {
                 {/* sixth roadmap */}
                 <div className='flex w-full mt-8'>
 
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl borderall md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 6</h2>
@@ -155,7 +156,7 @@ const Roadmap = () => {
                         <div className='w-full h-full rounded-full flex justify-center items-center bg-pink-600 text-white'>07</div>
 
                     </div>
-                    <div className="md:p-6 p-2 rounded-xl border border-red-300 md:w-[45%] w-full">
+                    <div className="md:p-6 p-2 rounded-xl border-all md:w-[45%] w-full">
 
                         <div className=''>
                             <h2 className='text-white text-[22px] font-semibold'>PHASE 7</h2>

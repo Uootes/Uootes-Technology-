@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function About() {
-    return (
-        <div id='about'>
-            <div className='rounded-lg  py-20'>
+const About = () => {
+  return (
+    <div className='mx-2 md:p-12 pt-10' id='about'>
+            <div className='pt-10'>
                 <div className='md:pl-8'>
-                    <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg '></div>
+                    <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>
                     <h2 className=' text-orange-400 font-semibold text-[26px] mt-[3px]'>About Us </h2>
 
                     <div className="mt-4 md:w-[50%]">
@@ -30,7 +30,7 @@ function About() {
                         <div className="flex flex-col md:pl-20 pt-16 text-lg">
                             <div className="flex">
                                 <div className="md:pr-4 pt-2">
-                                    <img src="./Asset/Group.png" alt="" className='' />
+                                    <img src="./src/assets/Group.png" alt="" className='' />
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className=" text-[24px] text-[#b88e32b1]">Innovation</h4>
@@ -40,7 +40,7 @@ function About() {
 
                             <div className="flex flex-row pt-16">
                                 <div className="pr-4 pt-2">
-                                    <img src="./Asset/Group1.png" alt="" />
+                                    <img src="./src/assets/Group1.png" alt="" />
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className="text-[24px] text-[#b88e32b1]">Inclusion</h4>
@@ -50,7 +50,7 @@ function About() {
 
                             <div className="flex flex-row pt-16">
                                 <div className="pr-4 pt-2">
-                                    <img src="./Asset/Group 4.png" alt="" />
+                                    <img src="./src/assets/Group 4.png" alt="" />
                                 </div>
                                 <div className="flex flex-col">
                                     <h4 className="text-[24px] text-[#b88e32b1]">Security</h4>
@@ -61,13 +61,13 @@ function About() {
                     </div>
 
 
-                    <img src='../Asset/intro7.png' alt="" className="" />
+                    <img src='./src/assets/intro7.png' alt="" className="" />
 
                 </div>
 
             </div>
         </div>
-    )
+  )
 }
 
-export default About;
+export default About
