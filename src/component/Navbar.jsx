@@ -101,7 +101,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full bg-gradient-to-r from-blue-900 to-black  shadow-blue-900">
+        <nav className="w-full bg-slate-900">
             <div className="fixed top-0 z-10 bg-gradient-to-r from-blue-900 to-black  shadow-blue-900 w-full right-0 flex justify-between items-center py-3 md:px-10">
                 <a href="#home">
                     <img src="./src/assets/utlogo.png" alt="" className="w-[10em] h-10 mr-2" /> {/* h-8 mr-2 */}
@@ -147,7 +147,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden text-2xl pl-2 pt-20 pb-10 leading-loose">
+                <div className="md:hidden text-2xl pl-2 pt-20  pb-10 leading-loose h-screen w-[100%] fixed bg-gradient-to-r from-blue-900 to-black">
                     <ul>
                         <li><a href="#home" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Home</a></li>
                         <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>About</a></li>
@@ -155,8 +155,13 @@ const Navbar = () => {
                         <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>RoadMap</a></li>
                         <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Contact</a></li>
                         <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>FAQ</a></li>
-                        <li><a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Login</a></li>
-                        <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]" onClick={handleLinkClick}>Sign Up</a></li>
+                        {/* <li><a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Login</a></li>
+                        <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]" onClick={handleLinkClick}>Sign Up</a></li> 
+                        */}
+                        <div className="md:hidden flex  flex-row space-x-20 mt-11">
+            <Link to="/login" className="block pb-2 text-white  px-6 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-gradient-to-r from-[#77248c] to-[#673907cd] ">LOGIN</Link>
+            <Link to="/signup" className="block bg-gradient-to-r from-[#77248c] to-[#673907cd]  pb-2 text-white px-4 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-clip-text">SIGN UP</Link>
+            </div> 
                     </ul>
                 </div>
             )}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Signup = () => {
   return (
-    <section className='w-full h-max items-center bg-white pt-[5rem]'>
+    <section className='w-full h-screen items-center bg-white pt-[5rem]'>
         <div className='w-3/5 border bottom-2 py-10 m-auto'>
           <h1 className='text-black'>Sign up</h1>
           <div className='w-full'></div>

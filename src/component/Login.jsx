@@ -2,7 +2,7 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <section className='w-full h-max items-center bg-white pt-[5rem]'>
+    <section className='w-full h-screen items-center bg-white pt-[5rem]'>
         <div className='w-3/5 border bottom-2 py-10 m-auto'>
           <h1 className='text-black'>Login</h1>
           <div className='w-full'></div>
@@ -12,4 +12,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
