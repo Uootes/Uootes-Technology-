@@ -55,11 +55,11 @@ const Faq = () => {
 
 
    return (
-      <section className='pt-10 mx-6 p-8 md:p-12' id='faq'>
+      <section className='pt-10 px-4 md:p-12' id='faq'>
 
          <div className='ml-[20px] pt-10'>
-            <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>
-            <h2 className='text-orange-400 font-semibold text-[26px] mt-[3px]'>FAQs</h2>
+            <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] mx-6 w-[40px] h-[10px] rounded-lg'></div>
+            <h2 className='text-orange-400 mx-6 font-semibold text-[26px] mt-[3px]'>FAQs</h2>
          </div>
 
          <div className='w-full mt-[20px]'>

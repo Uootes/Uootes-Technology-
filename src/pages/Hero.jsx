@@ -18,7 +18,7 @@ const Hero = () => {
                 <p className="text-white font-semibold md:my-4 my-2 text-sm md:text-lg font-manrope px-2 md:p-0 pb-4">
                     Imagine a World of Financial Freedom: We Make it a Reality.
                 </p>
-                <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2 bg-[#7f1d66] hover:bg-[#7c1d7fa8]'>Claim Your GOSSERCOIN!</a>
+                <a href="https://forms.gle/W6aQ9dk9ztSjuC2W6" target='_blank' className='text-white text-center m-auto font-bold text-md border rounded p-2 bg-[#7f1d66] hover:bg-[#7c1d7fa8]'>Claim $500 Worth of Gosercoin</a>
                 {/* mail */}
                 {/* <div className="flex">
                     <input type="email" placeholder="Your Email Address" className=" w-full  rounded-l-[10px] bg-[#2a156b9b] text-[14px] text-white font-semibold md:p-4 p-2 focus:outline-none" />

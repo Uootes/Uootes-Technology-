@@ -5,6 +5,7 @@
 html{
   scroll-behavior: smooth;
   background-color: #040C18;
+  overflow-x: hidden;
 }
 
 .App-logo {

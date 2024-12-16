@@ -41,19 +41,19 @@ const Services = () => {
     ];
 
     return (
-        <div id='services'>
+        <div className='pt-10' id='services'>
 
-            <div className="mx-10 p-8 pt-20 md:p-12 rounded-lg  bg-[#002540] text-white" >
-                <div >
-                    <div className="md:flex justify-between items-center">
-                        <div className="md:w-3/10">
-                            <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg '></div>
-                            <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent">Our Services</h1>
-                        </div>
-                        <p className="md:w-7/10 text-gray-200">
-                            At uootes, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
-                        </p>
+            <div className="mx-4 p-4 pt-10 md:p-12 rounded-lg  bg-[#002540] text-white" >
+                <div className="md:flex justify-between items-center">
+                    <div className="md:w-[30%] pb-6">
+                        <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] ml-6 w-[40px] h-[10px] rounded-lg '></div>
+                        <h1 className=" text-2xl bg-gradient-to-r from-purple-500 to-orange-500 ml-6 bg-clip-text text-transparent md:pb-6">Our Services</h1>
                     </div>
+                    <p className="md:w-[70%] text-gray-200">
+                        At uootes, we offer a comprehensive suite of services designed to empower individuals and businesses in the decentralized financial landscape. Our innovative solutions harness the power of blockchain and web3 technologies, providing the tools and resources needed to thrive in the global economy.
+                    </p>
+                </div>
+                <div >
 
                     <div className="md:flex justify-between mt-5 md:mt-20">
                         <h1 className="text-2xl md:text-4xl font-bold md:w-5/10 bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent md:py-2">

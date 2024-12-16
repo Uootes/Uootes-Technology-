@@ -3,7 +3,7 @@ import '../App.css';
 
 const Roadmap = () => {
     return (
-        <div className='pt-20 mx-10 p-8 md:p-12' id='roadmap'>
+        <div className='pt-20 mx-10  md:p-12' id='roadmap'>
 
             <div>
                 <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>

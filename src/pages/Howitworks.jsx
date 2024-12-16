@@ -2,11 +2,11 @@ import React from 'react'
 
 function Howitworks() {
   return (
-    <div className='pt-20 mx-6 p-8 md:p-12' id='howitworks'> 
+    <div className='pt-20 md:p-12' id='howitworks'> 
       {/* Roadmap Header Section*/}
-      <div className='ml-[20px]'>
-        <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] w-[40px] h-[10px] rounded-lg'></div>
-        <h2 className=' text-orange-400 font-semibold text-[26px] mt-[3px]'>How it Works</h2>
+      <div className='ml-[20px] '>
+        <div className='bg-gradient-to-r from-[#a454b8] to-[#d58836cd] mx-6 w-[40px] h-[10px] rounded-lg'></div>
+        <h2 className='text-orange-400 mx-6 font-semibold text-[26px] mt-[3px]'>How it Works</h2>
       </div>
 
       <div className="grid grid-cols-1  md:grid-cols-2 mt-[30px]  w-[100%] px-12">

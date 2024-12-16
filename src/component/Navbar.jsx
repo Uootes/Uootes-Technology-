@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 
 const Navbar = () => {
@@ -10,8 +11,10 @@ const Navbar = () => {
         // setIsMenuOpen(prevState => !prevState);
         if(isMenuOpen) {
             setIsMenuOpen(false);
+            enablePageScroll();
         } else {
             setIsMenuOpen(true);
+            disablePageScroll();
         }
     };
     
@@ -22,6 +25,9 @@ const Navbar = () => {
 
 
     const handleLinkClick = () => {
+        if(!isMenuOpen) return;
+
+        enablePageScroll();
         setIsMenuOpen(false);
     };
 
@@ -29,7 +35,7 @@ const Navbar = () => {
         <nav className="w-full bg-slate-900">
             <div className="fixed top-0 z-10 bg-gradient-to-r from-blue-900 to-black  shadow-blue-900 w-full right-0 flex justify-between items-center py-3 md:px-10">
                 <a href="#home">
-                    <img src="./src/assets/utlogo.png" alt="" className="w-[10em] h-10 mr-2" /> {/* h-8 mr-2 */}
+                    <img src="src\assets\utlogo.png" alt="" className="w-[10em] h-10 mr-2" /> {/* h-8 mr-2 */}
                 </a>
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
