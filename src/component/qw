@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>Token Plans</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </link>
+</head>
+
+<body class="bg-gray-900 flex justify-center items-center min-h-screen">
+    <div id="app"></div>
+    <script type="text/babel">
+        const PlanCard = ({ title, description, lockupPeriod, buyingRate, sellingRate }) => (
+            <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-full max-w-xs">
+                <div className="bg-blue-900 text-white text-center py-4 rounded-t-lg">
+                    <h2 className="text-xl font-bold">{title}</h2>
+                </div>
+                <div className="p-4">
+                    <p className="text-center text-gray-700 mb-4">{description}</p>
+                    <ul className="text-gray-700 mb-4">
+                        <li className="flex items-center mb-2">
+                            <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                            {lockupPeriod}
+                        </li>
+                        <li className="flex items-center mb-2">
+                            <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                            {buyingRate}
+                        </li>
+                        <li className="flex items-center mb-2">
+                            <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                            {sellingRate}
+                        </li>
+                    </ul>
+                    <button className="bg-blue-900 text-white w-full py-2 rounded-lg">Get Started</button>
+                </div>
+            </div>
+        );
+
+        const App = () => (
+            <div className="flex flex-col md:flex-row justify-center items-center">
+                <PlanCard
+                    title="BRONZE"
+                    description="Register without referral I.D"
+                    lockupPeriod="360-hour token lockup period before selling is permitted."
+                    buyingRate="Buying rate per Token: 0.0000301 GSC"
+                    sellingRate="Selling rate per Token: 0.00005 GSC"
+                />
+                <PlanCard
+                    title="SLIVER"
+                    description="Register with referral I.D or Unlock with 1.00 coupon"
+                    lockupPeriod="168-hour token lockup period before selling is permitted."
+                    buyingRate="Buying rate per Token: 0.0000258 GSC"
+                    sellingRate="Selling rate per Token: 0.00005 GSC"
+                />
+                <PlanCard
+                    title="GOLD"
+                    description="Become a Silver user and refer at least 5 people directly."
+                    lockupPeriod="72-hour token lockup period before selling is permitted."
+                    buyingRate="Buying rate per Token: 0.0000215 GSC"
+                    sellingRate="Selling rate per Token: 0.00005 GSC"
+                />
+            </div>
+        );
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>
