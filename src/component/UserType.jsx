@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const UserType = ({ title, description, lockupPeriod, buyingRate, sellingRate }) => (
     <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-full max-w-xs">
@@ -9,23 +11,21 @@ const UserType = ({ title, description, lockupPeriod, buyingRate, sellingRate })
         </div>
         {/* description */}
         <div className="p-4">
-            {/* <p className="text-center text-gray-700 mb-4">{description}</p> */}
             <ul className="text-gray-700 mb-4">
-
                 <li className="flex items-center mb-2">
-                    <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                    <FontAwesomeIcon icon={faCheckCircle} className="text-blue-600 mr-2" />
                     {lockupPeriod}
                 </li>
                 <li className="flex items-center mb-2">
-                    <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                    <FontAwesomeIcon icon={faCheckCircle} className="text-blue-600 mr-2" />
                     {buyingRate}
                 </li>
                 <li className="flex items-center mb-2">
-                    <i className="fas fa-check-circle text-blue-600 mr-2"></i>
+                    <FontAwesomeIcon icon={faCheckCircle} className="text-blue-600 mr-2" />
                     {sellingRate}
                 </li>
             </ul>
-            <button className="bg-blue-900 text-white w-full py-2 rounded-lg">Get Started</button>
+            <button className="bg-blue-900 text-white hover:bg-blue-800 transition duration-300 w-full py-2 rounded-lg">Get Started</button>
         </div>
     </div>
 );
