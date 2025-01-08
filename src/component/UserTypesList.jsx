@@ -2,9 +2,10 @@ import React from 'react';
 import UserType from './UserType';
 
 const UserTypesList = () => (
-    <div className='h-screen flex flex-col justify-center items-center '>
+    <div className='md:h-screen flex flex-col justify-center items-center '>
         {/* <img src="/assets/utlogo.png" alt="uooteslogo" /> */}
-        <img src="src/assets/utlogo.png" alt="" className="h-20 " />
+        <img src="src/assets/utlogo.png" alt="" className="h-10 md:h-20" />
+        <h2 className='text-white text-2xl md:text-6xl font-bold'>ACCOUNT TYPE</h2>
         <div className=" flex flex-col md:flex-row justify-center items-center mx-2 md:m-0">
 
 
