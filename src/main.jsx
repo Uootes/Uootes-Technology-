@@ -10,19 +10,17 @@ import Signup from './component/Signup.jsx';
 import UserTypesList from './component/UserTypesList.jsx';
 import './index.css'
 import App from './App.jsx'
-import VerifyMail from './component/VerifyMail.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Uootes-Technology-">
+    <BrowserRouter>
+
       <Routes>
         <Route path="/" exact element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/userTypesList" element={<UserTypesList />} />
-        <Route path="/verifyemail" element={<VerifyMail />} />
+        <Route path="/usertype" element={<UserTypesList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
-

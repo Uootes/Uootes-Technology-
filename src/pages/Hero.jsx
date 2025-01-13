@@ -1,5 +1,12 @@
 import React from 'react'
-// import { heroImg } from '../assets';
+import Top from '../assets/Top.png'
+import slack from '../assets/slack.png'
+import atlassian from '../assets/atlassian.png'
+import google from '../assets/google.png'
+import dropbox from '../assets/dropbox.png'
+import shopify1 from '../assets/shopify-1.png'
+import Gll from '../assets/Gll.jpg'
+
 
 const Hero = () => {
   return (
@@ -29,7 +36,8 @@ const Hero = () => {
             {/* banner img */}
             <div className='flex flex-col'>
                 <div className='m-3 w-full p-4 '>
-                    <img src="./src/assets/Top.png" alt="" className='md:w-1/2 m-auto' />
+                    <img src={Top} alt="" className='md:w-1/2 m-auto' />
+
                 </div>
 
             </div>
@@ -38,11 +46,12 @@ const Hero = () => {
         <div className="w-full flex flex-col items-center justify-center md:mt-[100px] mt-[40px]">
 
             <div className="flex flex-row flex-wrap space-x-12 mx-3">
-                <img className="w-1/5 md:w-auto p-2" src="./src/assets/slack.png" alt="" />
-                <img className="w-1/5 md:w-auto p-2" src="./src/assets/atlassian.png" alt="" />
-                <img className="w-1/5 md:w-auto p-2" src="./src/assets/google.png" alt="" />
-                <img className="w-1/5 md:w-auto p-2" src="./src/assets/dropbox.png" alt="" />
-                <img className="w-1/5 md:w-auto p-2" src="./src/assets/shopify-1.png" alt="" />
+                <img className="w-1/5 md:w-auto p-2" src={slack} alt="" />
+                <img className="w-1/5 md:w-auto p-2" src={atlassian} alt="" />
+                <img className="w-1/5 md:w-auto p-2" src={google} alt="" />
+                <img className="w-1/5 md:w-auto p-2" src={dropbox} alt="" />
+                <img className="w-1/5 md:w-auto p-2" src={shopify1} alt="" />
+
             </div>
 {/* ./src/assets/Top.png */}
             <div className="bg-gradient-to-l from-blue-900 to-gray-900 flex flex-row justify-between items-center md:w-[70%] w-[90%] mt-[40px] md:p-6 md:my-6 mb-3 p-3">
@@ -50,7 +59,8 @@ const Hero = () => {
                 <div className="text-[#fff] font-bold flex flex-row ">
                     {/* image */}
                     <div className="my-auto">
-                        <img src="./src/assets/Gll.jpg" alt="Profile Image" className=" rounded w-[50px] md:w-[60px]  md:ml-4" />
+                        <img src={Gll} alt="Profile Image" className=" rounded w-[50px] md:w-[60px]  md:ml-4" />
+
                     </div>
 
                     {/* details */}
