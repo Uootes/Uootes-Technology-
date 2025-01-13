@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
-
+import utLogo from '../assets/utlogo.png'; // Import the image as a module
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        if(isMenuOpen) {
+        if (isMenuOpen) {
             setIsMenuOpen(false);
             enablePageScroll();
         } else {
@@ -15,15 +15,14 @@ const Navbar = () => {
             disablePageScroll();
         }
     };
-    
+
     const scrollToSection = (id) => {
         const section = document.getElementById(id);
         section.scrollIntoView({ behavior: 'smooth' });
     };
 
-
     const handleLinkClick = () => {
-        if(!isMenuOpen) return;
+        if (!isMenuOpen) return;
 
         enablePageScroll();
         setIsMenuOpen(false);
@@ -31,16 +30,14 @@ const Navbar = () => {
 
     return (
         <nav className="w-full bg-slate-900">
-            <div className="fixed top-0 z-10 bg-gradient-to-r from-blue-900 to-black  shadow-blue-900 w-full right-0 flex justify-between items-center py-3 md:px-10">
+            <div className="fixed top-0 z-10 bg-gradient-to-r from-blue-900 to-black shadow-blue-900 w-full right-0 flex justify-between items-center py-3 md:px-10">
                 <a href="#home">
-                    <img src="src\assets\utlogo.png" alt="" className="w-[10em] h-10 mr-2" /> {/* h-8 mr-2 */}
+                    <img src={utLogo} alt="Uootes Technology Logo" className="w-[10em] h-10 mr-2" /> {/* Updated image import */}
                 </a>
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
                     <a href='#home' className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
-                    {/* <a href="#about" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</a> */}
                     <Link to="#about" onClick={() => scrollToSection('about')} className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</Link>
-
                     <a href="#services" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Services">Services</a>
                     <a href="#roadmap" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Roadmap">RoadMap</a>
                     <a href="#contact" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Contact">Contact</a>
@@ -49,7 +46,7 @@ const Navbar = () => {
 
                 {/* Login & Signup */}
                 <div className="hidden md:flex space-x-2 lg:text-2xl">
-                    <Link to="/login" className="text-gray-300 hover:text-purple-400 p-2 ">Login</Link>
+                    <Link to="/login" className="text-gray-300 hover:text-purple-400 p-2">Login</Link>
                     <Link to="/signup" className="text-gray-300 hover:text-purple-400 hover:bg-black p-2 border border-blue-900 rounded bg-blue-900">Signup</Link>
                 </div>
 
