@@ -81,7 +81,7 @@ function Footer() {
                 </div>
             </div>
             <div className="w-full text-center mt-6">
-                <p className="text-gray-400">© 2024 UOOTES TECHNOLOGIES. All Rights Reserved.</p>
+                <p className="text-gray-400">&copy; {new Date().getFullYear()} UOOTES TECHNOLOGIES. All Rights Reserved.</p>
             </div>
         </footer>
     )

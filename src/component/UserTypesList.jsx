@@ -8,7 +8,6 @@ const UserTypesList = () => (
         <h2 className='text-white text-2xl md:text-6xl font-bold'>ACCOUNT TYPE</h2>
         <div className=" flex flex-col md:flex-row justify-center items-center mx-2 md:m-0">
 
-
             <UserType
                 title="BRONZE"
                 description="Register without referral I.D"

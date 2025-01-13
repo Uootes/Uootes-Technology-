@@ -4,7 +4,7 @@ import React from 'react'
 const Hero = () => {
   return (
     <section className='w-full bg-gradient-to-r from-blue-900 to-black pt-14 mx-auto' id="home">
-        <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 mx-2">
+        <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 md:px-6">
 
             <div className="md:w-[70%] w-full text-center md:text-left leading-10">
                 {/* heading */}
