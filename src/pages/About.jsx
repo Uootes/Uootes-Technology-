@@ -1,4 +1,8 @@
 import React from 'react';
+import Group from "/src/assets/Group.png";
+import Group4 from "/src/assets/Group 4.png";
+import Group1 from "/src/assets/Group1.png";
+import intro7 from "/src/assets/intro7.png";
 
 const About = () => {
   return (
@@ -34,7 +38,7 @@ const About = () => {
                     <div className="flex flex-col md:pl-20 pt-16 text-lg">
                         <div className="flex">
                             <div className="md:pr-4 pt-2">
-                                <img src="./src/assets/Group.png" alt="" className='' />
+                                <img src={Group} alt="" className='' />
                             </div>
                             <div className="flex flex-col">
                                 <h4 className=" text-[24px] text-[#b88e32b1]">Innovation</h4>
@@ -44,7 +48,7 @@ const About = () => {
 
                         <div className="flex flex-row pt-16">
                             <div className="pr-4 pt-2">
-                                <img src="./src/assets/Group1.png" alt="" />
+                                <img src={Group1} alt="" />
                             </div>
                             <div className="flex flex-col">
                                 <h4 className="text-[24px] text-[#b88e32b1]">Inclusion</h4>
@@ -54,7 +58,7 @@ const About = () => {
 
                         <div className="flex flex-row pt-16">
                             <div className="pr-4 pt-2">
-                                <img src="./src/assets/Group 4.png" alt="" />
+                                <img src={Group4} alt="" />
                             </div>
                             <div className="flex flex-col">
                                 <h4 className="text-[24px] text-[#b88e32b1]">Security</h4>
@@ -65,7 +69,7 @@ const About = () => {
                 </div>
 
 
-                <img src='./src/assets/intro7.png' alt="" className="" />
+                <img src={intro7} alt="" className="" />
 
             </div>
 
