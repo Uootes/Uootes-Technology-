@@ -3,8 +3,10 @@ import intro8 from '../assets/intro8.png'; // Import the image as a module
 
 const Digital = () => {
   return (
-    <section className='w-full bg-gradient-to-r from-blue-900 to-black pt-14 mx-auto' id="home">
-        <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-12 md:px-6">
+<section className='w-full bg-gradient-to-r from-blue-900 to-black pt-14' id="home">
+
+            <div className="w-full flex flex-col md:flex-row  md:justify-between justify-center items-center md:mx-0 md:px-6">
+
             <div className='flex flex-col'>
                 <div className='m-3 w-full p-4 '>
                     <img src={intro8} alt="Intro" className='m-auto' /> {/* Use the imported image */}
