@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+// import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import utLogo from '../assets/utlogo.png'; // Import the image as a module
 
 const Navbar = () => {
@@ -9,23 +9,23 @@ const Navbar = () => {
     const toggleMenu = () => {
         if (isMenuOpen) {
             setIsMenuOpen(false);
-            enablePageScroll();
+            // enablePageScroll();
         } else {
             setIsMenuOpen(true);
-            disablePageScroll();
+            // disablePageScroll();
         }
     };
 
-    const scrollToSection = (id) => {
-        const section = document.getElementById(id);
-        section.scrollIntoView({ behavior: 'smooth' });
-    };
+    // const scrollToSection = (id) => {
+    //     const section = document.getElementById(id);
+    //     section.scrollIntoView({ behavior: 'smooth' });
+    // };
 
     const handleLinkClick = () => {
-        if (!isMenuOpen) return;
-
-        enablePageScroll();
+        if (!isMenuOpen) return; 
+            
         setIsMenuOpen(false);
+        // enablePageScroll();
     };
 
     return (
@@ -36,8 +36,8 @@ const Navbar = () => {
                 </a>
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-4 lg:text-2xl">
-                    <a href='#home' className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
-                    <Link to="#about" onClick={() => scrollToSection('about')} className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</Link>
+                    <a href="#home" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Home">Home</a>
+                    <a href="#about" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="About">About</a>
                     <a href="#services" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Services">Services</a>
                     <a href="#roadmap" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Roadmap">RoadMap</a>
                     <a href="#contact" className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out" aria-label="Contact">Contact</a>
@@ -85,8 +85,8 @@ const Navbar = () => {
                         <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]" onClick={handleLinkClick}>Sign Up</a></li> 
                         */}
                         <div className="md:hidden flex  flex-row space-x-20 mt-11">
-            <Link to="/login" className="block pb-2 text-white  px-6 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-gradient-to-r from-[#77248c] to-[#673907cd] ">LOGIN</Link>
-            <Link to="/signup" className="block bg-gradient-to-r from-[#77248c] to-[#673907cd]  pb-2 text-white px-4 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-clip-text">SIGN UP</Link>
+            <Link to="/login" onClick={handleLinkClick} className="block pb-2 text-white  px-6 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-gradient-to-r from-[#77248c] to-[#673907cd] ">LOGIN</Link>
+            <Link to="/signup" onClick={handleLinkClick} className="block bg-gradient-to-r from-[#77248c] to-[#673907cd]  pb-2 text-white px-4 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-clip-text">SIGN UP</Link>
             </div> 
                     </ul>
                 </div>

@@ -30,7 +30,7 @@ function Howitworks() {
             <span className="text-5xl font-bold ml-[15px] text-[#BD70B4]">03</span>
           </div>
 
-          <div className="flex flex-row-reverse flex-col-reverse items-center md:flex-row  my-5 md:ml-[180px]">
+          <div className="flex flex-row-reverse items-center md:flex-row  my-5 md:ml-[180px]">
             <h2 className="text-xl text-white">Purchase CPT token</h2>
             <span className="text-5xl font-bold ml-[15px] text-[#71C18E]">04</span>
 

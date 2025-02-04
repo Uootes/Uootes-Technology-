@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const UserType = ({ title, description, lockupPeriod, buyingRate, sellingRate }) => (
     <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-full max-w-xs">
@@ -25,9 +26,11 @@ const UserType = ({ title, description, lockupPeriod, buyingRate, sellingRate })
                     {sellingRate}
                 </li>
             </ul>
-            <button className="bg-blue-900 text-white hover:bg-blue-800 transition duration-300 w-full py-2 rounded-lg">Get Started</button>
+            <Link to="/UserSignup">
+                <button className="bg-blue-900 text-white hover:bg-blue-800 transition duration-300 w-full py-2 rounded-lg">Get Started</button>
+            </Link>
         </div>
     </div>
 );
 
-export default UserType;
+export default UserType; 

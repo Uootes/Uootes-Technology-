@@ -14,6 +14,7 @@ const UserTypesList = () => (
                 lockupPeriod="360-hour token lockup period before selling is permitted."
                 buyingRate="Buying rate per Token: 0.0000301 GSC"
                 sellingRate="Selling rate per Token: 0.00005 GSC"
+                
             />
             <UserType
                 title="SILVER"

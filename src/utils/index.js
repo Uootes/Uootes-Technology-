@@ -1,3 +1,3 @@
-import hero from "src/assets/images/hero-img.png";
+import Gll from '../assets/Gll.jpg';
 
-export const heroImg = hero;
+export const Head = Gll;

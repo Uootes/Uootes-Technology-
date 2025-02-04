@@ -2,6 +2,34 @@
   text-align: center;
 }
 
+/*  */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-item {
+    position: absolute;
+    transition: transform 0.5s ease-out;
+    opacity: 0;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.carousel-item.next {
+    opacity: 1;
+    transform: translateX(100%); /* Slide in from the right */
+}
+
+.carousel-item.active {
+    transform: translateY(-100%); /* Slide out to the left */
+}
+
+
 html{
   scroll-behavior: smooth;
   background-color: #040C18;
@@ -12,6 +40,22 @@ html{
   height: 40vmin;
   pointer-events: none;
 }
+
+/* @font-face {
+  font-family: 'Slick';
+  src: url('path/to/slick.woff') format('woff'),
+       url('path/to/slick.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+/* @font-face {
+  font-family: 'slick';
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/fonts/slick.woff') format('woff'),
+       url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/fonts/slick.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -34,6 +78,12 @@ html{
   font-size: calc(10px + 2vmin);
   color: white;
 } */
+.gradient{
+ top: -20px; 
+}
+/* Vector */
+
+
 
 .App-link {
   color: #61dafb;
@@ -93,4 +143,85 @@ html{
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.vector{
+  background: url('/src/assets/vector.png');
+  /* background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: inherit;
+  border-radius: inherit;
+  width: 40%;
+  background-clip: border-box;
+  /* z-index: 200000000000000000000000; */
+}
+
+
+.vector2{
+  background: url('/src/assets/vector2.png');
+  /* background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: inherit;
+  border-radius: inherit;
+  width: 40%;
+  background-clip: border-box;
+  /* z-index: 200000000000000000000000; */
+}
+
+
+
+
+.vectorC{
+  height: inherit;
+  /* border-radius: inherit; */
+}
+
+
+
+.checklogo{
+  background: url('/src/assets/checklogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: inherit;
+  border-radius: inherit;
+  width: 100px;
+  background-clip: border-box;
+  z-index: 200000000000000000000000;
+}
+
+
+/*Exchange SignUp Side Image*/
+
+.ExSideImg{
+  background: url('/src/assets/Signuplogo.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+
+}
+
+
+/*Exchange Side Logo*/
+
+.ExSideLogo{
+  background: url('/src/assets/checklogo.png');
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  /* background-size: cover; */
+  width: 100px;
+  height: 100px;
+}
+
+
+
+/* Terms and Condition Logo */
+
+.TermsLogo{
+  background: url('/src/assets/checklogo.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }

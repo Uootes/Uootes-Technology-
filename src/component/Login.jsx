@@ -12,12 +12,12 @@ const Login = () => {
         </div>
         <div className='w-3/5 bottom-2 py-10 m-auto flex mb-2  flex-col '>
 <div className='flex  flex-col space-x-20 mt-11 items-center '>
-  <Link to="" >
+  <Link to="/Userlogin" >
     <button className="bg-red-700 hover:bg-blue-800 text-white w-[250px] h-20 py-2 px-9 rounded-[13px]"> User </button>
   </Link>
 </div>
 <div className=' flex  flex-col space-x-20 mt-11  items-center'>
-    <Link to="">
+    <Link to="/Exchangerlogin">
       <button className=" text-white border-black  w-[250px] hover:bg-blue-800 hover:ring-blue-800 h-20 py-2 px-9 rounded-[13px] ring-red-600 ring-4"> Exchanger</button>
     </Link>
   </div>

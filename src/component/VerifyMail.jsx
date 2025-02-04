@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const VerifyMail = () => {
     return (
@@ -19,14 +20,20 @@ const VerifyMail = () => {
                 </div>
                 {/* resend link */}
                 <div className="text-center mb-6">
-                    <a href="#" className="text-gray-300 hover:underline">Resend code</a>
+                    <Link to="/">
+                        <a href="#" className="text-gray-300 hover:underline">Resend code</a>
+                    </Link>
                 </div>
                 {/* confirm button */}
-                <button className="w-full py-3 bg-white text-blue-900 font-medium rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Continue</button>
+                <Link to="/">
+                    <button className="w-full py-3 bg-white text-blue-900 font-medium rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Continue</button>
+                </Link>
 
                 {/* changed mail link */}
                 <div className="text-center mt-4">
-                    <a href="#" className="text-gray-300 hover:underline">Change email</a>
+                    <Link to="/">
+                        <a href="#" className="text-gray-300 hover:underline">Change email</a>
+                    </Link>
                 </div>
             </div>
         </div>

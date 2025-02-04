@@ -6,6 +6,8 @@ import google from '../assets/google.png'
 import dropbox from '../assets/dropbox.png'
 import shopify1 from '../assets/shopify-1.png'
 import Gll from '../assets/Gll.jpg'
+import Carouselgroup from './Carouselgroup'
+import { tokenGroup } from '../constant'
 
 
 const Hero = () => {
@@ -54,26 +56,31 @@ const Hero = () => {
 
             </div>
 {/* ./src/assets/Top.png */}
-            <div className="bg-gradient-to-l from-blue-900 to-gray-900 flex flex-row justify-between items-center md:w-[70%] w-[90%] mt-[40px] md:p-6 md:my-6 mb-3 p-3">
+            {/* <Carouselgroup /> */}
+            {/* <div className="w-7/12"> */}
+            <Carouselgroup tokenGroup={tokenGroup} />
+            {/* </div> */}
+            {/* className=" flex flex-row justify-between items-center md:w-full w-[90%]"> */}
+            {/* <div className="bg-gradient-to-l from-blue-900 to-gray-900 flex flex-row justify-between items-center md:w-[70%] w-[90%] mt-[40px] md:p-6 md:my-6 mb-3 p-3">
 
                 <div className="text-[#fff] font-bold flex flex-row ">
                     {/* image */}
-                    <div className="my-auto">
+                    {/* <div className="my-auto">
                         <img src={Gll} alt="Profile Image" className=" rounded w-[50px] md:w-[60px]  md:ml-4" />
 
-                    </div>
+                    </div> */}
 
                     {/* details */}
-                    <div className="ml-2">
+                    {/* <div className="ml-2">
                         <p className="text-[13px] md:text-lg  font-semibold ">Ethan Carter</p>
                         <p className="md:text-[12px] text-sm ">Highest CPT tokens purchased</p>
                         <p className="md:text-[12px] text-sm text-[#ffd700]">50 CPT</p>
                     </div>
-                </div>
+                </div> */}
                 {/* number */}
-                <div className="text-white opacity-40 md:text-6xl text-4xl md:mr-8">01</div>
+                {/* <div className="text-white opacity-40 md:text-6xl text-4xl md:mr-8">01</div> */}
 
-            </div>
+            {/* </div>  */}
         </div>
 
     </section>
@@ -81,3 +88,30 @@ const Hero = () => {
 }
 
 export default Hero
+
+
+// const settings = {
+//     dots: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     responsive: [
+//       {
+//         breakpoint: 1024,
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1,
+//           infinite: true,
+//           dots: true
+//         }
+//       },
+//       {
+//         breakpoint: 600,
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1
+//         }
+//       }
+//     ]
+//   };
