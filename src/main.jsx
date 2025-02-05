@@ -44,6 +44,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/ForgottenPassword' element={<ForgottenPassword />} />
         <Route path='/verifymail' element={<VerifyMail />} />
         <Route path='/usersignup' element={<UserSignup />} />
+        <Route path='/ExchangerCard' element={<ExchangerCard />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
