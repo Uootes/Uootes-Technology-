@@ -7,7 +7,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        if (isMenuOpen) {
+        if(isMenuOpen) {
             setIsMenuOpen(false);
             // enablePageScroll();
         } else {
