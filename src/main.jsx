@@ -23,6 +23,7 @@ import UserSignup from './component/UserSignup.jsx';
 import Userlogin from './component/Userlogin.jsx';
 import ForgottenPassword from './component/ForgottenPassword.jsx';
 import VerifyMail from './component/VerifyMail.jsx';
+import Verified from './component/verified.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/verifymail' element={<VerifyMail />} />
         <Route path='/usersignup' element={<UserSignup />} />
         <Route path='/ExchangerCard' element={<ExchangerCard />} />
+        <Route path='/Verified' element={<Verified />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
