@@ -6,7 +6,7 @@ const Sellprice = 0;
 
 const CPTSell = () => {
   return (
-    <div className='text-white h-screen h-f bg-black flex flex-col justify-between'>
+    <div className='text-white h-screen bg-black flex flex-col justify-between'>
             <div>
                 <div className='p-4'>
                     <span className='text-[30px] font-bold'>
