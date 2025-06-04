@@ -1,11 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye  } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Userlogin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await axios.post('https://api.uootes.com/auth/login', {
+        email, password
+      });
+      console.log('Login Successful:', response);
+      // console.log('Login Successful:', response.data);
+    } catch (error) {
+      console.log('Error during login:', error);
+      setError('Error trying to login. Please check your email or password.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className='w-full h-[100vh] align-middle'>
       <div className='w-full h-[100%] my-auto flex justify-center'>
@@ -34,9 +59,23 @@ const Userlogin = () => {
               <h2 className='text-[25px] font-semibold mt-[15px] text-[#002853]'>Login</h2>
             </div>
 
-            <form action="" className='w-[100%] h-[90%] flex flex-col gap-y-5 mt-8 md:gap-y-4 lg:gap-y-5  lg:mt-2 overflow-auto'>
-              <input type="text" className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Email' />
-                <input type="password" className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg- shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Password' />
+            {error && <p className='text-red-600 text-[14px] p-2'>{error}</p>}
+
+            <form onSubmit={HandleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 mt-8 md:gap-y-4 lg:gap-y-5  lg:mt-2 overflow-auto'>
+              <input 
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+                placeholder='Email' 
+                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+              />
+              <input 
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder='Password' 
+                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg- shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+              />
               
 {/* 
               <div className='flex w-[80%] md:w-[60%] lg:w-[80%] mx-auto'>
@@ -44,9 +83,12 @@ const Userlogin = () => {
                 <h2 className='ml-[5px] text-[14px] text-gray-500 font-semibold'>Accept Terms & Conditions</h2>
               </div> */}
 
-              <Link to="/">
-                <button className='w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14x] font-normal ml-10'>Login</button>
-              </Link>
+              {/* <Link to="/"> */}
+                <button 
+                  type="submit"
+                  disabled={loading}
+                  className='w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14px] font-normal ml-10'>{loading ? "Logging in..." : "Login"}</button>
+              {/* </Link> */}
 
               <div className='w-[80%] md:w-[60%] lg:w-[80%] mx-auto flex justify-evenly align-middle mt-[10px]'>
                 <div className='w-[100px] h-[1px] bg-gray-400 my-auto'></div>
@@ -64,7 +106,7 @@ const Userlogin = () => {
 
               <div className='w-[100%] pb-4 md:pb-0 flex flex-col justify-center gap-y-2 mt-[2px]'>
                 <button className='w-[80%] md:w-[60%] lg:w-[80%] h-[35px] mx-auto rounded-md bg-transparent shadow-lg shadow-gray-300 border-[#002853] border-[1px] text-[14x] font-normal'>Login Up With Google</button>
-                <button className='w-[80%] md:w-[60%] lg:w-[80%] h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14x] font-normal'>Login Up With Apple</button>
+                {/* <button className='w-[80%] md:w-[60%] lg:w-[80%] h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14x] font-normal'>Login Up With Apple</button> */}
               </div>
             </form>
           </div>
