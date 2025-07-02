@@ -20,6 +20,7 @@
     "@mui/material": "^7.0.2",
     "axios": "^1.7.9",
     "iconoir-react": "^7.10.1",
+    "js-cookie": "^3.0.5",
     "react-dom": "^18.3.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.0.2",

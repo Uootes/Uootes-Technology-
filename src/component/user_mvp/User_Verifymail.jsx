@@ -1,7 +1,7 @@
-import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const VerifyMail = () => {
+const User_Verifymail = () => {
     return (
         <div className='flex w-full items-center h-screen md:m-auto px-2 max-w-md'>
             <div className="bg-blue-900 text-white p-8 rounded-lg shadow-lg   ">
@@ -40,4 +40,4 @@ const VerifyMail = () => {
     )
 }
 
-export default VerifyMail
+export default User_Verifymail

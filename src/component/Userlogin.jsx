@@ -1,31 +1,44 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye  } from '@fortawesome/free-solid-svg-icons';
-import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEye  } from '@fortawesome/free-solid-svg-icons';
+// import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Userlogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const HandleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+  const Alert = Swal; 
+  const navigate = useNavigate();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
-      const response = await axios.post('https://api.uootes.com/auth/login', {
-        email, password
-      });
-      console.log('Login Successful:', response);
-      // console.log('Login Successful:', response.data);
+      const response = await axios.post('https://uootes.onrender.com/api/v1/login-exchanger', 
+        { email, password },
+        { headers: 
+          { 'Content-Type': 'application/json' } ,
+        }
+      );
+      const { token } = response.data;
+
+      Cookies.set('userToken', token, { expires: 1/24 });
+      Alert.fire({
+        title : 'Success!',
+        text: 'Login successful!',
+        icon: 'success',
+        timer: 1500,
+      })
+      navigate('/User_dashboard');
+
     } catch (error) {
-      console.log('Error during login:', error);
-      setError('Error trying to login. Please check your email or password.');
+      Alert.fire('Oops!', "Failed to submit login form.", error);
     } finally {
       setLoading(false);
     }
@@ -59,36 +72,36 @@ const Userlogin = () => {
               <h2 className='text-[25px] font-semibold mt-[15px] text-[#002853]'>Login</h2>
             </div>
 
-            {error && <p className='text-red-600 text-[14px] p-2'>{error}</p>}
-
-            <form onSubmit={HandleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 mt-8 md:gap-y-4 lg:gap-y-5  lg:mt-2 overflow-auto'>
+            <form onSubmit={handleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 mt-8 md:gap-y-4 lg:gap-y-5  lg:mt-2 overflow-auto'>
               <input 
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} 
                 placeholder='Email' 
-                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]'
+                required 
               />
               <input 
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Password' 
-                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg- shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
-              />
-              
+                className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] bg- shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]'
+                required
+              /> 
 {/* 
               <div className='flex w-[80%] md:w-[60%] lg:w-[80%] mx-auto'>
                   <input type="checkbox" />
                 <h2 className='ml-[5px] text-[14px] text-gray-500 font-semibold'>Accept Terms & Conditions</h2>
               </div> */}
 
-              {/* <Link to="/"> */}
                 <button 
                   type="submit"
                   disabled={loading}
-                  className='w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14px] font-normal ml-10'>{loading ? "Logging in..." : "Login"}</button>
-              {/* </Link> */}
+                  className='w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14px] font-normal ml-10'
+                >
+                  {loading ? "Logging in..." : "Login"}
+                </button>
 
               <div className='w-[80%] md:w-[60%] lg:w-[80%] mx-auto flex justify-evenly align-middle mt-[10px]'>
                 <div className='w-[100px] h-[1px] bg-gray-400 my-auto'></div>

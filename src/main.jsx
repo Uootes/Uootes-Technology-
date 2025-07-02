@@ -9,7 +9,8 @@ import {
 import Login from './component/Login.jsx';
 import Signup from './component/Signup.jsx';
 import UserTypesList from './component/UserTypesList.jsx';
-import Passwordreset from './component/Passwordreset.jsx';
+import Ex_ResetPassword from './component/Ex_ResetPassword.jsx';
+import User_ResetPassword from './component/user_mvp/User_ResetPassword.jsx';
 import Createnewpassword from './component/Createnewpassword.jsx';
 import './index.css'
 import App from './App.jsx';
@@ -22,9 +23,11 @@ import ExchangerSignUp from './component/ExchangerSignup.jsx';
 import Exchangerlogin from './component/Exchangerlogin.jsx';
 import UserSignup from './component/UserSignup.jsx';
 import Userlogin from './component/Userlogin.jsx';
-import ForgottenPassword from './component/ForgottenPassword.jsx';
-import VerifyMail from './component/VerifyMail.jsx';
-    
+import Ex_ForgotPassword from './component/Ex_ForgotPassword.jsx';
+import User_ForgotPassword from './component/user_mvp/User_ForgotPassword.jsx';
+import Ex_Verifymail from './component/Ex_Verifymail.jsx';
+import User_Verifymail from './component/user_mvp/User_Verifymail.jsx';
+
   // dialog
 // import DialogNotification from "./component/eu_wallet/dialogs/DialogNotification.jsx";
 // import Activate from './component/eu_wallet/dialogs/Activate.jsx';
@@ -43,8 +46,8 @@ import VerifyMail from './component/VerifyMail.jsx';
 
   // landing for mvp
 // import Ex_Feed from './component/Ex_Feed.jsx';
-import User_Feed from './pages/User_Feed.jsx';
-import Ex_Feed from './pages/Ex_Feed.jsx';
+import User_dashboard from './pages/User_dashboard.jsx';
+import Ex_dashboard from './pages/Ex_dashboard.jsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -55,7 +58,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/usertype" element={<UserTypesList />} />
-        <Route path="/Passwordreset" element={<Passwordreset />} />
+        <Route path="/Ex_ResetPassword" element={<Ex_ResetPassword />} />
+        <Route path='/User_ResetPassword' element={<User_ResetPassword />} />
         <Route path="/Createnewpassword" element={<Createnewpassword />} />
         <Route path='/Carouselgroup' element={<Carouselgroup />} />
         <Route path='/checkemail' element={<CheckEmail />} />
@@ -64,8 +68,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/excard' element={<ExchangerCard />} />
         <Route path='/Exchangerlogin' element={<Exchangerlogin />} />
         <Route path='/userlogin' element={<Userlogin />} />
-        <Route path='/ForgottenPassword' element={<ForgottenPassword />} />
-        <Route path='/verifymail' element={<VerifyMail />} />
+        <Route path='/Ex_ForgotPassword' element={<Ex_ForgotPassword />} />
+        <Route path='/User_ForgotPassword' element={<User_ForgotPassword />} />
+        <Route path='/Ex_Verifymail' element={<Ex_Verifymail />} />
+        <Route path='/User_Verifymail' element={<User_Verifymail />} />
         <Route path='/usersignup' element={<UserSignup />} />
         <Route path='/ExchangerCard' element={<ExchangerCard />} />
         {/* <Route path='/DialogNotification' element={<DialogNotification />} /> */}
@@ -73,8 +79,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* <Route path='/Inputdialog' element={<Inputdialog />} /> */}
         {/* <Route path='/Navbar2' element={<Navbar2 />} /> */}
 
-        <Route path='User_Feed' element={<User_Feed />} />
-        <Route path='Ex_Feed' element={<Ex_Feed />} />
+        <Route path='User_dashboard' element={<User_dashboard />} />
+        <Route path='Ex_dashboard' element={<Ex_dashboard />} />
 
         <Route path='*' element={<div className='text-2xl text-center pt-10 text-white'> Coming Soon </div>} />
 

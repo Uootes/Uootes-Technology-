@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import User_Sidebar from '../component/user_mvp/User_Sidebar'
-import Details from "../component/user_mvp/Details";
+import Ex_Sidebar from '../component/ex_mvp/Ex_Sidebar';
+import Details from "../component/ex_mvp/Details";
 
-const User_Feed = () => {
+const Ex_dasboard = () => {
   const [selectedMenu, setSelectedMenu] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const User_Feed = () => {
           backgroundColor: { xs: isMenuOpen ? "#121212" : "transparent" },
         }}
       >
-        <User_Sidebar
+        <Ex_Sidebar
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
           isMenuOpen={isMenuOpen}
@@ -45,4 +45,4 @@ const User_Feed = () => {
   );
 };
 
-export default User_Feed;
+export default Ex_dasboard;

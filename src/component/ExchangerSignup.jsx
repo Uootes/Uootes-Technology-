@@ -1,9 +1,82 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 
 const ExchangerSignUp = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [country, setCountry] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    if (!firstName || !lastName || !email || !password || !confirmPassword || !country) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please fill all required fields.',
+        icon: 'error',
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Passwords do not match.',
+        icon: 'error',
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await axios.post('https://uootes.onrender.com/api/v1/signUp-exchanger',  
+        { firstName, lastName, email, password, confirmPassword, country },
+        { header: {
+            'Content-Type' : 'application/json',
+          },
+        }        
+      )
+      const { token } = res.data;
+      Cookies.set('exchangerToken', token, { expires: 1/24 });
+
+      // Step 2: Send OTP for email verification
+      await axios.post('https://uootes.onrender.com/api/v1/verifyOtp-exchanger',
+        { email },
+        { headers: { 'Content-Type': 'application/json' }, }
+      );
+
+      Swal.fire({
+        title: 'OTP Sent!',
+        text: 'A verification code has been sent to your email.',
+        icon: 'success',
+        timer: 1500,
+      });
+
+      navigate('/Ex_Verifymail', {state: { email }});
+    } catch (error) {
+      Swal.fire({
+        title: 'Oops!',
+        text: error.response?.data?.message || 'Unable to create account. Please try again.',
+        icon: 'error',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className='w-full h-[100vh]  align-middle '>
         <div className='w-full h-[100%] my-auto flex justify-center '>
@@ -36,18 +109,60 @@ const ExchangerSignUp = () => {
                     <h2 className='text-[25px] font-semibold mt-[15px] text-[#002853]'>Sign Up</h2>
                   </div>
 
-                    <form action="" className='w-[100%] h-[90%] flex flex-col gap-y-5 md:gap-y-4 lg:gap-y-2 mt-6 lg:mt-2 overflow-auto'>
-                      <input type="text" className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='First Name'/>
-                      <input type="text" className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Last Name'/>
-                      <select name="" id="" className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black'placeholder='Select Country'>
+                    <form action="" onSubmit={handleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 md:gap-y-4 lg:gap-y-2 mt-6 lg:mt-2 overflow-auto'>
+                      <input 
+                        type="text" 
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                        placeholder='First Name'
+                      />
+
+                      <input 
+                        type="text" 
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                        placeholder='Last Name'
+                        required
+                      />
+
+                      <select name="" id="" 
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black' placeholder='Select Country'>
                         <option value="" className='text-black'>Select Country</option> 
-                        <option value=""  className='text-black'>Nigeria</option>
-                        <option value=""  className='text-black'>Ghana</option>
-                        <option value=""  className='text-black'>South Africa</option>
+                        <option value="Nigeria" className='text-black'>Nigeria</option>
+                        <option value="Ghana" className='text-black'>Ghana</option>
+                        <option value="South Africa" className='text-black'>South Africa</option>
                       </select>
-                      <input type="text" className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Email'/>
-                      <input type="password" className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Password'/>
-                      <input type="password" className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' placeholder='Confirm Password'/>
+
+                      <input 
+                        type="text" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                        placeholder='Email'
+                        required
+                      />
+
+                      <input 
+                        type="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                        placeholder='Password'
+                        required
+                      />
+                      
+                      <input 
+                        type="password" 
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
+                        placeholder='Confirm Password'
+                        required
+                      />
 
                       <div className='flex w-[80%] md:w-[60%] lg:w-[80%] mx-auto'>
                         <input type="checkbox" />
@@ -56,9 +171,13 @@ const ExchangerSignUp = () => {
 
                       
                       <div className='w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[37px] mx-auto rounded-md bg-[#002853]'>
-                        <Link to="/">
-                          <button className='w-full md:w-full lg:w-full h-full lg:h-full mx-auto rounded-md bg-[#002853] text-white font-normal'>Create Account</button>
-                        </Link>
+                        <button 
+                          type="submit"
+                          disabled={loading}
+                          className='w-full md:w-full lg:w-full h-full lg:h-full mx-auto rounded-md bg-[#002853] text-white font-normal'>
+                            {loading ? 'Creating Account...' : 'Create Account'}
+                            {/* w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14px] font-normal ml-10 */}
+                        </button>
                       </div>
 
                       <div className='w-[80%] md:w-[60%] lg:w-[80%] mx-auto flex justify-evenly align-middle mt-[10px]'>

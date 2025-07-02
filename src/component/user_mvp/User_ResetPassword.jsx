@@ -1,7 +1,15 @@
-import React from 'react';
+import { useState} from 'react';
 import LOgo from "/src/assets/LOgo.png";
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
-const Passwordreset = () => {
+const User_ResetPassword = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    // 'https://uootes.onrender.com/api/v1/resetPassword'
+
   return (
     <div className="bg-white flex justify-center items-center h-screen">
         <div className="bg-blue-900 w-11/12 md:w-1/2 items-center py-6">
@@ -23,4 +31,4 @@ const Passwordreset = () => {
   )
 }
 
-export default Passwordreset
+export default User_ResetPassword
