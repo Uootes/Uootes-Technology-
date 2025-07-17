@@ -4,7 +4,7 @@ import '../App.css';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-
+import Ex_Verifymail from './Ex_Verifymail';
 
 const ExchangerSignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -14,6 +14,7 @@ const ExchangerSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [country, setCountry] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showVerify, setShowVerify] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ const ExchangerSignUp = () => {
     try {
       const res = await axios.post('https://uootes.onrender.com/api/v1/signUp-exchanger',  
         { firstName, lastName, email, password, confirmPassword, country },
-        { header: {
+        { headers: {
             'Content-Type' : 'application/json',
           },
         }        
@@ -52,20 +53,15 @@ const ExchangerSignUp = () => {
       const { token } = res.data;
       Cookies.set('exchangerToken', token, { expires: 1/24 });
 
-      // Step 2: Send OTP for email verification
-      await axios.post('https://uootes.onrender.com/api/v1/verifyOtp-exchanger',
-        { email },
-        { headers: { 'Content-Type': 'application/json' }, }
-      );
-
+      // Success: Show OTP modal for verification
       Swal.fire({
         title: 'OTP Sent!',
         text: 'A verification code has been sent to your email.',
         icon: 'success',
         timer: 1500,
       });
+      setShowVerify(true);
 
-      navigate('/Ex_Verifymail', {state: { email }});
     } catch (error) {
       Swal.fire({
         title: 'Oops!',
@@ -77,39 +73,37 @@ const ExchangerSignUp = () => {
     }
   }
 
+  // You may want to close the OTP modal and redirect after verification:
+  const handleOtpVerified = () => {
+    setShowVerify(false);
+    navigate('/Login'); // or home, or dashboard, etc.
+  };
+
   return (
     <div className='w-full h-[100vh]  align-middle '>
         <div className='w-full h-[100%] my-auto flex justify-center '>
             <div className='w-full sm:w-[90vh] md:w-[80%]  lg:w-[60%] h-[100vh] sm:h-[90vh] md:h-[90vh] lg:h-[90vh] rounded-xl bg-gray-100 my-auto  pr-0 flex flex-row justify-between'>
                 
-                {/* Left Side */}
-
+                {/* ... LEFT SIDE ... */}
                 <div className='ExSideImg w-[50%] h-[100%]  rounded-xl justify-center align-middle hidden lg:flex '>
                     <div className='w-[100%] h-[100%]  bg-[#002853] rounded-xl opacity-95 '>
-
                       <div className='ExSideLogo mt-[50px] scale-50'></div>
-
                       <div className='bg-transparent ml-[23px] w-auto mt-[10px]'>
                         <h2 className='font-semibold text-[28px] text-white'>Create Your <br /> Account </h2>
                         <div className='w-[80px] h-[2px] bg-gray-400 mt-[20px]'></div>
                       </div>
-
                       <div>
                         <p className='text-white w-[90%] ml-[20px] mt-[40px]'>Sign up to experience the freedom to earn easily and go borderless.</p>
                       </div>
-
                     </div>
-                </div> {/** #f47133 for learn more button */} 
-
-                {/* Right Side */}
-
+                </div>
+                {/* ... RIGHT SIDE ... */}
                 <div className='w-[100%] lg:w-[50%]'>
                 <div className='ExSideLogo mt-[0px] scale-50 lg:hidden'></div>
                   <div className='w-[100%] flex justify-center mt-[-80px] lg:mt-[0px]'>
                     <h2 className='text-[25px] font-semibold mt-[15px] text-[#002853]'>Sign Up</h2>
                   </div>
-
-                    <form action="" onSubmit={handleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 md:gap-y-4 lg:gap-y-2 mt-6 lg:mt-2 overflow-auto'>
+                    <form onSubmit={handleSubmit} className='w-[100%] h-[90%] flex flex-col gap-y-5 md:gap-y-4 lg:gap-y-2 mt-6 lg:mt-2 overflow-auto'>
                       <input 
                         type="text" 
                         value={firstName}
@@ -127,14 +121,47 @@ const ExchangerSignUp = () => {
                         required
                       />
 
-                      <select name="" id="" 
+                      {/* ... Country select and rest of your fields ... */}
+                      <select
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
-                        className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black' placeholder='Select Country'>
-                        <option value="" className='text-black'>Select Country</option> 
-                        <option value="Nigeria" className='text-black'>Nigeria</option>
-                        <option value="Ghana" className='text-black'>Ghana</option>
-                        <option value="South Africa" className='text-black'>South Africa</option>
+                        className="outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black"
+                        placeholder="Select Country"
+                      >
+                        <option value="" className="text-black">Select Country</option>
+                        {/* ...countries... */}
+                        {[
+                          "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
+                          "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+                          "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil",
+                          "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada",
+                          "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Brazzaville)",
+                          "Congo (Kinshasa)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+                          "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador",
+                          "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini (formerly Swaziland)", "Ethiopia", "Fiji",
+                          "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+                          "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India",
+                          "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+                          "Kenya", "Kiribati", "North Korea", "South Korea", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
+                          "Lebanon", "Lesotho", "Liberia", "Libya", "Lithuania", "Luxembourg", "Macedonia (also known as North Macedonia)",
+                          "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+                          "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco",
+                          "Mozambique", "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand",
+                          "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea",
+                          "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+                          "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+                          "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+                          "Singapore", "Sint Maarten (Dutch part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
+                          "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+                          "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste (East Timor)", "Togo", "Tonga",
+                          "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+                          "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
+                          "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+                        ].map((countryName) => (
+                          <option key={countryName} value={countryName} className="text-black">
+                            {countryName}
+                          </option>
+                        ))}
                       </select>
 
                       <input 
@@ -176,7 +203,6 @@ const ExchangerSignUp = () => {
                           disabled={loading}
                           className='w-full md:w-full lg:w-full h-full lg:h-full mx-auto rounded-md bg-[#002853] text-white font-normal'>
                             {loading ? 'Creating Account...' : 'Create Account'}
-                            {/* w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[35px] mx-auto rounded-md bg-[#002853] text-white text-[14px] font-normal ml-10 */}
                         </button>
                       </div>
 
@@ -188,7 +214,7 @@ const ExchangerSignUp = () => {
 
                       <div className='w-[80%] mx-auto'>
                         <Link to="/Login">
-                          <h2 className='text-center text-[13px] font-semibold text-gray-700'>Already have an accout? <a href="#" className='text-blue-500'>Login</a></h2>
+                          <h2 className='text-center text-[13px] font-semibold text-gray-700'>Already have an accout? <span className='text-blue-500'>Login</span></h2>
                         </Link>
                       </div>
 
@@ -197,7 +223,14 @@ const ExchangerSignUp = () => {
                         <button className='w-[80%] md:w-[60%] lg:w-[80%] h-[37px] mx-auto rounded-md bg-[#002853] text-white text-[14x] font-normal'>Sign Up With Apple</button>
                       </div>
                     </form>
-          
+                    {/* OTP Modal */}
+                    {showVerify && (
+                      <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-40 flex items-center justify-center z-50">
+                        <div className="bg-white p-5 rounded shadow-lg w-[95vw] max-w-md relative">
+                          <Ex_Verifymail email={email} onVerified={handleOtpVerified} />
+                        </div>
+                      </div>
+                    )}
                 </div>
              </div>
         </div>
@@ -205,6 +238,4 @@ const ExchangerSignUp = () => {
   )
 }
 
-export default ExchangerSignUp;                
-                                                    
-                          
+export default ExchangerSignUp;

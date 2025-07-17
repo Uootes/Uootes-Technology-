@@ -21,7 +21,7 @@ const UserSignup = () => {
     e.preventDefault();
     setLoading(true);
 
-    if(!firstName || !lastName || !email || !password || !confirmPassword || !country || !referralId) {      
+    if(!firstName || !lastName || !email || !password || !confirmPassword || !country) {      
       Swal.fire({
         title: 'Error!',
         text: 'Please fill all required fields.',
@@ -42,22 +42,17 @@ const UserSignup = () => {
     }
 
     try {
+      console.log({ firstName, lastName, email, password, confirmPassword, country, referralId });
       const res = await axios.post('https://uootes.onrender.com/api/v1/signUp', 
         { firstName, lastName, email, password, confirmPassword, country, referralId },
-        { header: {
+        { headers: {
             'Content-Type' : 'application/json',
           },
         }        
       ) 
       const { token } = res.data;
       Cookies.set('userToken', token, { expires: 1/24 });
-      // Step 2: Send OTP for email verification
-      await axios.post(
-        'https://uootes.onrender.com/api/v1/verifyOtp',
-        { email },
-        { headers: { 'Content-Type': 'application/json' }, }
-      );
-
+      
       Swal.fire({
         title: 'OTP Sent!',
         text: 'A verification code has been sent to your email.',
@@ -126,15 +121,49 @@ const UserSignup = () => {
                         required
                       />
 
-                      <select name="" id=""
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        className='outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black' placeholder='Select Country'>
-                        <option value="" className='text-black'>Select Country</option>
-                        <option value="Nigeria" className='text-black'>Nigeria</option>
-                        <option value="Ghana" className='text-black'>Ghana</option>
-                        <option value="South Africa" className='text-black'>South Africa</option>
-                      </select>
+<select
+  name=""
+  id=""
+  value={country}
+  onChange={(e) => setCountry(e.target.value)}
+  className="outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853] text-black"
+  placeholder="Select Country"
+>
+  <option value="" className="text-black">Select Country</option>
+  {[
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
+    "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+    "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil",
+    "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada",
+    "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Brazzaville)",
+    "Congo (Kinshasa)", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+    "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador",
+    "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini (formerly Swaziland)", "Ethiopia", "Fiji",
+    "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+    "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India",
+    "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+    "Kenya", "Kiribati", "North Korea", "South Korea", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
+    "Lebanon", "Lesotho", "Liberia", "Libya", "Lithuania", "Luxembourg", "Macedonia (also known as North Macedonia)",
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+    "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco",
+    "Mozambique", "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand",
+    "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea",
+    "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+    "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+    "Singapore", "Sint Maarten (Dutch part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
+    "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+    "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste (East Timor)", "Togo", "Tonga",
+    "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+    "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
+    "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+  ].map((countryName) => (
+    <option key={countryName} value={countryName} className="text-black">
+      {countryName}
+    </option>
+  ))}
+</select>
+
 
                       <input 
                         type="text" 
@@ -169,7 +198,7 @@ const UserSignup = () => {
                         onChange={(e) => setReferralId(e.target.value)}
                         className=' outline-none w-[80%] md:w-[60%] lg:w-[80%] h-[45px] lg:h-[30px] bg-transparent shadow-lg shadow-gray-300 text-[13px] font-semibold rounded-md mx-auto border-[1px] pl-[10px] border-[#002853]' 
                         placeholder='Referal ID (Optional)'
-                        required
+                        
                       />
 
 
@@ -212,6 +241,4 @@ const UserSignup = () => {
   )
 }
 
-export default UserSignup;                
-                                                    
-                          
+export default UserSignup;
