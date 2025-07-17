@@ -20,7 +20,7 @@ const Userlogin = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('https://uootes.onrender.com/api/v1/login-exchanger', 
+      const response = await axios.post('https://uootes.onrender.com/api/v1/login', 
         { email, password },
         { headers: 
           { 'Content-Type': 'application/json' } ,
@@ -28,17 +28,22 @@ const Userlogin = () => {
       );
       const { token } = response.data;
 
-      Cookies.set('userToken', token, { expires: 1/24 });
+      Cookies.set('userToken', token, { expires: 1 }); // Expires in 1 day
       Alert.fire({
         title : 'Success!',
-        text: 'Login successful!',
+        text: response.data.message || 'Login successful!',
         icon: 'success',
         timer: 1500,
       })
       navigate('/User_dashboard');
 
     } catch (error) {
-      Alert.fire('Oops!', "Failed to submit login form.", error);
+      const errorMessage = error.response?.data?.message || "An unexpected error occurred.";
+      Alert.fire({
+        title: 'Oops!',
+        text: errorMessage,
+        icon: 'error'
+      });
     } finally {
       setLoading(false);
     }
@@ -112,7 +117,7 @@ const Userlogin = () => {
               <div className='w-[80%] mx-auto'>
                 <h2 className='text-center text-[13px] font-semibold text-gray-700'>Don't have an account ? <Link to="/Signup" className='text-blue-500'>Sign up
                 </Link></h2>
-                <Link to="/ForgottenPassword">
+                <Link to="/User_ForgotPassword">
                   <h2 className='text-center text-[13px] font-semibold text-blue-500'>Forgotten password</h2>
                 </Link>
               </div>
