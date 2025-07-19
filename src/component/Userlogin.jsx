@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEye  } from '@fortawesome/free-solid-svg-icons';
 // import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
@@ -7,11 +7,13 @@ import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
 const Userlogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const { fetchUser } = useContext(UserContext);
 
   const Alert = Swal; 
   const navigate = useNavigate();
@@ -29,6 +31,7 @@ const Userlogin = () => {
       const { token } = response.data;
 
       Cookies.set('userToken', token, { expires: 1 }); // Expires in 1 day
+      await fetchUser();
       Alert.fire({
         title : 'Success!',
         text: response.data.message || 'Login successful!',

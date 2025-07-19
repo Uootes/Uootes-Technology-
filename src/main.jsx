@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
+import { UserProvider } from './context/UserContext.jsx';
 
 import Login from './component/Login.jsx';
 import Signup from './component/Signup.jsx';
@@ -52,40 +53,42 @@ import Ex_dashboard from './pages/Ex_dashboard.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" exact element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/usertype" element={<UserTypesList />} />
-        <Route path="/Ex_ResetPassword" element={<Ex_ResetPassword />} />
-        <Route path='/User_ResetPassword' element={<User_ResetPassword />} />
-        <Route path="/Createnewpassword" element={<Createnewpassword />} />
-        <Route path='/Carouselgroup' element={<Carouselgroup />} />
-        <Route path='/checkemail' element={<CheckEmail />} />
-        <Route path='/ExchangerSignUp' element={<ExchangerSignUp />} />
-        <Route path='/terms' element={<TermAndConditions />} />
-        <Route path='/excard' element={<ExchangerCard />} />
-        <Route path='/Exchangerlogin' element={<Exchangerlogin />} />
-        <Route path='/userlogin' element={<Userlogin />} />
-        <Route path='/Ex_ForgotPassword' element={<Ex_ForgotPassword />} />
-        <Route path='/User_ForgotPassword' element={<User_ForgotPassword />} />
-        <Route path='/Ex_Verifymail' element={<Ex_Verifymail />} />
-        <Route path='/User_Verifymail' element={<User_Verifymail />} />
-        <Route path='/usersignup' element={<UserSignup />} />
-        <Route path='/ExchangerCard' element={<ExchangerCard />} />
-        {/* <Route path='/DialogNotification' element={<DialogNotification />} /> */}
-        {/* <Route path='/Activate' element={<Activate />} /> */}
-        {/* <Route path='/Inputdialog' element={<Inputdialog />} /> */}
-        {/* <Route path='/Navbar2' element={<Navbar2 />} /> */}
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/usertype" element={<UserTypesList />} />
+          <Route path="/Ex_ResetPassword" element={<Ex_ResetPassword />} />
+          <Route path='/User_ResetPassword' element={<User_ResetPassword />} />
+          <Route path="/Createnewpassword" element={<Createnewpassword />} />
+          <Route path='/Carouselgroup' element={<Carouselgroup />} />
+          <Route path='/checkemail' element={<CheckEmail />} />
+          <Route path='/ExchangerSignUp' element={<ExchangerSignUp />} />
+          <Route path='/terms' element={<TermAndConditions />} />
+          <Route path='/excard' element={<ExchangerCard />} />
+          <Route path='/Exchangerlogin' element={<Exchangerlogin />} />
+          <Route path='/userlogin' element={<Userlogin />} />
+          <Route path='/Ex_ForgotPassword' element={<Ex_ForgotPassword />} />
+          <Route path='/User_ForgotPassword' element={<User_ForgotPassword />} />
+          <Route path='/Ex_Verifymail' element={<Ex_Verifymail />} />
+          <Route path='/User_Verifymail' element={<User_Verifymail />} />
+          <Route path='/usersignup' element={<UserSignup />} />
+          <Route path='/ExchangerCard' element={<ExchangerCard />} />
+          {/* <Route path='/DialogNotification' element={<DialogNotification />} /> */}
+          {/* <Route path='/Activate' element={<Activate />} /> */}
+          {/* <Route path='/Inputdialog' element={<Inputdialog />} /> */}
+          {/* <Route path='/Navbar2' element={<Navbar2 />} /> */}
 
-        <Route path='User_dashboard' element={<User_dashboard />} />
-        <Route path='Ex_dashboard' element={<Ex_dashboard />} />
+          <Route path='User_dashboard' element={<User_dashboard />} />
+          <Route path='Ex_dashboard' element={<Ex_dashboard />} />
 
-        <Route path='*' element={<div className='text-2xl text-center pt-10 text-white'> Coming Soon </div>} />
+          <Route path='*' element={<div className='text-2xl text-center pt-10 text-white'> Coming Soon </div>} />
 
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );

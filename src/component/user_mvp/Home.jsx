@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCertificate } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const Home = () => {
     const [countdown, setCountdown] = useState(12 * 60 * 60); // 12 hours in seconds
+    const [referralData, setReferralData] = useState({ referrals: 0, visitors: 0 });
 
   // Countdown logic
   useEffect(() => {
@@ -12,6 +14,25 @@ const Home = () => {
     }, 1000);
 
     return () => clearInterval(countdownTimer); // Cleanup
+  }, []);
+
+  useEffect(() => {
+    const fetchReferralData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('https://uootes.onrender.com/api/v1/referrals/count', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setReferralData(response.data);
+      } catch (error) {
+        console.error('Error fetching referral data:', error);
+      }
+    };
+
+    fetchReferralData();
   }, []);
 
   const formatCountdown = (seconds) => {
@@ -155,9 +176,9 @@ const Home = () => {
             <div className='w-full items-center flex flex-col md:flex-row  justify-center gap-8 mt-16 '>
                 <div className='w-[90%] md:w-[40%] h-[350px] mx-auto bg-blue-800 rounded-xl justify-center flex flex-col text-center'>
                     <h4 className='text-[30px] font-semibold text-[#ff8254ec]'>Referal</h4>
-                    <h1 className='text-[27px] font-semibold'>5</h1>
+                    <h1 className='text-[27px] font-semibold'>{referralData.referrals}</h1>
                     <h5 className='text-[30px] font-semibold text-[#ff8254ec]'>Visitor</h5>
-                    <h1 className='text-[27px] font-semibold'>100</h1>
+                    <h1 className='text-[27px] font-semibold'>{referralData.visitors}</h1>
                 </div>
                 <div className='w-[90%] md:w-[40%] h-[350px] mx-auto bg-gray-800 rounded-xl'>
                     <h1 className='text-[20px] text-center mx-auto font-semibold   bg-blue-800 w-[150px]'>Selliing price</h1>
