@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
+import { UserContext } from '../context/UserContext';
 
 const UserSignup = () => {
   const [firstName, setFirstName] = useState('');
@@ -14,6 +15,7 @@ const UserSignup = () => {
   const [referralId, setReferralId] = useState('');
   const [country, setCountry] = useState('');
   const [loading, setLoading] = useState(false);
+  const { fetchUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -52,6 +54,7 @@ const UserSignup = () => {
       ) 
       const { token } = res.data;
       Cookies.set('userToken', token, { expires: 1/24 });
+      await fetchUser();
       
       Swal.fire({
         title: 'OTP Sent!',
