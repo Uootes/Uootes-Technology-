@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCertificate } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const Home = () => {
+    const { user } = useContext(UserContext);
     const [countdown, setCountdown] = useState(12 * 60 * 60); // 12 hours in seconds
     const [referralData, setReferralData] = useState({ referrals: 0, visitors: 0 });
 
@@ -58,7 +60,7 @@ const Home = () => {
                 </div>
                 <div className='flex flex-col'>
                     <div className='flex gap-[4px]'>
-                        <h2 className='text-[13px] sm:text-[15px] md:text-[20px] lg:text-[30px] font-semibold'>Kelechi Kingsley </h2>
+                        <h2 className='text-[13px] sm:text-[15px] md:text-[20px] lg:text-[30px] font-semibold'>{user?.username} </h2>
                         {/* <div className='w-[20px] h-[20px] bg-green-600 rounded-full my-auto'></div> */}
                     </div>
                     <div className='w-[60px] h-[24px] bg-blue-800 flex justify-center text-[15px] font-semibold rounded-3xl'>Silver</div>
