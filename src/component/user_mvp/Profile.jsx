@@ -1,112 +1,158 @@
-import React, { useState } from 'react';
-// import { FaPen, FaCamera } from 'react-icons/fa';
-// import Gii12 from '../assets/Gii.jpg'
+import React, { useEffect, useState } from 'react';
+
+const API_URL = 'https://uootes.onrender.com/api/v1/profile';
 
 const Profile = () => {
-  const [phone, setPhone] = useState('09033489935');
-  const [address, setAddress] = useState('No 24 Abad Lagos kebbi');
-  const [state, setState] = useState('Benue');
+  const [profile, setProfile] = useState(null);
+  const [edit, setEdit] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
 
-  const [editPhone, setEditPhone] = useState(false);
-  const [editAddress, setEditAddress] = useState(false);
-  const [editState, setEditState] = useState(false);
+  // Fetch profile data on mount
+  useEffect(() => {
+    async function fetchProfile() {
+      setLoading(true);
+      try {
+        const res = await fetch(API_URL, {
+          headers: { 'Content-Type': 'application/json' }
+          // Add Authorization header if required
+        });
+        if (!res.ok) throw new Error('Failed to fetch profile');
+        const data = await res.json();
+        setProfile(data.profile);
+      } catch (err) {
+        setError(err.message);
+      }
+      setLoading(false);
+    }
+    fetchProfile();
+  }, []);
 
-  const [profileImage, setProfileImage] = useState(null);
+  // Handle field change
+  const handleChange = (field, value) => {
+    setProfile(prev => ({ ...prev, [field]: value }));
+  };
 
-  const handleImageChange = (e) => {
+  // Handle image change
+  const handleImageChange = e => {
     const file = e.target.files[0];
     if (file) {
-      setProfileImage(URL.createObjectURL(file));
+      setImageFile(file);
+      setProfile(prev => ({
+        ...prev,
+        profilePicture: {
+          ...prev.profilePicture,
+          imageUrl: URL.createObjectURL(file)
+        }
+      }));
     }
   };
 
+  // Handle save changes
+  const handleSave = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // Build the payload (if you need to send the image file, use FormData)
+      const payload = { ...profile };
+      const res = await fetch(API_URL, {
+        method: 'PUT', // Or PATCH depending on your API
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Failed to update profile');
+      const data = await res.json();
+      setProfile(data.profile);
+      alert('Profile updated!');
+    } catch (err) {
+      setError(err.message);
+    }
+    setLoading(false);
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-500">Error: {error}</div>;
+  if (!profile) return null;
+
   return (
     <div className='h-screen bg-black hover:bg-slate-900' id='profile'>
-    <div className="flex flex-col items-center text-white p-6 rounded-lg max-w-sm mx-auto bt-10">
-      <h2 className="text-2xl font-bold mb-4">Profile</h2>
-
-      <div className="relative mb-4">
-        <img
-          // src={Gii12} // Provide a default path or image
-          alt="Profile"
-          className="w-32 h-32 rounded-full object-cover border-4 border-white"
-        />
-        <label className="absolute bottom-0 right-0 bg-orange-500 rounded-full p-2 cursor-pointer">
-          {/* <FaCamera className="text-white" /> */}
-          <input
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageChange}
+      <div className="flex flex-col items-center text-white p-6 rounded-lg max-w-sm mx-auto bt-10">
+        <h2 className="text-2xl font-bold mb-4">Profile</h2>
+        <div className="relative mb-4">
+          <img
+            src={profile.profilePicture?.imageUrl}
+            alt="Profile"
+            className="w-32 h-32 rounded-full object-cover border-4 border-white"
           />
-        </label>
-      </div>
-
-      <div className="text-center space-y-3 w-full px-2">
-        <p className="font-bold text-lg ">Robinson Taiwo Ezekiel</p>
-        <p className='font-semibold text-xl'>Nigeria</p>
-        <p className='font-semibold text-xl'>92382769</p>
-
-        <div className="flex items-center justify-center">
-          {editPhone ? (
+          <label className="absolute bottom-0 right-0 bg-orange-500 rounded-full p-2 cursor-pointer">
             <input
-              className="text-black px-2 py-1 rounded w-3/4"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              onBlur={() => setEditPhone(false)}
-              autoFocus
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageChange}
             />
-          ) : (
-            <p className="cursor-pointer font-semibold text-xl" onClick={() => setEditPhone(true)}>
-              {phone}
-              {/* <FaPen className="inline-block ml-2 text-orange-500" /> */}
-            </p>
-          )}
+          </label>
         </div>
-
-        <div className="flex items-center justify-center">
-          {editAddress ? (
-            <input
-              className="text-black   px-2 py-1 rounded w-3/4"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              onBlur={() => setEditAddress(false)}
-              autoFocus
-            />
-          ) : (
-            <p className="cursor-pointer font-semibold text-xl" onClick={() => setEditAddress(true)}>
-              {address}
-              {/* <FaPen className="inline-block ml-2 text-orange-500" /> */}
-            </p>
-          )}
+        <div className="text-center space-y-3 w-full px-2">
+          <EditableField
+            label="First Name"
+            value={profile.firstName}
+            onChange={val => handleChange('firstName', val)}
+          />
+          <EditableField
+            label="Last Name"
+            value={profile.lastName}
+            onChange={val => handleChange('lastName', val)}
+          />
+          <Field label="Email" value={profile.email} />
+          <EditableField
+            label="Country"
+            value={profile.country}
+            onChange={val => handleChange('country', val)}
+          />
+          <Field label="Referral Code" value={profile.referralCode} />
+          <Field label="Account Type" value={profile.accountType} />
+          <Field label="Activation Status" value={profile.activationStatus} />
         </div>
-
-        <div className="flex items-center justify-center">
-          {editState ? (
-            <input
-              className="text-black px-2 py-1 rounded w-3/4"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              onBlur={() => setEditState(false)}
-              autoFocus
-            />
-          ) : (
-            <p className="cursor-pointer text-xl font-semibold" onClick={() => setEditState(true)}>
-              {state}
-              {/* <FaPen className="inline-block ml-2 text-orange-500" /> */}
-            </p>
-          )}
+        <div className="pt-5 text-center mt-12">
+          <button
+            className='bg-blue-950 text-white px-4 py-2 rounded-lg text-xl'
+            onClick={handleSave}
+            disabled={loading}
+          >
+            SAVE CHANGES
+          </button>
         </div>
       </div>
-      <div className="pt-5 text-center mt-12">
-            <button className='bg-blue-950 text-white px-4 py-2 rounded-lg text-xl'>
-              SAVE CHANGES
-            </button>
-          </div>
-    </div>
-
     </div>
   );
 };
+
+// Helper components for field display/edit
+function EditableField({ label, value, onChange }) {
+  const [editing, setEditing] = useState(false);
+  return (
+    <div className="flex items-center justify-center">
+      {editing ? (
+        <input
+          className="text-black px-2 py-1 rounded w-3/4"
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onBlur={() => setEditing(false)}
+          autoFocus
+        />
+      ) : (
+        <p className="cursor-pointer font-semibold text-xl" onClick={() => setEditing(true)}>
+          {label}: {value}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function Field({ label, value }) {
+  return <p className="font-semibold text-xl">{label}: {value}</p>;
+}
 
 export default Profile;
