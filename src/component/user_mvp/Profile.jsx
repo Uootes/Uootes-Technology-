@@ -4,7 +4,6 @@ const API_URL = 'https://uootes.onrender.com/api/v1/profile';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-  const [edit, setEdit] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [imageFile, setImageFile] = useState(null);
@@ -34,7 +33,7 @@ const Profile = () => {
     setProfile(prev => ({ ...prev, [field]: value }));
   };
 
-  // Handle image change
+  // Handle image change (UI only, not sent to API)
   const handleImageChange = e => {
     const file = e.target.files[0];
     if (file) {
@@ -54,17 +53,30 @@ const Profile = () => {
     setLoading(true);
     setError(null);
     try {
-      // Build the payload (if you need to send the image file, use FormData)
-      const payload = { ...profile };
+      // Only send required fields to the API
+      const payload = {
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        country: profile.country,
+      };
       const res = await fetch(API_URL, {
-        method: 'PUT', // Or PATCH depending on your API
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
+      if (res.status === 401) {
+        throw new Error('Unauthorized - Invalid or missing token');
+      }
+      if (res.status === 404) {
+        throw new Error('User not found');
+      }
       if (!res.ok) throw new Error('Failed to update profile');
       const data = await res.json();
-      setProfile(data.profile);
-      alert('Profile updated!');
+      setProfile(prev => ({
+        ...prev,
+        ...data.profile
+      }));
+      alert(data.message || 'Profile updated!');
     } catch (err) {
       setError(err.message);
     }
