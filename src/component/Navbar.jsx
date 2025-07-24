@@ -79,15 +79,12 @@ const Navbar = () => {
                         <li><a href="#about" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>About</a></li>
                         <li><a href="#services" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Services</a></li>
                         <li><a href="#roadmap" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>RoadMap</a></li>
-                        <li><a href="#contact" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Contact</a></li>
+                        <li><a href="#contact" className="block text-gray-300 pb-2  hover:text-purple-400" onClick={handleLinkClick}>Contact</a></li>
                         <li><a href="#faq" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>FAQ</a></li>
-                        {/* <li><a href="/login" className="block text-gray-300 pb-2 hover:text-purple-400" onClick={handleLinkClick}>Login</a></li>
-                        <li><a href="/signup" className="block bg-blue-500 pb-2 text-white px-4 py-2 text-center rounded w-[6em]" onClick={handleLinkClick}>Sign Up</a></li> 
-                        */}
-                        <div className="md:hidden flex  flex-row space-x-20 mt-11">
-            <Link to="/login" onClick={handleLinkClick} className="block pb-2 text-white  px-6 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-gradient-to-r from-[#77248c] to-[#673907cd] ">LOGIN</Link>
-            <Link to="/signup" onClick={handleLinkClick} className="block bg-gradient-to-r from-[#77248c] to-[#673907cd]  pb-2 text-white px-4 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-clip-text">SIGN UP</Link>
-            </div> 
+                        <div className="md:hidden flex flex-row space-x-20 mt-11">
+                            <Link to="/login" onClick={handleLinkClick} className="block pb-2 text-white px-6 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-gradient-to-r from-[#77248c] to-[#673907cd] ">LOGIN</Link>
+                            <Link to="/signup" onClick={handleLinkClick} className="block bg-gradient-to-r from-[#77248c] to-[#673907cd] pb-2 text-white px-4 py-2 text-center rounded-[10px] ring-4 ring-white hover:bg-clip-text">SIGN UP</Link>
+                        </div> 
                     </ul>
                 </div>
             )}

@@ -1,15 +1,13 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import LOgo from "/src/assets/LOgo.png";
 import Swal from 'sweetalert2';
-import '../App.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+// import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
-const Ex_ResetPassword = () => {
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+const User_ResetInfor = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
   // If you need a token from the URL, extract it here (adjust as needed)
   // Example: /reset-password?token=abc
@@ -18,7 +16,7 @@ const Ex_ResetPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newPassword !== confirmPassword) {
+    if (password !== confirmPassword) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -112,4 +110,4 @@ const Ex_ResetPassword = () => {
   )
 }
 
-export default Ex_ResetPassword;
+export default User_ResetInfor;

@@ -5,4 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '', // Changed to an empty string for root deployment
   plugins: [react()],
+  server: { hmr: false },
 })

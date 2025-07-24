@@ -1,49 +1,42 @@
-import React from 'react';
-import { Stack } from '@mui/material';
+import { useState } from 'react';
+import { Box, Stack } from '@mui/material';
 import Home from './Home';
-import Fundhub from './Fundhub'; 
+import Fundhub from './Fundhub';
 import Profile from './Profile';
-import PaymentDispute from './PaymentDispute'; 
+import PaymentDispute from './PaymentDispute';
 import History from './History';
 import Team from './Team';
+import Incubator from './Incubator';
+import UpgradeTiers from './UpgradeTiers';
+import Leader from './Leader'; // Placeholder
+import Support from './Support'; // Placeholder
+import Settings from './Settings'; // Placeholder
+import Log_out from './Log_out'; // Placeholder
 
-// Extra
-import Fundhub2 from './Fundhub2';
+const Details = ({ selectedMenu }) => {
+  const renderContent = () => {
+    switch (selectedMenu) {
+      case "home": return <Home />;
+      case "incubator": return <Incubator />;
+      case "team": return <Team />;
+      case "fundhub": return <Fundhub />;
+      case "profile": return <Profile />;
+      case "leader": return <Leader />;
+      case "upgradeTiers": return <UpgradeTiers />;
+      case "paymentDispute": return <PaymentDispute />;
+      case "history": return <History />;
+      case "support": return <Support />;
+      case "settings": return <Settings />;
+      case "log_out": return <Log_out />;
+      default: return <Home />;
+    }
+  };
 
-import WithdrawForm from './WithdrawForm';
-import WithdrawalRequest from './WithdrawRequest';
-import PaymentSent from './PaymentSent'
-
-import Cpt from './Cpt';
-import TaskList from './TaskList';
-import KYCForm from './KYCForm';
-
-const Details = () => {
   return (
     <Stack direction="row" flexWrap="wrap" justifyContent="start" gap={2}>
-        <Home />
-        {/* <Incubator /> */}
-        <Team />
-        <Fundhub />
-        <Profile />
-        {/* <Leaders /> */}
-        {/* <Upgrade /> */}
-        <PaymentDispute />
-        <History />
-        {/* <Support /> */}
-        {/* <Settings /> */}
-        {/* <Log /> */}
-
-        <Fundhub2 />
-        <WithdrawForm />
-        <WithdrawalRequest />
-        <PaymentSent />
-
-        <Cpt />
-        <TaskList />
-        <KYCForm />
+      <Box>{renderContent()}</Box>
     </Stack>
-  )
-}
+  );
+};
 
-export default Details
+export default Details;

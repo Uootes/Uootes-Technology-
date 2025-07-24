@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import '../App.css';
+// import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -113,7 +113,7 @@ const Exchangerlogin = () => {
                 {/* <h2 className='text-center text-[13px] font-semibold text-gray-700'>Don't have an account ? <a href="#" className='text-blue-500'>Sign up</a></h2> */}
                 <h2 className='text-center text-[13px] font-semibold text-gray-700'>Don't have an account ? <Link to="/Signup" className='text-blue-500'>Sign up
                 </Link></h2>
-                <Link to="/ForgottenPassword">
+                <Link to="/Ex_ForgotPassword">
                   <h2 className='text-center text-[13px] font-semibold text-blue-500'>Forgotten password</h2>
                 </Link>
               </div>

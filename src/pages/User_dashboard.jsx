@@ -1,45 +1,52 @@
 import { useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
-import User_Sidebar from '../component/user_mvp/User_Sidebar'
+import { Box, Stack } from "@mui/material";
+import User_Sidebar from '../component/user_mvp/User_Sidebar';
 import Details from "../component/user_mvp/Details";
+import { useLocation } from "react-router-dom";
 
 const User_dashboard = () => {
-  const [selectedMenu, setSelectedMenu] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState("Home");
+  const location = useLocation();
+  const currentPath = location.pathname.replace(/^\//, ""); // Remove leading slash
 
   return (
-    <Stack sx={{ flexDirection: { md: "row", xs: "column" }, height: "100vh" }}>
+    <Stack sx={{ flexDirection: { xs: "column", md: "row" }, height: "100vh" }}>
       <Box
         sx={{
-          width: { xs: "100%", md: "auto" },
+          width: { md: "100%", xs: "100%", md: "auto" },
           height: { xs: isMenuOpen ? "100%" : "auto", md: "100vh" },
           borderRight: { md: "1px solid #3d3d3d", xs: "none" },
           px: { xs: 0, md: 2 },
           position: { xs: isMenuOpen ? "fixed" : "static" },
+
           top: 0,
           left: 0,
           zIndex: 10,
           backgroundColor: { xs: isMenuOpen ? "#121212" : "transparent" },
         }}
       >
-        <User_Sidebar
+        <User_Sidebar 
+          isMenuOpen={isMenuOpen} 
+          setIsMenuOpen={setIsMenuOpen} 
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
         />
       </Box>
-      {/* Show content only when sidebar is closed on xs screens */}
+
       <Box
-        p={2}
         sx={{
           overflowY: "auto",
-          height: { xs: "100%", md: "90vh" },
-          flex: { md: 2 },
-          display: { xs: isMenuOpen ? "none" : "block", md: "block" },
+          height: "90vh",
+          width: { md: "100%",xs: "100%" },
+          display: "flex ",
+          p: 2,
+          gap: 1,
+          ml: { xs: isMenuOpen ? "250px" : "0" },
+          transition: "margin-left 0.3s",
         }}
       >
-        <Details />
+        <Details selectedMenu={currentPath || "home"} /> {/* Use current path */}
       </Box>
     </Stack>
   );

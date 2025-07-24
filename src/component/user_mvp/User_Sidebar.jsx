@@ -12,23 +12,24 @@ import HandshakeOutlinedIcon from '@mui/icons-material/HandshakeOutlined';
 import BrightnessLowOutlinedIcon from '@mui/icons-material/BrightnessLowOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { Link } from "react-router-dom";
 
 export const menuList = [
-  { name: 'Home', icon: <HomeIcon />, url: "#userhome", }, //done
-  { name: 'Incubator', icon: <AlarmOnIcon />, url: "/comingsoon", },
-  { name: 'Team', icon: <Diversity3Icon />, url: "#team", }, // done
-  { name: 'Fundhub', icon: <CurrencyExchangeOutlinedIcon />, url:"#fundhub", }, // done
-  { name: 'Profile', icon: <AccountCircleIcon />, url: "#profile", }, // done
-  { name: 'Leaders', icon: <EmojiEventsOutlinedIcon />, url: "/comingsoon", },
-  { name: 'Upgrade', icon: <NorthOutlinedIcon />, url: "/comingsoon", },
-  { name: 'Payment Dispute', icon: <BalanceIcon />, url: "#payment", },
-  { name: 'Support', icon: <HandshakeOutlinedIcon />, url: "/comingsoon", },
-  { name: 'History', icon: <LibraryBooksIcon />, url: "#history", }, //
-  { name: 'Settings', icon: <BrightnessLowOutlinedIcon/>, url: "/comingsoon", },
-  { name: 'Log out', icon: <LogoutOutlinedIcon />, url: "/comingsoon", },
+  { name: 'Home', icon: <HomeIcon />, url: "/home" },
+  { name: 'Incubator', icon: <AlarmOnIcon />, url: "/incubator" },
+  { name: 'Team', icon: <Diversity3Icon />, url: "/team" },
+  { name: 'Fundhub', icon: <CurrencyExchangeOutlinedIcon />, url: "/fundhub" },
+  { name: 'Profile', icon: <AccountCircleIcon />, url: "/profile" },
+  { name: 'Leaders', icon: <EmojiEventsOutlinedIcon />, url: "/leader" },
+  { name: 'Upgrade', icon: <NorthOutlinedIcon />, url: "/upgradeTiers" },
+  { name: 'Payment Dispute', icon: <BalanceIcon />, url: "/paymentDispute" },
+  { name: 'Support', icon: <HandshakeOutlinedIcon />, url: "/support" },
+  { name: 'History', icon: <LibraryBooksIcon />, url: "/history" },
+  { name: 'Settings', icon: <BrightnessLowOutlinedIcon />, url: "/settings" },
+  { name: 'Log out', icon: <LogoutOutlinedIcon />, url: "/log_out" },
 ];
 
-const User_Sidebar = ({ selectedMenu, setSelectedMenu, isMenuOpen, setIsMenuOpen }) => {
+const User_Sidebar = ({ isMenuOpen, setIsMenuOpen, selectedMenu, setSelectedMenu }) => {
   const toggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -106,46 +107,45 @@ const User_Sidebar = ({ selectedMenu, setSelectedMenu, isMenuOpen, setIsMenuOpen
         }}
       >
         {menuList.map((item) => (
-          <Button
-            sx={{
-              px: 2,
-              py: 1,
-              border: "1px solid #4e4e4e",
-              borderRadius: "8px",
-              display: "flex",
-              justifyContent: "flex-start",
-              background:
-                item.name === selectedMenu ? "#1e40af" : "transparent",
-              color: "white",
-              textTransform: "none",
-              "&:hover": {
-                background:
-                  item.name === selectedMenu ? "#c084fc" : "#333",
-              },
-            }}
-            onClick={() => handleMenuClick()}
-            href={item.url}
-            key={item.name}
-            aria-selected={item.name === selectedMenu}
-            role="menuitem"
-          >
-            <Box
+          <Link to={item.url} key={item.name}>
+            <Button
               sx={{
-                mr: 2,
-                color:
-                  item.name === selectedMenu ? "#FC2360" : "#FEfEEF",
+                px: 2,
+                py: 1,
+                border: "1px solid #4e4e4e",
+                borderRadius: "8px",
+                display: "flex",
+                justifyContent: "flex-start",
+                background: window.location.pathname.includes(item.url) ? "#1e40af" : "transparent", // Highlight active route
+                color: "white",
+                textTransform: "none",
+                "&:hover": {
+                  background: window.location.pathname.includes(item.url) ? "#c084fc" : "#333",
+                },
+                // background:
+                  // item.name === selectedMenu ? "#1e40af" : "transparent",
+                // color: "white",
               }}
+              onClick={() => handleMenuClick()}
+              role="menuitem"
             >
-              {item.icon}
-            </Box>
-            <Typography
-              sx={{
-                opacity: item.name === selectedMenu ? 1 : 0.8,
-              }}
-            >
-              {item.name}
-            </Typography>
-          </Button>
+              <Box
+                sx={{
+                  mr: 2,
+                  color: window.location.pathname.includes(item.url) ? "#FC2360" : "#FEfEEF",
+                }}
+              >
+                {item.icon}
+              </Box>
+              <Typography
+                sx={{
+                  opacity: window.location.pathname.includes(item.url) ? 1 : 0.8,
+                }}
+              >
+                {item.name}
+              </Typography>
+            </Button>
+          </Link>
         ))}
       </Stack>
     </Stack>

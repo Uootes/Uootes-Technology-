@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import '../App.css';
+// import '../App.css';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import axios from 'axios';

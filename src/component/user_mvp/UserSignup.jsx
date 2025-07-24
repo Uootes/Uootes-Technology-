@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import '../App.css';
+// import '../App.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 const UserSignup = () => {
   const [firstName, setFirstName] = useState('');
@@ -45,6 +45,7 @@ const UserSignup = () => {
 
     try {
       console.log({ firstName, lastName, email, password, confirmPassword, country, referralId });
+      // Register user
       const res = await axios.post('https://uootes.onrender.com/api/v1/signUp', 
         { firstName, lastName, email, password, confirmPassword, country, referralId },
         { headers: {
@@ -226,9 +227,10 @@ const UserSignup = () => {
                       </div>
 
                       <div className='w-[80%] mx-auto'>
-                        <Link to="/Login">
-                          <h2 className='text-center text-[13px] font-semibold text-gray-700'>Already have an accout? <a href="#" className='text-blue-500'>Login</a></h2>
-                        </Link>
+                        <h2 className='text-center text-[13px] font-semibold text-gray-700'>
+                          Already have an accout? 
+                          <Link to="/Login" className='text-blue-500'>Login</Link>
+                        </h2>
                       </div>
 
                       <div className='w-[100%] pb-4 md:pb-0  flex flex-col justify-center gap-y-2 mt-[2px]'>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import '../App.css';
-import ExchangerSignUp from '../component/ExchangerSignup'
+import ExchangerSignUp from './ex_mvp/ExchangerSignup'
 
 const TermAndConditions = () => { 
 

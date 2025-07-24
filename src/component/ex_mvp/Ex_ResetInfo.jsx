@@ -1,14 +1,9 @@
-import { useState} from 'react';
+import { Link } from "react-router-dom";
 import LOgo from "/src/assets/LOgo.png";
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 
-const User_ResetPassword = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+const Ex_ResetInfor = () => {
 
-    // 'https://uootes.onrender.com/api/v1/resetPassword'
+  // 'https://uootes.onrender.com/api/v1/resetPassword-exchanger'
 
   return (
     <div className="bg-white flex justify-center items-center h-screen">
@@ -23,7 +18,9 @@ const User_ResetPassword = () => {
 
                 <p className='text-slate-200 md:mx-6'>Your password has been successfully reset!. Click below to continue your access.</p>
 
-                <button className="bg-white text-center text-black rounded my-6 px-10 py-2">Continue</button>
+                <Link to={"/Exchangerlogin"}>
+                  <button className="bg-white text-center text-black rounded my-6 px-10 py-2">Continue</button>
+                </Link>
           </div>
         {/* </div> */}
         </div>
@@ -31,4 +28,4 @@ const User_ResetPassword = () => {
   )
 }
 
-export default User_ResetPassword
+export default Ex_ResetInfor

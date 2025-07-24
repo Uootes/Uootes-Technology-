@@ -35,7 +35,6 @@ const TaskList = () => {
       <div className="h-['100px'] w-full bg-black text-white px-4 py-10 rounded-md hover:bg-slate-900">
         {/* Task List */}
         <div className="">
-          {/* <button className='text-3xl'><FontAwesomeIcon icon={faArrowLeft} /></button> */}
           <h2 className="text-3xl font-bold my-2 text-center">Tasks</h2>
           <div className='ml-[410px] text-gray-400 mb-4 sm:ml-[1190px]'>
             {completedTasksCount}/{tasksState.length}

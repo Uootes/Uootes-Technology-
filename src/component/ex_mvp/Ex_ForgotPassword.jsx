@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -58,15 +57,14 @@ const Ex_ForgotPassword = () => {
         <div className='w-full h-[100%] my-auto flex justify-center'>
             <div className='modal w-full sm:w-[90%] md:w-[80%] lg:scale-100 lg:w-[60%] h-[100vh] sm:h-[70vh] md:h-[70vh] lg:h-[70vh] bg-[#E3E5EE] my-auto sm:rounded-xl  pr-0 flex justify-center '>
 
-              <div className='fixed z-[2000] flex flex-row w-[100%] pt-8  md:mt-0 lg:mt-0  '>
+              <div className='fixed z-[2000] flex flex-row w-100%] pt-8  md:mt-0 lg:mt-0'>
 
-                <div className='checklogo ml-8 sm:ml-[65px] md:ml-[120px] lg:ml-8'></div>
-
-                <div className='head w-auto  md:ml-10  flex justify-center '>
-                  <h2 className='headText font-semibold text-xl md:text-3xl text-[#000] md:ml-[90px] lg:ml-[100px]'>Forgot Password</h2>
-                  {/* <h5 className='text-[13px] md:text-[15px] mt-2'>We've sent a code to <span className='text-[10px] px] md:text-[17px] font-bold text-[#000]'>myemail@gmail.com</span> </h5> */}
-                
-                </div> 
+                {/* <div className='checklogo ml-8 sm:ml-[65px] md:ml-[120px] lg:ml-8'></div> */}
+                <div className="w-full flex justify-center">
+                  <h2 className="headText font-semibold text-xl md:text-3xl text-[#000] ">
+                    Forgot Password
+                  </h2>
+                </div>
 
               </div>
 

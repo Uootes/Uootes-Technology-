@@ -2,12 +2,12 @@ import { useState, useContext } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEye  } from '@fortawesome/free-solid-svg-icons';
 // import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
-import '../App.css';
+// import '../App.css';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 const Userlogin = () => {
   const [email, setEmail] = useState('');
