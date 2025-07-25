@@ -8,13 +8,36 @@ const Home = () => {
     const { user } = useContext(UserContext);
     const [countdown, setCountdown] = useState(12 * 60 * 60); // 12 hours in seconds
     const [referralData, setReferralData] = useState({ referrals: 0, visitors: 0 });
+    const [profile, setProfile] = useState(null);
     const [profileImage, setProfileImage] = useState('/src/assets/fin.png');
     const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef(null);
 
+    const fetchProfilePicture = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('https://uootes.onrender.com/api/v1/profile/picture', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.data.imageUrl) {
+                setProfileImage(response.data.imageUrl);
+            }
+        } catch (error) {
+            console.error('Error fetching profile picture:', error);
+        }
+    };
+
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            setProfileImage(reader.result);
+        };
+        reader.readAsDataURL(file);
 
         setIsUploading(true);
         const formData = new FormData();
@@ -31,36 +54,41 @@ const Home = () => {
             setProfileImage(response.data.profilePicture.imageUrl);
         } catch (error) {
             console.error('Error uploading profile picture:', error);
+            fetchProfilePicture(); // Revert to the saved image on error
         } finally {
             setIsUploading(false);
         }
     };
 
-  // Countdown logic
-  useEffect(() => {
-        const fetchProfilePicture = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('https://uootes.onrender.com/api/v1/profile/picture', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (response.data.imageUrl) {
-                    setProfileImage(response.data.imageUrl);
-                }
-            } catch (error) {
-                console.error('Error fetching profile picture:', error);
-            }
-        };
-
+    useEffect(() => {
         fetchProfilePicture();
-    const countdownTimer = setInterval(() => {
-      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+        fetchProfile();
+    }, []);
 
-    return () => clearInterval(countdownTimer); // Cleanup
-  }, []);
+    const fetchProfile = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('https://uootes.onrender.com/api/v1/profile', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.data.profile) {
+                setProfile(response.data.profile);
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    };
+
+    // Countdown logic
+    useEffect(() => {
+        const countdownTimer = setInterval(() => {
+            setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+
+        return () => clearInterval(countdownTimer); // Cleanup
+    }, []);
 
   useEffect(() => {
     const fetchReferralData = async () => {
@@ -106,7 +134,9 @@ const Home = () => {
                 </div>
                 <div className='flex flex-col'>
                     <div className='flex gap-[4px]'>
-                        <h2 className='text-[13px] sm:text-[15px] md:text-[20px] lg:text-[30px] font-semibold'>{user?.username} </h2>
+                        <h2 className='text-[13px] sm:text-[15px] md:text-[20px] lg:text-[30px] font-semibold'>
+                            {profile ? `${profile.firstName} ${profile.lastName}` : user?.username}
+                        </h2>
                         {/* <div className='w-[20px] h-[20px] bg-green-600 rounded-full my-auto'></div> */}
                     </div>
                     <div className='w-[60px] h-[24px] bg-blue-800 flex justify-center text-[15px] font-semibold rounded-3xl'>Silver</div>
