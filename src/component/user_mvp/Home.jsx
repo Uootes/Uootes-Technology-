@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCertificate } from '@fortawesome/free-solid-svg-icons';
@@ -8,9 +8,53 @@ const Home = () => {
     const { user } = useContext(UserContext);
     const [countdown, setCountdown] = useState(12 * 60 * 60); // 12 hours in seconds
     const [referralData, setReferralData] = useState({ referrals: 0, visitors: 0 });
+    const [profileImage, setProfileImage] = useState('/src/assets/fin.png');
+    const [isUploading, setIsUploading] = useState(false);
+    const fileInputRef = useRef(null);
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        const formData = new FormData();
+        formData.append('profilePicture', file);
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post('https://uootes.onrender.com/api/v1/profile/picture', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setProfileImage(response.data.profilePicture.imageUrl);
+        } catch (error) {
+            console.error('Error uploading profile picture:', error);
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
   // Countdown logic
   useEffect(() => {
+        const fetchProfilePicture = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('https://uootes.onrender.com/api/v1/profile/picture', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (response.data.imageUrl) {
+                    setProfileImage(response.data.imageUrl);
+                }
+            } catch (error) {
+                console.error('Error fetching profile picture:', error);
+            }
+        };
+
+        fetchProfilePicture();
     const countdownTimer = setInterval(() => {
       setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
@@ -52,8 +96,10 @@ const Home = () => {
         {/* Top section */}
         <div className='w-full flex flex-row justify-between '>
             <div className='flex ml-8 gap-4 my-auto'>
-                <div className='w-[40px] h-[40px] relative border-2 rounded-full'>
-                    <img src="/src/assets/fin.png" className='avatar   w-auto h-auto' alt="" />
+                <div className='w-[40px] h-[40px] relative border-2 rounded-full cursor-pointer' onClick={() => fileInputRef.current.click()}>
+                    <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
+                    <img src={profileImage} className='avatar w-full h-full object-cover rounded-full' alt="Profile" />
+                    {isUploading && <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center rounded-full">...</div>}
                     <div className='w-[20px] h-[20px] absolute text-green-600 rounded-full ml-[23px] mt-[-14px]'>
                         <FontAwesomeIcon icon={faCertificate} />
                     </div>
