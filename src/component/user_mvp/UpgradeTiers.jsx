@@ -1,41 +1,55 @@
-import {faCheck, faClose, faMedal, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faClose, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-// import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 const tiers = [
   {
     name: "Bronze",
-    requirement: null,
-    buttonText: "Upgraded",
-    buttonStyle: "w-[100%] rounded-3xl bg-[#262626] border-2 border-[#737373] text-white",
-    badgeIcon: <FontAwesomeIcon icon={faTrophy} />,
+    price: "Free",
+    features: [
+      "Basic Access",
+      "Limited Support",
+      "1 Project",
+    ],
+    buttonText: "Current Plan",
+    buttonStyle: "bg-gray-500 text-white",
+    isCurrent: true,
   },
   {
     name: "Silver",
+    price: "$10/mo",
     requirement: "1 Referral",
+    features: [
+      "Everything in Bronze",
+      "Priority Support",
+      "5 Projects",
+      "Team Collaboration",
+    ],
     buttonText: "Upgrade",
-    status: false,
-    buttonStyle: "w-[40%] h-[60px] bg-blue-600 border-[#737373] text-white",
-    badgeIcon: <FontAwesomeIcon icon={faTrophy} />,
+    buttonStyle: "bg-blue-600 text-white",
+    isCurrent: false,
   },
-
-   {
+  {
     name: "Gold",
-    // requirement: "1 Referral",
-    buttonText: "Upgrade",
-    status: true,
-    buttonStyle: "w-[40%] h-[60px] bg-blue-600 border-[#737373] text-white",
+    price: "$20/mo",
     requirements: {
-        upgradeSilver: true,
-        
+      upgradeSilver: true,
+      referrals: 5,
     },
-    badgeIcon: <FontAwesomeIcon icon={faTrophy  } />,
+    features: [
+      "Everything in Silver",
+      "24/7 Support",
+      "Unlimited Projects",
+      "Advanced Analytics",
+    ],
+    buttonText: "Upgrade",
+    buttonStyle: "bg-yellow-500 text-white",
+    isCurrent: false,
   },
-  // Add more tiers as needed
 ];
 
-const referrals = 0;
+const referrals = 3; // Example referral count
 
 const UpgradeTiers = () => {
   const [current, setCurrent] = useState(0);
@@ -51,155 +65,72 @@ const UpgradeTiers = () => {
   const tier = tiers[current];
 
   return (
-    <div className="w-[100%] flex items-center justify-center min-h-screen bg-black">
-      <div className="w-[100%] md:w-[60%] lg:w-[40%] flex flex-col gap-16 p-4 text-center text-white">
-        {/* <h1 className="text-lg font-bold mb-4">Upgrade</h1> */}
-        <h2 className="text-[40px] font-bold">{tier.name}</h2>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8">Upgrade Your Plan</h1>
+        <div className="flex items-center justify-center gap-8">
+          <button onClick={handlePrev} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+            <FaAngleLeft className="text-3xl" />
+          </button>
 
-        <div className="relative my-4">
-          {/* <FaAngleLeft
-            className="text-[40px] absolute left-0 top-1/2 -translate-y-1/2 text-2xl cursor-pointer"
-            onClick={handlePrev}
-          /> */}
-          <img
-            src="assets/trophy.png" 
-            alt="Trophy"
-            className="w-32 h-32 mx-auto"
-          />
+          <div className="w-full max-w-sm bg-gray-800 rounded-lg shadow-lg p-8 transition-transform transform hover:scale-105">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-2">{tier.name}</h2>
+              <div className="text-5xl font-extrabold text-yellow-400 mb-4">
+                <FontAwesomeIcon icon={faTrophy} />
+              </div>
+              <p className="text-2xl font-semibold mb-6">{tier.price}</p>
+            </div>
 
-          {/* <span className="text-[100px]">
-            {tier.badgeIcon}
-          </span> */}
-          {/* <FaAngleRight
-            className="text-[40px] absolute right-0 top-1/2 -translate-y-1/2 text-2xl cursor-pointer"
-            onClick={handleNext}
-          /> */}
+            {tier.requirement && (
+              <div className="mb-6">
+                <h3 className="font-semibold text-lg mb-2">Requirement:</h3>
+                <div className="bg-gray-700 p-3 rounded-lg text-center">
+                  <p className="font-bold text-xl">{tier.requirement}</p>
+                </div>
+              </div>
+            )}
+
+            {tier.requirements && (
+              <div className="mb-6">
+                <h3 className="font-semibold text-lg mb-2">Requirements:</h3>
+                <div className="bg-gray-700 p-4 rounded-lg space-y-3">
+                  <div className="flex items-center justify-between text-md">
+                    <span>Upgrade Silver account</span>
+                    <FontAwesomeIcon icon={tier.requirements.upgradeSilver ? faCheck : faClose} className={tier.requirements.upgradeSilver ? "text-green-500" : "text-red-500"} />
+                  </div>
+                  <div className="flex items-center justify-between text-md">
+                    <span>{referrals}/{tier.requirements.referrals} Direct Referrals</span>
+                    <FontAwesomeIcon icon={referrals >= tier.requirements.referrals ? faCheck : faClose} className={referrals >= tier.requirements.referrals ? "text-green-500" : "text-red-500"} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="mb-6">
+              <h3 className="font-semibold text-lg mb-2">Features:</h3>
+              <ul className="space-y-2">
+                {tier.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <FontAwesomeIcon icon={faCheck} className="text-green-500" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <button className={`w-full py-3 text-lg font-bold rounded-lg transition-colors ${tier.buttonStyle} ${tier.isCurrent ? 'cursor-not-allowed' : 'hover:opacity-90'}`} disabled={tier.isCurrent}>
+              {tier.buttonText}
+            </button>
+          </div>
+
+          <button onClick={handleNext} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+            <FaAngleRight className="text-3xl" />
+          </button>
         </div>
-
-        {tier.requirement && (
-            <>
-        <div className="font-semibold text-[25px]">Requirement</div>
-          <div className="w-[80%] h-[100px] flex justify-center items-center font-bold text-[25px] border-[#737373] border-2 bg-[#262626] rounded-3xl mx-auto text-gray-400">
-                <h2>{tier.requirement}</h2>
-               
-            {/* <div className="bg-gray-800 py-2 rounded">{tier.requirement}</div> */}
-          </div>
-          </>
-        )}
-
-
-        {tier.requirements && (
-            <>
-        <div className="font-semibold text-[25px]">Requirements</div>
-          <div className="w-[80%]  h-[100px] flex flex-col gap-2 justify-center items-center font-bold text-[25px] border-[#737373] border-2 bg-[#262626] rounded-3xl mx-auto text-gray-400">
-               <div className="flex items-center gap-2 text-[17px]">
-                <div>
-                  <h2>Upgrade Silver account</h2>
-                </div>
-                <div>
-                  <FontAwesomeIcon icon={faCheck} className={` ${tier.requirements.upgradeSilver == true ? "block" : "hidden"} text-green-600`}/>
-                  <FontAwesomeIcon icon={faClose} className={` ${tier.requirements.upgradeSilver == false ? "block" : "hidden"} text-red-600`}/>
-                </div>
-               </div>
-               <div className="flex items-center gap-2 text-[17px]">
-                <div>
-                    <h2>
-                        <span>{referrals}</span>/5 Direct Referrals
-                    </h2>
-                </div>
-                <div>
-                    <FontAwesomeIcon icon={faCheck} className={`${referrals === 5 ? "block" : "hidden"} text-green-600`} />
-                    <FontAwesomeIcon icon={faClose} className={`${referrals < 5 ? "block" : "hidden"} text-red-600`} />
-                </div>
-               </div>
-          </div>
-          </>
-        )}
-
-        <button className={`w-[100%] mx-auto h-[100px] gap-4  flex justify-center items-center text-[24px] font-semibold rounded ${tier.buttonStyle}`}>
-          {/* {tier.status} */}
-          {tier.buttonText}
-        </button>
       </div>
     </div>
   );
-}
+};
 
-export default UpgradeTiers
-
-// export default function UpgradeTiers() {
-
-//   return (
-//     <div className="w-[100%] flex items-center justify-center min-h-screen bg-black">
-//       <div className="w-[100%] md:w-[60%] lg:w-[40%] flex flex-col gap-16 p-4 text-center text-white">
-//         {/* <h1 className="text-lg font-bold mb-4">Upgrade</h1> */}
-//         <h2 className="text-[40px] font-bold">{tier.name}</h2>
-
-//         <div className="relative my-4">
-//           {/* <FaAngleLeft
-//             className="text-[40px] absolute left-0 top-1/2 -translate-y-1/2 text-2xl cursor-pointer"
-//             onClick={handlePrev}
-//           /> */}
-//           <img
-//             src="assets/trophy.png" 
-//             alt="Trophy"
-//             className="w-32 h-32 mx-auto"
-//           />
-
-//           {/* <span className="text-[100px]">
-//             {tier.badgeIcon}
-//           </span> */}
-//           {/* <FaAngleRight
-//             className="text-[40px] absolute right-0 top-1/2 -translate-y-1/2 text-2xl cursor-pointer"
-//             onClick={handleNext}
-//           /> */}
-//         </div>
-
-//         {tier.requirement && (
-//             <>
-//         <div className="font-semibold text-[25px]">Requirement</div>
-//           <div className="w-[80%] h-[100px] flex justify-center items-center font-bold text-[25px] border-[#737373] border-2 bg-[#262626] rounded-3xl mx-auto text-gray-400">
-//                 <h2>{tier.requirement}</h2>
-               
-//             {/* <div className="bg-gray-800 py-2 rounded">{tier.requirement}</div> */}
-//           </div>
-//           </>
-//         )}
-
-
-//         {tier.requirements && (
-//             <>
-//         <div className="font-semibold text-[25px]">Requirements</div>
-//           <div className="w-[80%]  h-[100px] flex flex-col gap-2 justify-center items-center font-bold text-[25px] border-[#737373] border-2 bg-[#262626] rounded-3xl mx-auto text-gray-400">
-//                <div className="flex items-center gap-2 text-[17px]">
-//                 <div>
-//                     <h2>Upgrade Silver account</h2>
-//                 </div>
-//                 <div >
-//                     <FontAwesomeIcon icon={faCheck} className={` ${tier.requirements.upgradeSilver == true ? "block" : "hidden"} text-green-600`}/>
-//                     <FontAwesomeIcon icon={faClose} className={` ${tier.requirements.upgradeSilver == false ? "block" : "hidden"} text-red-600`}/>
-//                 </div>
-//                </div>
-//                <div className="flex items-center gap-2 text-[17px]">
-//                 <div>
-//                     <h2>
-//                         <span>{referrals}</span>/5 Direct Referrals
-//                     </h2>
-//                 </div>
-//                 <div>
-//                     <FontAwesomeIcon icon={faCheck} className={`${referrals === 5 ? "block" : "hidden"} text-green-600`} />
-//                     <FontAwesomeIcon icon={faClose} className={`${referrals < 5 ? "block" : "hidden"} text-red-600`} />
-//                 </div>
-//                </div>
-//           </div>
-//           </>
-//         )}
-
-//     <button className={`w-[100%] mx-auto h-[100px] gap-4  flex justify-center items-center text-[24px] font-semibold rounded ${tier.buttonStyle}`}>
-//           {/* {tier.status} */}
-//           {tier.buttonText}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
+export default UpgradeTiers;
