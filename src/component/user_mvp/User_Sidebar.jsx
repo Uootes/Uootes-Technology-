@@ -16,12 +16,12 @@ import { Link } from "react-router-dom";
 
 export const menuList = [
   { name: 'Home', icon: <HomeIcon />, url: "/home" },
-  { name: 'Incubator', icon: <AlarmOnIcon />, url: "/incubator" },
+  { name: 'Incubator', icon: <AlarmOnIcon />, url: "/Comingsoon" },
   { name: 'Team', icon: <Diversity3Icon />, url: "/team" },
   { name: 'Fundhub', icon: <CurrencyExchangeOutlinedIcon />, url: "/fundhub" },
   { name: 'Profile', icon: <AccountCircleIcon />, url: "/profile" },
   { name: 'Leaders', icon: <EmojiEventsOutlinedIcon />, url: "/leader" },
-  { name: 'Upgrade', icon: <NorthOutlinedIcon />, url: "/upgradeTiers" },
+  { name: 'Upgrade', icon: <NorthOutlinedIcon />, url: "/Comingsoon" },
   { name: 'Payment Dispute', icon: <BalanceIcon />, url: "/paymentDispute" },
   { name: 'Support', icon: <HandshakeOutlinedIcon />, url: "/support" },
   { name: 'History', icon: <LibraryBooksIcon />, url: "/history" },

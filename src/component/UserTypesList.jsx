@@ -11,24 +11,24 @@ const UserTypesList = () => (
             <UserType
                 title="BRONZE"
                 description="Register without referral I.D"
-                lockupPeriod="360-hour token lockup period before selling is permitted."
+                lockupPeriod="30 Days token lockup period before selling is permitted."
                 buyingRate="Buying rate per Token: 0.0000301 GSC"
-                sellingRate="Selling rate per Token: 0.00005 GSC"
+                sellingRate="Selling rate per Token: 0.00004 GSC"
                 
             />
             <UserType
                 title="SILVER"
-                description="Register with referral I.D or Unlock with 1.00 coupon"
-                lockupPeriod="168-hour token lockup period before selling is permitted."
+                description="Register with referral I.D or Unlock with 1 refferal"
+                lockupPeriod="15 Days token lockup period before selling is permitted."
                 buyingRate="Buying rate per Token: 0.0000258 GSC"
-                sellingRate="Selling rate per Token: 0.00005 GSC"
+                sellingRate="Selling rate per Token: 0.00004 GSC"
             />
             <UserType
                 title="GOLD"
                 description="Become a Silver user and refer at least 5 people directly."
-                lockupPeriod="72-hour token lockup period before selling is permitted."
+                lockupPeriod="7 Days token lockup period before selling is permitted."
                 buyingRate="Buying rate per Token: 0.0000215 GSC"
-                sellingRate="Selling rate per Token: 0.00005 GSC"
+                sellingRate="Selling rate per Token: 0.00004 GSC"
             />
         </div>
     </div>

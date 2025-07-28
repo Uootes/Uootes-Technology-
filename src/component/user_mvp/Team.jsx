@@ -19,12 +19,24 @@ const Team = () => {
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
-        const response = await fetch('https://uootes.onrender.com/api/v1/referrals/dashboarddata');
+        const token = localStorage.getItem("token");
+        const response = await fetch('https://uootes.onrender.com/api/v1/referrals/dashboarddata', {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
         const data = await response.json();
         setTeamMembers(data.data);
+        const totalVisitors = data.data.reduce((acc, member) => acc + member.visitorsCount, 0);
+        setCounts(prevCounts => ({
+          ...prevCounts,
+          visitors: totalVisitors,
+          referrals: data.totalDirectReferrals,
+        }));
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -32,21 +44,7 @@ const Team = () => {
       }
     };
 
-    const fetchCounts = async () => {
-      try {
-        const response = await fetch('https://uootes.onrender.com/api/v1/referrals/count');
-        if (!response.ok) {
-          throw new Error('Failed to fetch counts');
-        }
-        const data = await response.json();
-        setCounts({ visitors: data.visitors, referrals: data.referrals });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchTeamData();
-    fetchCounts();
   }, []);
 
   return (

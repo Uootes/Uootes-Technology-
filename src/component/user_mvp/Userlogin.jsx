@@ -4,7 +4,6 @@ import { useState, useContext } from 'react';
 // import { faEyeSlash  } from '@fortawesome/free-solid-svg-icons';
 // import '../App.css';
 import Swal from 'sweetalert2';
-import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
@@ -30,7 +29,7 @@ const Userlogin = () => {
       );
       const { token } = response.data;
 
-      Cookies.set('userToken', token, { expires: 1 }); // Expires in 1 day
+      localStorage.setItem('token', token);
       await fetchUser();
       Alert.fire({
         title : 'Success!',

@@ -139,7 +139,11 @@ const Home = () => {
                         </h2>
                         {/* <div className='w-[20px] h-[20px] bg-green-600 rounded-full my-auto'></div> */}
                     </div>
-                    <div className='w-[60px] h-[24px] bg-blue-800 flex justify-center text-[15px] font-semibold rounded-3xl'>Silver</div>
+                    {profile && (
+                        <div className='w-auto h-[24px] px-2 bg-blue-800 flex justify-center text-[15px] font-semibold rounded-3xl'>
+                            {profile.accountType}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -154,7 +158,7 @@ const Home = () => {
                     </span>
                 </div>
                 <div>
-                    <h3 className='text-[10px] md:text-[17px] lg:text-[20px] font-bold'>Exchanger online: <span className='text-green-500'>$100,250</span></h3>
+                    <h3 className='text-[10px] md:text-[17px] lg:text-[20px] font-bold'>Exchanger online: <span className='text-green-500'>$0</span></h3>
                 </div>
             </div>
         </div>
@@ -164,7 +168,7 @@ const Home = () => {
             <div className='w-[100%] lg:w-[45%]  h-auto  flex flex-col'>
                 <div className='w-[90%] mx-auto h-[100px]  bg-[#262626] border-gray-400 border-[1.8px] rounded-xl flex flex-col justify-center pl-6'>
                     <h4 className='text-[#737373] font-semibold text-[15px]'>Wallet Balance</h4>
-                    <h1 className='text-[25px] lg:text-[30px]'>$ 100,000.00</h1>
+                    <h1 className='text-[25px] lg:text-[30px]'>$0</h1>
                 </div>
                 <div className='flex mx-auto gap-2 md:gap-4 mt-8 font-semibold\'>
                     <button className='h-[30px] md:h-[35px] w-[70px] md:w-[100px] text-[12px] md:text-[17px] bg-blue-900 rounded-2xl'>Deposit</button>
@@ -178,7 +182,7 @@ const Home = () => {
             <div className='w-[100%] lg:w-[50%] h-auto pb-16 flex flex-col gap-4'>
                 <div className='w-[90%] lg:w-[100%] mx-auto h-[100px]  bg-[#262626] border-gray-400 border-[1.8px] rounded-xl flex flex-col justify-center text-center'>
                     <h4 className='text-[#737373] font-semibold text-[15px]'>Pool Balance</h4>
-                    <h1 className='text-[24px] md:text-[30px]'>$ 5,000,000.00</h1>
+                    <h1 className='text-[24px] md:text-[30px]'>$0</h1>
                     <h4 className='text-[16px] md:text-[19px] text-yellow-400 text-right mr-8'>
                         {formatCountdown(countdown)}
                     </h4>
@@ -188,7 +192,7 @@ const Home = () => {
                     <h4 className='text-[#737373] font-semibold text-[15px] text-center'>Supply Balance</h4>
                     <h4 className='text-[16px] md:text-[18px] font-semibold ml-8'>Crude point token</h4>
                     <h4 className='text-[16px] md:text-[18px] text-[#ff8254ec] font-semibold ml-8'>Batch No: 1</h4>
-                    <h1 className='text-center text-[20px] md:text-[25px]'>CPT 10,000,000,000.00</h1>
+                    <h1 className='text-center text-[20px] md:text-[25px]'>CPT 2,000,000,000.00</h1>
 
                     <div className='mx-auto flex flex-col gap-2 w-[100%] mt-4 font-semibold'>
                         <div className='flex justify-evenly'>
@@ -232,7 +236,7 @@ const Home = () => {
                     {/* Payout */}
                     <div className='w-[90%] md:w-[50%] lg:w-[50%] h-[220px] bg-blue-800 rounded-xl flex flex-col justify-center text-center'>
                         <h3 className='text-[25px] font-semibold text-[#ff8254ec]'>Payout</h3>
-                        <h1 className='text-[22px] '>$ 100,000.00</h1>
+                        <h1 className='text-[22px] '>$0</h1>
                     </div>
                 </div>
 
@@ -266,12 +270,12 @@ const Home = () => {
                         <div className='flex w-[100%] justify-between'>
                             <div className='flex gap-4 pl-2'>
                                 <div className='w-[8px] h-[8px] my-aut text-green-600 rounded-full'>
-                                    <FontAwesomeIcon icon={faCertificate} />
+                                     <FontAwesomeIcon icon={faCertificate} />
                                 </div>
                                 <h2 className='font-semibold'>Batch 1:</h2>
                             </div>
                             <div className='pr-4'>
-                                <h4 className='font-normal'>0.00004 $</h4>
+                                <h4 className='font-normal'>$0.00004</h4>
                             </div>
                         </div>
                         <div className='flex w-[100%] justify-between'>
@@ -282,18 +286,18 @@ const Home = () => {
                                 <h2 className='font-semibold'>Batch 2:</h2>
                             </div>
                             <div className='pr-4'>
-                                <h4 className='font-normal'>0.00004 $</h4>
+                                <h4 className='font-normal'>$0.00004</h4>
                             </div>
                         </div>
                         <div className='flex w-[100%] justify-between'>
                             <div className='flex gap-4 pl-2'>
                                 <div className='w-[8px] h-[8px] my-aut text-green-600 rounded-full hidden'>
-                                    <FontAwesomeIcon icon={faCertificate} />
+                                   
                                 </div>
                                 <h2 className='font-semibold'>Batch 3:</h2>
                             </div>
                             <div className='pr-4'>
-                                <h4 className='font-normal'>0.002 $</h4>
+                                <h4 className='font-normal'>$0.0004</h4>
                             </div>
                         </div>
                         <div className='flex w-[100%] justify-between'>
@@ -304,7 +308,7 @@ const Home = () => {
                                 <h2 className='font-semibold'>Batch 4:</h2>
                             </div>
                             <div className='pr-4'>
-                                <h4 className='font-normal'>0.004 $</h4>
+                                <h4 className='font-normal'>$0.004</h4>
                             </div>
                         </div>
 
@@ -321,19 +325,19 @@ const Home = () => {
                                         <h2 className='font-semibold '>Bronze</h2>
                                     </div>
                                 <div className='pr-4'>
-                                    <h4 className='font-normal'>0.0000301 $/360hr</h4>
+                                    <h4 className='font-normal'>$0.0000301/30days</h4>
                                 </div>
                             </div>
 
                             <div className='flex w-[100%] justify-between'>
                                 <div className='flex gap-4 pl-2'>
                                     <div className='w-[8px] h-[8px]4 text-green-600 rounded-full'>
-                                        <FontAwesomeIcon icon={faCertificate} />
+                                      
                                 </div>
                                         <h2 className='font-semibold'>Silver</h2>
                                     </div>
                                 <div className='pr-4'>
-                                    <h4 className='font-normal'>0.0000258 $/168hr</h4>
+                                    <h4 className='font-normal'>$0.0000258/15days</h4>
                                 </div>
                             </div>
 
@@ -345,7 +349,7 @@ const Home = () => {
                                         <h2 className='font-semibold'>Gold</h2>
                                     </div>
                                 <div className='pr-4'>
-                                    <h4 className='font-normal'>0.0000215 $/72hr</h4>
+                                    <h4 className='font-normal'>$0.0000215/7days</h4>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Group from "/src/assets/Group.png";
-import Group4 from "/src/assets/Group 4.png";
+import Group4 from "/src/assets/Group4.png";
 import Group1 from "/src/assets/Group1.png";
 import intro7 from "/src/assets/intro7.png";
 

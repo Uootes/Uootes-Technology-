@@ -2,15 +2,16 @@ import { faCheck, faClose, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import axios from "axios";
 
 const tiers = [
   {
     name: "Bronze",
-    price: "Free",
+
     features: [
       "Basic Access",
       "Limited Support",
-      "1 Project",
+      
     ],
     buttonText: "Current Plan",
     buttonStyle: "bg-gray-500 text-white",
@@ -53,6 +54,37 @@ const referrals = 3; // Example referral count
 
 const UpgradeTiers = () => {
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const handleUpgrade = async () => {
+    setLoading(true);
+    setMessage("");
+    setError("");
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        "https://uootes.onrender.com/api/v1/profile/referrals",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setMessage(response.data.message);
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "An error occurred while upgrading the account."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handlePrev = () => {
     setCurrent((prev) => (prev - 1 + tiers.length) % tiers.length);
@@ -68,6 +100,8 @@ const UpgradeTiers = () => {
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">Upgrade Your Plan</h1>
+        {message && <p className="text-green-500 text-center mb-4">{message}</p>}
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <div className="flex items-center justify-center gap-8">
           <button onClick={handlePrev} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
             <FaAngleLeft className="text-3xl" />
@@ -119,8 +153,12 @@ const UpgradeTiers = () => {
               </ul>
             </div>
 
-            <button className={`w-full py-3 text-lg font-bold rounded-lg transition-colors ${tier.buttonStyle} ${tier.isCurrent ? 'cursor-not-allowed' : 'hover:opacity-90'}`} disabled={tier.isCurrent}>
-              {tier.buttonText}
+            <button
+              onClick={handleUpgrade}
+              className={`w-full py-3 text-lg font-bold rounded-lg transition-colors ${tier.buttonStyle} ${tier.isCurrent || loading ? 'cursor-not-allowed opacity-50' : 'hover:opacity-90'}`}
+              disabled={tier.isCurrent || loading}
+            >
+              {loading ? "Upgrading..." : tier.buttonText}
             </button>
           </div>
 
