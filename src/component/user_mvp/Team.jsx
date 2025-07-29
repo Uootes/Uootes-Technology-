@@ -40,12 +40,21 @@ const Team = () => {
         }
         const teamData = await teamResponse.json();
         setTeamMembers(teamData.data);
-        const totalVisitors = teamData.data.reduce((acc, member) => acc + member.visitorsCount, 0);
-        setCounts(prevCounts => ({
-          ...prevCounts,
-          visitors: totalVisitors,
-          referrals: teamData.totalDirectReferrals,
-        }));
+        
+        const countsResponse = await fetch('https://uootes.onrender.com/api/v1/referrals/count', {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!countsResponse.ok) {
+          throw new Error('Failed to fetch counts data');
+        }
+        const countsData = await countsResponse.json();
+        setCounts({
+          visitors: countsData.visitors,
+          referrals: countsData.referrals,
+        });
 
         // Fetch profile data
         const profileResponse = await fetch(API_URL, {
