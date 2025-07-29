@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TeamCard from './TeamCard';
-// import Gii1 from '../assets/Gii.jpg'// Adjust the path if needed
+
+const API_URL = 'https://uootes.onrender.com/api/v1/profile';
 
 const Team = () => {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -8,70 +9,108 @@ const Team = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [counts, setCounts] = useState({ visitors: 0, referrals: 0 });
-  
+  const [profile, setProfile] = useState(null);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(invitationLink);
-    setCopySuccess(true);
-    setTimeout(() => setCopySuccess(false), 2000);
+    if (profile && profile.referralCode) {
+      navigator.clipboard.writeText(profile.referralCode);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    }
   };
 
   useEffect(() => {
-    const fetchTeamData = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch('https://uootes.onrender.com/api/v1/referrals/dashboarddata', {
+        if (!token) {
+          throw new Error('Unauthorized - Invalid or missing token');
+        }
+
+        // Fetch team data
+        const teamResponse = await fetch('https://uootes.onrender.com/api/v1/referrals/dashboarddata', {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         });
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
+        if (!teamResponse.ok) {
+          throw new Error('Failed to fetch team data');
         }
-        const data = await response.json();
-        setTeamMembers(data.data);
-        const totalVisitors = data.data.reduce((acc, member) => acc + member.visitorsCount, 0);
+        const teamData = await teamResponse.json();
+        setTeamMembers(teamData.data);
+        const totalVisitors = teamData.data.reduce((acc, member) => acc + member.visitorsCount, 0);
         setCounts(prevCounts => ({
           ...prevCounts,
           visitors: totalVisitors,
-          referrals: data.totalDirectReferrals,
+          referrals: teamData.totalDirectReferrals,
         }));
-        setLoading(false);
+
+        // Fetch profile data
+        const profileResponse = await fetch(API_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (!profileResponse.ok) {
+          throw new Error('Failed to fetch profile data');
+        }
+        const profileData = await profileResponse.json();
+        setProfile(profileData.profile);
+
       } catch (error) {
         setError(error.message);
-        setLoading(false);
       }
+      setLoading(false);
     };
 
-    fetchTeamData();
+    fetchData();
   }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen p-4 hover:bg-slate-900" id='team'>
-      <h1 className="text-2xl font-bold text-center mb-4">Teams</h1>
+    <div className="bg-gray-900 text-white min-h-screen p-4 md:p-8" id='team'>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-2 text-orange-500">Your Team</h1>
+        <p className="text-center text-gray-400 mb-8">View your team members and track your referral progress.</p>
 
-      <div className="bg-gray-900 p-4 border-2 outline-2 outline-slate-50 rounded-md mb-4 text-center">
-        <p className="text-lg font-semibold">UID: <span className="text-white">2438285</span></p>
-        <div className="flex justify-around my-3">
-          <div>
-            <p className="text-orange-500 font-semibold">Visitor</p>
-            <p className="text-xl">{counts.visitors}</p>
-          </div>
-          <div>
-            <p className="text-orange-500 font-semibold">Referral</p>
-            <p className="text-xl">{counts.referrals}</p>
+        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+          {profile && (
+            <div className="text-center mb-6">
+              <p className="text-lg font-semibold">Your Referral Code</p>
+              <div className="flex items-center justify-center mt-2">
+                <span className="text-2xl font-bold text-orange-500 mr-4">{profile.referralCode}</span>
+                <button
+                  onClick={handleCopy}
+                  className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300"
+                >
+                  {copySuccess ? 'Copied!' : 'Copy'}
+                </button>
+              </div>
+            </div>
+          )}
+          <div className="flex justify-around text-center">
+            <div>
+              <p className="text-gray-400 font-semibold">Visitors</p>
+              <p className="text-3xl font-bold text-white">{counts.visitors}</p>
+            </div>
+            <div>
+              <p className="text-gray-400 font-semibold">Referrals</p>
+              <p className="text-3xl font-bold text-white">{counts.referrals}</p>
+            </div>
           </div>
         </div>
-       
-      </div>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {teamMembers.map((member, index) => (
-        <TeamCard key={index} user={member} level={index + 1} />
-      ))}
-      
+        {loading && <p className="text-center">Loading team members...</p>}
+        {error && <p className="text-center text-red-500">Error: {error}</p>}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {teamMembers.map((member, index) => (
+            <TeamCard key={index} user={member} level={index + 1} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

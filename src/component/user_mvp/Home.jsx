@@ -9,35 +9,12 @@ const Home = () => {
     const [countdown, setCountdown] = useState(12 * 60 * 60); // 12 hours in seconds
     const [referralData, setReferralData] = useState({ referrals: 0, visitors: 0 });
     const [profile, setProfile] = useState(null);
-    const [profileImage, setProfileImage] = useState('/src/assets/fin.png');
     const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef(null);
-
-    const fetchProfilePicture = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get('https://uootes.onrender.com/api/v1/profile/picture', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (response.data.imageUrl) {
-                setProfileImage(response.data.imageUrl);
-            }
-        } catch (error) {
-            console.error('Error fetching profile picture:', error);
-        }
-    };
 
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = () => {
-            setProfileImage(reader.result);
-        };
-        reader.readAsDataURL(file);
 
         setIsUploading(true);
         const formData = new FormData();
@@ -45,23 +22,21 @@ const Home = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('https://uootes.onrender.com/api/v1/profile/picture', formData, {
+            await axios.post('https://uootes.onrender.com/api/v1/profile/picture', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setProfileImage(response.data.profilePicture.imageUrl);
+            fetchProfile(); // Re-fetch profile to get the new image URL
         } catch (error) {
             console.error('Error uploading profile picture:', error);
-            fetchProfilePicture(); // Revert to the saved image on error
         } finally {
             setIsUploading(false);
         }
     };
 
     useEffect(() => {
-        fetchProfilePicture();
         fetchProfile();
     }, []);
 
@@ -126,7 +101,7 @@ const Home = () => {
             <div className='flex ml-8 gap-4 my-auto'>
                 <div className='w-[40px] h-[40px] relative border-2 rounded-full cursor-pointer' onClick={() => fileInputRef.current.click()}>
                     <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
-                    <img src={profileImage} className='avatar w-full h-full object-cover rounded-full' alt="Profile" />
+                    <img src={profile?.profilePicture?.imageUrl || '/src/assets/fin.png'} className='avatar w-full h-full object-cover rounded-full' alt="Profile" />
                     {isUploading && <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center rounded-full">...</div>}
                     <div className='w-[20px] h-[20px] absolute text-green-600 rounded-full ml-[23px] mt-[-14px]'>
                         <FontAwesomeIcon icon={faCertificate} />
@@ -297,7 +272,7 @@ const Home = () => {
                                 <h2 className='font-semibold'>Batch 3:</h2>
                             </div>
                             <div className='pr-4'>
-                                <h4 className='font-normal'>$0.0004</h4>
+                                <h4 className='font-normal'>$0.002</h4>
                             </div>
                         </div>
                         <div className='flex w-[100%] justify-between'>

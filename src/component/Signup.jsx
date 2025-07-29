@@ -17,9 +17,11 @@ const Signup = () => {
     </Link>
 </div>
       <div className=' flex  flex-col space-x-20 mt-11  items-center'>
-          <Link to="/ExchangerSignUp">
-            <button className=" text-white border-black  w-[250px] hover:bg-blue-800 hover:ring-blue-800 h-20 py-2 px-9 rounded-[13px] ring-red-600 ring-4"> Exchanger</button>
-          </Link>
+          {/* The Exchanger signup is currently disabled. The Link has been removed and the button is disabled. */}
+          <button
+            className=" text-white border-black w-[250px] h-20 py-2 px-9 rounded-[13px] ring-red-600 ring-4 opacity-50 cursor-not-allowed"
+            disabled>
+            Exchanger</button>
         </div> 
       </div>
 

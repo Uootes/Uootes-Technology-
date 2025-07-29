@@ -22,9 +22,9 @@ export const menuList = [
   { name: 'Profile', icon: <AccountCircleIcon />, url: "/profile" },
   { name: 'Leaders', icon: <EmojiEventsOutlinedIcon />, url: "/leader" },
   { name: 'Upgrade', icon: <NorthOutlinedIcon />, url: "/Comingsoon" },
-  { name: 'Payment Dispute', icon: <BalanceIcon />, url: "/paymentDispute" },
+  { name: 'Payment Dispute', icon: <BalanceIcon />, url: "/Comingsoon" },
   { name: 'Support', icon: <HandshakeOutlinedIcon />, url: "/support" },
-  { name: 'History', icon: <LibraryBooksIcon />, url: "/history" },
+  { name: 'History', icon: <LibraryBooksIcon />, url: "/Comingsoon" },
   { name: 'Settings', icon: <BrightnessLowOutlinedIcon />, url: "/settings" },
   { name: 'Log out', icon: <LogoutOutlinedIcon />, url: "/log_out" },
 ];
